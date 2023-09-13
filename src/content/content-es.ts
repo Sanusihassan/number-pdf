@@ -37,12 +37,12 @@ export const nav_content: nav_content_type = {
 };
 
 export const tool: _tool = {
-  Merge_PDF: {
-    title: "Combinar PDF",
-    description: "Combina varios archivos PDF en un solo documento",
-    color: "var(--red)",
+  Number_PDF: {
+    title: "Numerar PDF",
+    description: "Añade números de página a tu documento PDF con diferentes estilos y opciones",
+    color: "#e55039",
     type: ".pdf",
-    to: "/merge-pdf",
+    to: "/number-pdf",
   },
 };
 

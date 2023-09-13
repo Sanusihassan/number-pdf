@@ -36,15 +36,15 @@ export const nav_content: nav_content_type = {
   pdf_to_markdown: "PDF à Markdown",
 };
 export const tool: _tool = {
-  Merge_PDF: {
-    title: "Fusionner des PDF",
-    description: "Combinez plusieurs fichiers PDF en un seul document",
-    color: "var(--red)",
+  Number_PDF:
+  {
+    title: "Numéroter PDF",
+    description: "Ajoutez des numéros de page à votre document PDF avec différents styles et options",
+    color: "#e55039",
     type: ".pdf",
-    to: "/merge-pdf",
+    to: "/number-pdf",
   },
 };
-
 export const tools: _tools = {
   select: "Sélectionner",
   or_drop: "ou déposer des fichiers ici",

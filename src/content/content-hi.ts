@@ -36,13 +36,14 @@ export const nav_content: nav_content_type = {
   pdf_to_html: "पीडीएफ से एचटीएमएल",
   pdf_to_markdown: "PDF से मार्कडाउन तक",
 };
-export const tool: _tool = {
-  Merge_PDF: {
-    title: "पीडीएफ विलय",
-    description: "एक दस्तावेज में कई पीडीएफ फ़ाइलों को जोड़ें",
-    color: "var(--red)",
+export const tool = {
+  Number_PDF:
+  {
+    title: "PDF संख्या दें",
+    description: "अलग-अलग शैलियों और विकल्पों के साथ अपने PDF दस्तावेज़ में पृष्ठ संख्याएँ जोड़ें",
+    color: "#e55039",
     type: ".pdf",
-    to: "/merge-pdf",
+    to: "/number-pdf",
   },
 };
 

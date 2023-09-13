@@ -35,13 +35,14 @@ export const nav_content: nav_content_type = {
   pdf_to_markdown: "PDF إلى Markdown",
 };
 
+
 export const tool: _tool = {
-  Merge_PDF: {
-    title: "دمج PDF",
-    description: "دمج ملفات PDF متعددة في مستند واحد",
-    color: "var(--red)",
+  Number_PDF: {
+    title: "رقّم PDF",
+    description: "أضف أرقام الصفحات إلى مستند PDF الخاص بك بأنماط وخيارات مختلفة",
+    color: "#e55039",
     type: ".pdf",
-    to: "/merge-pdf",
+    to: "/number-pdf",
   },
 };
 

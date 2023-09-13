@@ -23,14 +23,14 @@ export const nav_content = {
   pdf_to_html: "PDF to HTML",
   pdf_to_markdown: "PDF to Markdown",
 };
-
+// i want the arabic version of this object:
 export const tool = {
-  Merge_PDF: {
-    title: "Merge PDF",
-    description: "Combine multiple PDF files into one document",
-    color: "var(--red)",
+  Number_PDF: {
+    title: "Number PDF",
+    description: "Add page numbers to your PDF document with different styles and options",
+    color: "#e55039",
     type: ".pdf",
-    to: "/merge-pdf",
+    to: "/number-pdf",
   },
 };
 

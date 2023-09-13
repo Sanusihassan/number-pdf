@@ -35,13 +35,13 @@ export const nav_content: _nav_content = {
   pdf_to_markdown: "PDF 到 Markdown",
 };
 
-export const tool: _tool = {
-  Merge_PDF: {
-    title: "合并PDF",
-    description: "将多个PDF文件合并成一个文档",
-    color: "var(--red)",
+export const tool = {
+  Number_PDF: {
+    title: "给PDF编号",
+    description: "使用不同的样式和选项为您的PDF文档添加页码",
+    color: "#e55039",
     type: ".pdf",
-    to: "/merge-pdf",
+    to: "/number-pdf",
   },
 };
 
