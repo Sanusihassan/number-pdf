@@ -97,17 +97,16 @@ const Tool: React.FC<ToolProps> = ({
       <div
         className="tools-page container-fluid position-relative"
         {...(state!.showTool && getRootProps())}
-        onClick={(e) => {
-          e.preventDefault();
-        }}
+      // onClick={(e) => {
+      //   e.preventDefault();
+      // }}
       >
         {isDragActive && (
           <div className="overlay display-4">{tools.drop_files}</div>
         )}
         <div
-          className={`text-center ${
-            !showTool ? "" : "d-flex"
-          } flex-column tools ${state!.showTool ? "" : "d-none"}`}
+          className={`text-center ${!showTool ? "" : "d-flex"
+            } flex-column tools ${state!.showTool ? "" : "d-none"}`}
         >
           <h1 className="display-3">
             <bdi>{data.title}</bdi>

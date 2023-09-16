@@ -36,13 +36,13 @@ export const tool = {
 
 export const edit_page = {
   edit_page_titles: {
-    merge_pdf: "Merge PDF options",
+    number_pdf: "Number PDF options",
   },
   loader_text: "please wait...",
   add_more_button: "Add more files",
   // translate the values of this object to french.
   action_buttons: {
-    merge_pdf: "Merge PDF",
+    number_pdf: "Number PDF",
   },
   pages: "pages",
   page: "page",

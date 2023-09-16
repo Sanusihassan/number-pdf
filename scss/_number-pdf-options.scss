@@ -1,0 +1,221 @@
+%custom-half {
+    flex: 0 1 47%;
+}
+
+.main-number-pdf {
+    @include extend("w-100");
+
+    // >form.main-form {
+    //     display: grid;
+    // }
+    >* {
+        @include extend("my-2");
+    }
+
+    *.col {
+        @include extend("p-0");
+    }
+
+    .pretty.p-default input:checked~.state label:after {
+        background-color: map-get($color-map, "number-pdf") !important;
+    }
+
+    h6.option-title.number-pdf {
+        @include extend("p-2");
+    }
+
+    box-sizing: border-box;
+    max-width: 100%;
+
+    h6 {
+        @include extend("text-uppercase");
+    }
+
+    & *.row {
+        @include extend("m-0");
+    }
+
+
+    &>*,
+    .single-page>* {
+        @include extend("justify-content-between");
+
+    }
+
+
+
+    .position-margin-row {
+
+        .position-col {
+            // h6 {
+            //     // Your styles for the heading
+            // }
+            @include extend("custom-half");
+
+
+
+            .boxes-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(auto-fill 9, 1fr);
+                min-height: 20vh;
+                border: 1px dashed #dcdc;
+                border-bottom: 0;
+                border-right: 0;
+
+                .box {
+                    @include extend("d-flex justify-content-center align-items-center");
+                    border-bottom: 1px dashed #dcdc;
+                    border-right: 1px dashed #dcdc;
+
+                    .inner-box {
+                        @include extend("p-2 rounded-circle");
+                        background-color: map-get($color-map, "number-pdf");
+                        transition: .3s;
+                        opacity: 0;
+
+                        &.display {
+                            opacity: 1;
+                        }
+                    }
+
+                    cursor: pointer;
+
+                    &:hover {
+                        @include extend("text-decoration-none text-primary");
+                    }
+                }
+            }
+
+
+            // .box {
+            //     // Your styles for the box
+            // }
+        }
+
+        .margin-col {
+            @include extend("custom-half");
+            // h6 {
+            //     // Your styles for the heading
+            // }
+
+            // .margin-dropdown {
+            //     // Your styles for the dropdown
+            // }
+        }
+    }
+
+    .start-number-row {
+        width: 47%;
+        @include extend("py-2");
+
+        .start-number-col {
+
+            // &.col-7 {
+            //     // Your styles for the column
+            // }
+
+            // .start-number-input-group {
+            //     // Your styles for the input group
+            // }
+
+            // .start-number-input {
+            //     // Your styles for the input
+            // }
+        }
+    }
+
+    .number-pages-row {
+
+
+        .number-pages-col {
+            @include extend("justify-content-between");
+
+            .row {
+                @include extend("m-0");
+            }
+
+            .from-page-input-group,
+            .to-page-input-group {
+                @extend %custom-half;
+            }
+
+            // .from-page-input,
+            // .to-page-input {
+            //     // Your styles for the input
+            // }
+        }
+    }
+
+    // .text-format-row {
+    //     .text-format-col {
+    //         h6 {
+    //             // Your styles for the heading
+    //         }
+
+    //         .text-format-dropdown {
+    //             // Your styles for the dropdown
+    //         }
+
+    //         .custom-text-input-group {
+    //             // Your styles for the custom text input group
+    //         }
+
+    //         label {
+    //             // Your styles for the label
+    //         }
+
+    //         .custom-text-input {
+    //             // Your styles for the input
+    //         }
+
+    //         .text-sample {
+    //             // Your styles for the text sample
+    //         }
+    //     }
+    // }
+
+    // Add your styles for the font settings row here
+
+
+    .font-setting-values {
+        span {
+            @extend %custom-half;
+        }
+    }
+
+    .sytle-settings-row {
+        // Styles for the first row
+
+        .font-setting-col {
+
+            // Styles for the font setting column
+            .font-dropdown {
+                // Styles for the font dropdown
+                width: 100%;
+                @include extend("w-100");
+            }
+
+            ._btn {
+                outline: none;
+                @include extend("btn");
+
+                // Styles for the button
+                &.text-underline {
+                    // Styles for the underlined text
+                    text-decoration: underline !important;
+                }
+            }
+        }
+
+        .range-setting-col {
+            // Styles for the range setting column
+            @include extend("row justify-content-center align-items-center");
+        }
+
+        .font-col,
+        .range-setting-col {
+            @extend %custom-half;
+        }
+    }
+}

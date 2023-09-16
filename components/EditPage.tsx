@@ -126,7 +126,7 @@ const EditPage = ({
             }
           </bdi>
         </h5>
-        {/* <Options layout={k as OptionsProps["layout"]} edit_page={edit_page} /> */}
+        <Options edit_page={edit_page} />
         <SubmitBtn k={k} edit_page={edit_page} />
       </section>
     </aside>

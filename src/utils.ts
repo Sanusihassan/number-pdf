@@ -92,9 +92,8 @@ export const getFileDetailsTooltipContent = async (
         const pdf = await getDocument(url).promise;
 
         const pageCount = pdf.numPages || 0;
-        tooltipContent += ` - ${
-          lang === "ar" && pageCount === 1 ? "" : pageCount + " "
-        }${pageCount > 1 ? pages : page}`;
+        tooltipContent += ` - ${lang === "ar" && pageCount === 1 ? "" : pageCount + " "
+          }${pageCount > 1 ? pages : page}`;
         URL.revokeObjectURL(url);
         if (!file.size) {
           emptyPDFHandler(dispatch, errors);
@@ -214,7 +213,7 @@ export const validateFiles = (
   for (let i = 0; i < files.length; i++) {
     const file = files[i] || null;
     extension = extension.replace(".", "").toUpperCase();
-    let file_extension = file.name.split(".")[1]?.toUpperCase() || "";
+    let file_extension = file.name.split(".").pop()?.toUpperCase() || "";
     // this contains all types and some special types that might potentially be of than one extension
     const types = [
       "ppt",
@@ -243,7 +242,7 @@ export const validateFiles = (
     ) {
       const errorMessage =
         errors.NOT_SUPPORTED_TYPE.types[
-          extension as keyof typeof errors.NOT_SUPPORTED_TYPE.types
+        extension as keyof typeof errors.NOT_SUPPORTED_TYPE.types
         ] || errors.NOT_SUPPORTED_TYPE.message;
       dispatch(setErrorMessage(errorMessage));
       return false;
