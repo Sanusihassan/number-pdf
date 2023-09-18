@@ -19,7 +19,7 @@
 
 .edit-page {
   display: flex;
-  min-height: 100%;
+  align-items: flex-start;
 
   %border {
     border: 1px solid #dee2e6;
@@ -72,20 +72,28 @@
   }
 
   .add-more-files {
-    @include extend("position-absolute rounded-circle");
+    @include extend("position-fixed rounded-circle");
     width: 2em;
     height: 2em;
 
     // what i'm trying to do is when the language is not arabic apply this style
     :not([lang="ar"]) & {
       left: unset;
-      right: 0;
+      right: 30.5%;
+
+      @include xs {
+        right: 1.5%
+      }
     }
 
     // and when it is apply this style
     [lang="ar"] & {
       right: unset;
-      left: -8px;
+      left: 30.5%;
+
+      @include xs {
+        left: 1.5%
+      }
     }
 
     top: 38%;
@@ -127,7 +135,6 @@
     "footer"
     "footer";
     display: flex;
-    min-height: 85vh;
     flex-direction: column;
     justify-content: space-between;
 

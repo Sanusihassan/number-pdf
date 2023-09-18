@@ -59,12 +59,12 @@ export const downloadFile: _downloadFile = {
 
 export const edit_page: _edit_page = {
   edit_page_titles: {
-    merge_pdf: "合并PDF选项",
+    number_pdf: "编号 PDF 选项"
   },
   loader_text: "请稍等...",
   add_more_button: "添加更多文件",
   action_buttons: {
-    merge_pdf: "合并PDF",
+    number_pdf: "给PDF编号"
   },
   pages: "页",
   page: "页",
@@ -91,31 +91,12 @@ export const errors: _errors = {
     message: "文件不是受支持的类型。",
     types: {
       PDF: "请选择一个有效的PDF文件。",
-      JPG: "请选择一个有效的JPEG图片文件。",
-      DOC: "请选择一个有效的Word文档文件。",
-      DOCX: "请选择一个有效的Word文档文件。",
-      XLS: "请选择一个有效的Excel电子表格文件。",
-      XLSX: "请选择一个有效的Excel电子表格文件。",
-      PPT: "请选择一个有效的PowerPoint演示文稿文件。",
-      PPTX: "请选择一个有效的PowerPoint演示文稿文件。",
     },
     code: "ERR_INVALID_FILE_TYPE",
   },
   FILE_CORRUPT: {
     message: "文件已损坏，无法处理。请选择一个有效的文件。",
     code: "ERR_FILE_CORRUPT",
-  },
-  MISSING_FONTS: {
-    message: "文件缺少字体。请确保所有字体都嵌入在PDF文件中。",
-    code: "ERR_MISSING_FONTS",
-  },
-  INVALID_IMAGE_DATA: {
-    message: "文件包含无效的图像数据。请确保所有图像格式正确。",
-    code: "ERR_INVALID_IMAGE_DATA",
-  },
-  SECURITY_RISK: {
-    message: "文件存在安全风险，无法处理。请选择一个有效的文件。",
-    code: "ERR_SECURITY_RISK",
   },
   MAX_FILES_EXCEEDED: {
     message: "您已超出允许的最大文件数。请删除一些文件并重试。",
@@ -132,9 +113,5 @@ export const errors: _errors = {
   ERR_NETWORK: {
     message: "网络错误，请检查您的互联网连接并重试。",
     code: "ERR_NETWORK",
-  },
-  ERR_UPLOAD_COUNT: {
-    message: "请至少上传两个文件以合并。",
-    code: "ERR_UPLOAD_COUNT",
   },
 };

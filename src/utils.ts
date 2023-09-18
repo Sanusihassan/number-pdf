@@ -1,18 +1,17 @@
 // this is my code:
 import { NextRouter } from "next/router";
+import { Dispatch, useEffect, useMemo, useState } from "react";
+import { AnyAction } from "@reduxjs/toolkit";
+import type { errors as _ } from "../content";
+import { setErrorCode, setErrorMessage, ToolState } from "./store";
 // @ts-ignore
 import { getDocument } from "pdfjs-dist";
 // @ts-ignore
 import { PDFDocumentProxy, PageViewport, RenderTask } from "pdfjs-dist";
 // @ts-ignore
+const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.entry');
 import { GlobalWorkerOptions } from "pdfjs-dist";
-import { Dispatch, useEffect, useMemo, useState } from "react";
-// @ts-ignore
-import { AnyAction } from "@reduxjs/toolkit";
-import type { errors as _ } from "../content";
-import { setErrorCode, setErrorMessage, ToolState } from "./store";
-GlobalWorkerOptions.workerSrc = "/pdf.worker.js";
-
+GlobalWorkerOptions.workerSrc = pdfjsWorker;
 export function useLoadedImage(src: string): HTMLImageElement | null {
   const [loadedImage, setLoadedImage] = useState<HTMLImageElement | null>(null);
 
@@ -47,7 +46,8 @@ function emptyPDFHandler(dispatch: Dispatch<AnyAction>, errors: _) {
   dispatch(setErrorCode("ERR_EMPTY_FILE"));
   return DEFAULT_PDF_IMAGE;
 }
-// i don't know why but when i pass any other file type except images or pdfs this function will cause the application to crash by entering an infinite loop
+
+
 export const getFileDetailsTooltipContent = async (
   file: File,
   pages: string,
@@ -56,9 +56,10 @@ export const getFileDetailsTooltipContent = async (
   dispatch: Dispatch<AnyAction>,
   errors: _
 ): Promise<string> => {
-  const sizeInBytes = file.size;
+  const sizeInBytes = file?.size || 0;
   let size: string = "";
   let isoCode = lang === "fr" ? "fr-FR" : lang == "" ? "en" : lang;
+  let pageCount = 0;
   size = new Intl.NumberFormat(isoCode, {
     notation: "compact",
     style: "unit",
@@ -109,15 +110,13 @@ export const getFileDetailsTooltipContent = async (
   return tooltipContent;
 };
 
-/**
- * this is the current function and it's working,
- * but i want to display the pdf.png file while fetching the first page from the pdf
- */
 
-export async function getFirstPageAsImage(
+// this funciton is using pdfjs-dist but i want to use pdf.js instead.
+export async function getNthPageAsImage(
   file: File,
   dispatch: Dispatch<AnyAction>,
-  errors: _
+  errors: _,
+  pageNumber: number
 ): Promise<string> {
   const fileUrl = URL.createObjectURL(file);
   if (!file.size) {
@@ -126,7 +125,7 @@ export async function getFirstPageAsImage(
     try {
       const loadingTask = getDocument(fileUrl);
       const pdf: PDFDocumentProxy = await loadingTask.promise;
-      const page = await pdf.getPage(1); // Get the first page
+      const page = await pdf.getPage(pageNumber); // Get the Nth page
 
       const scale = 1.5;
       const viewport: PageViewport = page.getViewport({ scale });
@@ -154,6 +153,8 @@ export async function getFirstPageAsImage(
     }
   }
 }
+
+
 
 export const getPlaceHoderImageUrl = (extension: string) => {
   switch (extension) {
@@ -198,12 +199,6 @@ export const validateFiles = (
     "application/vnd.ms-powerpoint",
     "application/vnd.ms-excel",
   ];
-  // validation for merge-pdf page & empty files
-  if (state.path == "merge-pdf" && files.length <= 1) {
-    dispatch(setErrorMessage(errors.ERR_UPLOAD_COUNT.message));
-    dispatch(setErrorCode("ERR_UPLOAD_COUNT"));
-    return false;
-  }
   if (files.length == 0 && (state.click || state.focus)) {
     dispatch(setErrorMessage(errors.NO_FILES_SELECTED.message));
     dispatch(setErrorCode("ERR_NO_FILES_SELECTED"));
@@ -256,19 +251,6 @@ export const validateFiles = (
       dispatch(setErrorMessage(errors.EMPTY_FILE.message));
       dispatch(setErrorCode("ERR_EMPTY_FILE"));
       return false;
-    } else if (file.type.startsWith("image/")) {
-      // handle INVALID_IMAGE_DATA error
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        const img = new Image();
-        img.src = reader.result as string;
-        img.onerror = () => {
-          dispatch(setErrorMessage(errors.INVALID_IMAGE_DATA.message));
-          return false;
-        };
-      };
-      return true;
     }
   }
   return true;

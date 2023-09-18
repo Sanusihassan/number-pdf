@@ -13,7 +13,9 @@ export interface ToolState {
   rerender: boolean;
   showDownloadBtn: boolean;
   showOptions: boolean;
-  nav_height: number
+  nav_height: number;
+  selectedFile: string;
+
 }
 
 const initialState: ToolState = {
@@ -29,7 +31,8 @@ const initialState: ToolState = {
   rerender: false,
   showDownloadBtn: false,
   showOptions: false,
-  nav_height: 0
+  nav_height: 0,
+  selectedFile: ""
 };
 
 const toolSlice = createSlice({
@@ -81,6 +84,9 @@ const toolSlice = createSlice({
     },
     setNavHeight(state: ToolState, action: PayloadAction<number>) {
       state.nav_height = action.payload;
+    },
+    setSelectedFile(state: ToolState, action: PayloadAction<string>) {
+      state.selectedFile = action.payload;
     }
   },
 });
@@ -99,7 +105,8 @@ export const {
   setRerender,
   setShowDownloadBtn,
   setShowOptions,
-  setNavHeight
+  setNavHeight,
+  setSelectedFile
 } = toolSlice.actions;
 
 export default toolSlice.reducer;

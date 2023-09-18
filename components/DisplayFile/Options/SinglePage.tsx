@@ -5,15 +5,14 @@ import InputColor from 'react-input-color';
 import { Range } from 'react-range';
 import { ITrackProps, IThumbProps } from "react-range/lib/types";
 
-
-const THEME_COLOR = "#b71540";
-const customStyles: StylesConfig<{ value: string; label: string; }, false> = {
-    option: (base: CSSObjectWithLabel, state: OptionProps<{ value: string; label: string; }, false, GroupBase<{ value: string; label: string; }>>) => ({
+export const THEME_COLOR = "#b71540";
+export const customStyles: StylesConfig<{ value: string; label: string }, false> = {
+    option: (base: CSSObjectWithLabel, state: OptionProps<{ value: string; label: string }, false, GroupBase<{ value: string; label: string }>>) => ({
         ...base,
-        backgroundColor: state.isSelected ? THEME_COLOR : base.backgroundColor,
+        backgroundColor: state.isSelected ? THEME_COLOR : "white",
+        cursor: "pointer",
     }),
 };
-
 
 export const SinglePage = () => {
     const [position, setPosition] = useState(1);

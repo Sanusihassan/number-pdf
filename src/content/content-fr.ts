@@ -72,12 +72,12 @@ export const downloadFile: _downloadFile = {
 
 export const edit_page: _edit_page = {
   edit_page_titles: {
-    merge_pdf: "Options de fusion de PDF",
+    number_pdf: "Nombre d'options PDF"
   },
   loader_text: "Veuillez patienter...",
   add_more_button: "Ajouter plus de fichiers",
   action_buttons: {
-    merge_pdf: "Fusionner PDF",
+    number_pdf: "Numéroter PDF"
   },
   pages: "pages",
   page: "page",
@@ -97,13 +97,6 @@ export const errors: _errors = {
     message: "Le fichier n'est pas d'un type pris en charge.",
     types: {
       PDF: "Veuillez choisir un fichier PDF valide.",
-      JPG: "Veuillez choisir un fichier d'image JPEG valide.",
-      DOC: "Veuillez choisir un fichier de document Word valide.",
-      DOCX: "Veuillez choisir un fichier de document Word valide.",
-      XLS: "Veuillez choisir un fichier de feuille de calcul Excel valide.",
-      XLSX: "Veuillez choisir un fichier de feuille de calcul Excel valide.",
-      PPT: "Veuillez choisir un fichier de présentation PowerPoint valide.",
-      PPTX: "Veuillez choisir un fichier de présentation PowerPoint valide.",
     },
     code: "ERR_INVALID_FILE_TYPE",
   },
@@ -112,21 +105,7 @@ export const errors: _errors = {
       "Le fichier est corrompu et ne peut pas être traité. Veuillez choisir un fichier valide.",
     code: "ERR_FILE_CORRUPT",
   },
-  MISSING_FONTS: {
-    message:
-      "Le fichier contient des polices manquantes. Veuillez vous assurer que toutes les polices sont intégrées dans le fichier PDF.",
-    code: "ERR_MISSING_FONTS",
-  },
-  INVALID_IMAGE_DATA: {
-    message:
-      "Le fichier contient des données d'image non valides. Veuillez vous assurer que toutes les images sont correctement formatées.",
-    code: "ERR_INVALID_IMAGE_DATA",
-  },
-  SECURITY_RISK: {
-    message:
-      "Le fichier contient un risque de sécurité et ne peut pas être traité. Veuillez choisir un fichier valide.",
-    code: "ERR_SECURITY_RISK",
-  },
+
   MAX_FILES_EXCEEDED: {
     message:
       "Vous avez dépassé le nombre maximal de fichiers autorisés. Veuillez supprimer certains fichiers et réessayer.",
@@ -146,9 +125,5 @@ export const errors: _errors = {
     message:
       "Une erreur de réseau s'est produite. Veuillez vérifier votre connexion Internet et réessayer.",
     code: "ERR_NETWORK",
-  },
-  ERR_UPLOAD_COUNT: {
-    message: "Veuillez télécharger au moins deux fichiers à fusionner.",
-    code: "ERR_UPLOAD_COUNT",
   },
 };

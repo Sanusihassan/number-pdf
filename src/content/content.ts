@@ -83,13 +83,6 @@ export const errors = {
     message: "The file is not a supported type.",
     types: {
       PDF: "Please choose a valid PDF file.",
-      JPG: "Please choose a valid JPEG image file.",
-      DOC: "Please choose a valid Word document file.",
-      DOCX: "Please choose a valid Word document file.",
-      XLS: "Please choose a valid Excel spreadsheet file.",
-      XLSX: "Please choose a valid Excel spreadsheet file.",
-      PPT: "Please choose a valid PowerPoint presentation file.",
-      PPTX: "Please choose a valid PowerPoint presentation file.",
     },
     code: "ERR_INVALID_FILE_TYPE",
   },
@@ -97,21 +90,6 @@ export const errors = {
     message:
       "The file is corrupt and cannot be processed. Please choose a valid file.",
     code: "ERR_FILE_CORRUPT",
-  },
-  MISSING_FONTS: {
-    message:
-      "The file contains missing fontsand cannot be processed. Please ensure all fonts are embedded in the PDF file.",
-    code: "ERR_MISSING_FONTS",
-  },
-  INVALID_IMAGE_DATA: {
-    message:
-      "The file contains invalid image data. Please ensure all images are properly formatted.",
-    code: "ERR_INVALID_IMAGE_DATA",
-  },
-  SECURITY_RISK: {
-    message:
-      "The file contains a security risk and cannot be processed. Please choose a valid file.",
-    code: "ERR_SECURITY_RISK",
   },
   MAX_FILES_EXCEEDED: {
     message:
@@ -132,9 +110,5 @@ export const errors = {
     message:
       "A network error occurred. Please check your internet connection and try again.",
     code: "ERR_NETWORK",
-  },
-  ERR_UPLOAD_COUNT: {
-    message: "Please upload at least two files to merge.",
-    code: "ERR_UPLOAD_COUNT",
-  },
+  }
 };
