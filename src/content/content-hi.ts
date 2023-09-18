@@ -76,6 +76,44 @@ export const edit_page: _edit_page = {
   },
   pages: "पृष्ठों",
   page: "पृष्ठ",
+  number_pdf_options: {
+    page_mode: "वेब पृष्ठ मोड",
+    single_page: "एकल पृष्ठ",
+    facing_pages: "मुखामुखी पृष्ठ",
+    single_page_options: {
+      position: "स्थिति",
+      margin: "मार्जिन",
+      pages: "पृष्ठ",
+      page_to_number: "किस पृष्ठ को नंबर करना चाहते हैं?",
+      start_from: "से शुरू करें",
+      from: "से",
+      to: "तक",
+      text: "पाठ",
+      page_text_options: [
+        { value: 'केवल पृष्ठ संख्या डालें (सिफारिश की जाती है)', label: 'केवल पृष्ठ संख्या डालें (सिफारिश की जाती है)' },
+        { value: 'पृष्ठ n', label: 'पृष्ठ n' },
+        { value: 'पृष्ठ n का x', label: 'पृष्ठ n का x' },
+        { value: 'कस्टम', label: 'कस्टम' },
+      ],
+      custom_text: "कस्टम पाठ",
+      text_sample: "पाठ नमूना: {x} कुल पृष्ठों में से पृष्ठ {n}",
+      margin_options: [
+        { value: 'सामान्य', label: 'सामान्य' },
+        { value: 'सिफारिश की गई', label: 'सिफारिश की गई' },
+        { value: 'बड़ा', label: 'बड़ा' },
+      ],
+      text_format: "पाठ स्वरूप",
+      font: "फोंट",
+      font_size: "फोंट आकार",
+      bold: "मोटा",
+      italic: "तिरछा",
+      underline: "नीला",
+      color: "रंग"
+    },
+    first_page_is_cover: "पहला पृष्ठ कोर का पृष्ठ है"
+  },
+  selected_files_placeholer: "फाइलें चुनें"
+
 };
 
 export const tools: _tools = {

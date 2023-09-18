@@ -1,4 +1,3 @@
-// this is the code for FileCard
 import { ActionProps } from "./ActionDiv";
 import type { errors as _ } from "../../content";
 import { useEffect, useState } from "react";
@@ -47,7 +46,6 @@ const FileCard = ({
     })();
     const processFile = async () => {
       try {
-
         if (extension && extension === ".pdf") {
           if (isSubscribed) {
             for (let i = 1; i <= pageCount; i += 1) {
@@ -84,20 +82,9 @@ const FileCard = ({
       <div className="pages">{
         imageUrls.map((imageUrl, index) => (
           <div
-            className="card item page"
-            data-tooltip-id={`item-tooltip-${index}`}
-            data-tooltip-content={tooltipSize}
-            data-tooltip-place="top"
             key={index.toString()}
+            className="position-relative"
           >
-            {/* 
-            this code is inside a loop but the showLoader is defined like this: const [showLoader, setShowLoader] = useState(true);
-            i want after each image is loaded then to not show the loader of that image
-          */}
-
-            {/* <bdi>
-            <Tooltip id={`item-tooltip-${index}`} />
-          </bdi> */}
             <ImageWithLoader imageUrl={imageUrl} loader_text={loader_text} />
           </div>
         ))}

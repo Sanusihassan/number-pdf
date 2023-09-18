@@ -68,6 +68,44 @@ export const edit_page: _edit_page = {
   },
   pages: "页",
   page: "页",
+  number_pdf_options: {
+    page_mode: "页面模式",
+    single_page: "单页",
+    facing_pages: "对页",
+    single_page_options: {
+      position: "位置",
+      margin: "边距",
+      pages: "页数",
+      page_to_number: "您想对哪些页面进行编号？",
+      start_from: "从哪开始",
+      from: "从",
+      to: "到",
+      text: "文本",
+      page_text_options: [
+        { value: '仅插入页码（推荐）', label: '仅插入页码（推荐）' },
+        { value: '第 n 页', label: '第 n 页' },
+        { value: '第 n 页，共 x 页', label: '第 n 页，共 x 页' },
+        { value: '自定义', label: '自定义' },
+      ],
+      custom_text: "自定义文本",
+      text_sample: "文本样本：第 {n} 页，共 {x} 页",
+      margin_options: [
+        { value: '小', label: '小' },
+        { value: '推荐', label: '推荐' },
+        { value: '大', label: '大' },
+      ],
+      text_format: "文本格式",
+      font: "字体",
+      font_size: "字号",
+      bold: "粗体",
+      italic: "斜体",
+      underline: "下划线",
+      color: "颜色"
+    },
+    first_page_is_cover: "第一页是封面"
+  },
+  selected_files_placeholer: "选择文件"
+
 };
 
 export const tools: _tools = {

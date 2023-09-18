@@ -2,10 +2,7 @@ import { useEffect, useState, RefObject, useContext } from "react";
 import "react-tooltip/dist/react-tooltip.css";
 
 import {
-  getFileDetailsTooltipContent,
-  getFirstPageAsImage,
   getPlaceHoderImageUrl,
-  isDraggableExtension,
 } from "../src/utils";
 
 import { useRouter } from "next/router";
@@ -66,55 +63,7 @@ const DisplayFile = ({
     //   setToolTipSizes(sizes);
     // });
 
-    const processFiles = async () => {
-      try {
-        setShowSpinner(true);
 
-        if (extension && extension === ".pdf") {
-          const newImageUrls: { file: File; imageUrl: string }[] = [];
-          const pdfPromises = files.map(async (file: File) => {
-            const imageUrl = await getFirstPageAsImage(file, dispatch, errors);
-            newImageUrls.push({ file, imageUrl });
-          });
-
-          await Promise.all(pdfPromises);
-          if (isSubscribed) {
-            setImageUrls([...newImageUrls]);
-          }
-        } else if (extension && extension !== ".jpg") {
-          const newImageUrls: { file: File; imageUrl: string }[] = [];
-          files.forEach((file: File) => {
-            let imageUrl = !file.size
-              ? "/images/corrupted.png"
-              : getPlaceHoderImageUrl(extension);
-            newImageUrls.push({ file, imageUrl });
-          });
-
-          if (isSubscribed) {
-            setImageUrls([...newImageUrls]);
-          }
-        } else if (extension && extension === ".jpg") {
-          const newImageUrls: { file: File; imageUrl: string }[] = [];
-          files.forEach((file: File) => {
-            const reader = new FileReader();
-            reader.onload = function (event: ProgressEvent<FileReader>) {
-              const imageUrl = (event.target as FileReader).result as string;
-              newImageUrls.push({ file, imageUrl });
-              if (isSubscribed) {
-                setImageUrls([...newImageUrls]);
-              }
-            };
-            reader.readAsDataURL(file);
-          });
-        }
-      } catch (error) {
-        console.error("Error processing files:", error);
-      } finally {
-        setShowSpinner(false);
-      }
-    };
-
-    // processFiles();
 
     return () => {
       isSubscribed = false;
@@ -136,6 +85,7 @@ const DisplayFile = ({
         loader_text={edit_page.loader_text}
         showSpinner={showSpinner}
         fileDetailProps={[pages, page, lang]}
+        selected_files_placeholer={edit_page.selected_files_placeholer}
       />
     </>
   );

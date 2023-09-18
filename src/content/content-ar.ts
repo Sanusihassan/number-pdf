@@ -76,6 +76,45 @@ export const edit_page: _edit_page = {
   },
   pages: "صفحة",
   page: "صفحة واحدة",
+  number_pdf_options: {
+    page_mode: "وضع الصفحة",
+    single_page: "صفحة واحدة",
+    facing_pages: "صفحات متجاورة",
+    single_page_options: {
+      position: "الموضع",
+      margin: "الهامش",
+      pages: "الصفحات",
+      page_to_number: "أي الصفحات ترغب في ترقيمها؟",
+      start_from: "ابدأ من",
+      from: "من",
+      to: "إلى",
+      text: "النص",
+      page_text_options: [
+        { value: 'أدخل رقم الصفحة فقط (مستحسن)', label: 'أدخل رقم الصفحة فقط (مستحسن)' },
+        { value: 'صفحة n', label: 'صفحة n' },
+        { value: 'صفحة n من x', label: 'صفحة n من x' },
+        { value: 'تخصيص', label: 'تخصيص' },
+      ],
+      custom_text: "نص مخصص",
+      text_sample: "نموذج نص: الصفحة {ن} من إجمالي {س} من الصفحات",
+      margin_options: [
+        { value: 'صغير', label: 'صغير' },
+        { value: 'مستحسن', label: 'مستحسن' },
+        { value: 'كبير', label: 'كبير' },
+      ],
+      text_format: "تنسيق النص",
+      font: "الخط",
+      font_size: "حجم الخط",
+      bold: "عريض",
+      italic: "مائل",
+      underline: "تسطير",
+      color: "اللون"
+    },
+    first_page_is_cover: "الصفحة الأولى هي صفحة الغلاف"
+  },
+  selected_files_placeholer: "اختر الملفات"
+
+
 };
 
 export const errors: _errors = {

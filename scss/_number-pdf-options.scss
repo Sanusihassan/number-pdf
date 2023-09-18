@@ -16,8 +16,24 @@
         @include extend("p-0");
     }
 
+    .pretty {
+        @include extend("d-inline-flex");
+
+        @include ar-wrapper {
+            @include extend("m-0");
+        }
+    }
+
     .pretty.p-default input:checked~.state label:after {
         background-color: map-get($color-map, "number-pdf") !important;
+    }
+
+    .pretty .state label:before,
+    .pretty .state label:after {
+        @include ar-wrapper {
+            left: unset !important;
+        }
+
     }
 
     h6.option-title.number-pdf {
@@ -40,6 +56,19 @@
     .single-page>* {
         @include extend("justify-content-between");
 
+        [class*=input-group] {
+
+            // outline: 1px solid;
+            // .25rem
+            .form-control:not(:first-child) {
+                @include ar-wrapper {
+                    border-radius: 0;
+                    border-top-left-radius: .25rem;
+                    border-bottom-left-radius: .25rem;
+                }
+
+            }
+        }
     }
 
 

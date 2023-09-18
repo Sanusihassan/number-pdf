@@ -1,11 +1,7 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 import type { errors as _ } from "../../content";
-import FileCard from "./FileCard";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { isDraggableExtension } from "../../src/utils";
 import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
-import store, { ToolState } from "../../src/store";
 import { useFileStore } from "../../src/file-store";
 import { FileViewer } from "./FileViwer";
 
@@ -17,6 +13,7 @@ type FileProps = {
   loader_text: string;
   showSpinner: boolean;
   fileDetailProps: [string, string, string];
+  selected_files_placeholer: string;
 };
 const Files = ({
   errors,
@@ -25,6 +22,7 @@ const Files = ({
   loader_text,
   showSpinner,
   fileDetailProps,
+  selected_files_placeholer
 }: FileProps) => {
   // const store = useSelector((state: { tool: ToolState }) => state.tool);
   const { files, imageUrls, setImageUrls } = useFileStore.getState();
@@ -53,10 +51,9 @@ const Files = ({
           loader_text={loader_text}
           fileDetailProps={fileDetailProps}
           extension={extension}
+          selected_files_placeholer={selected_files_placeholer}
         />
       </div>
-
-
     </>
   );
 };

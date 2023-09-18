@@ -7,7 +7,9 @@ import { ToolState, setSelectedFile } from "@/src/store";
 /**
  * the problem might be that it 
  */
-export const SelectedFiles = () => {
+export const SelectedFiles = ({ selected_files_placeholer }: {
+    selected_files_placeholer: string;
+}) => {
     const { files } = useFileStore.getState();
     const [selecteFiles, setSelectedFiles] = useState<{
         label: string;
@@ -39,7 +41,7 @@ export const SelectedFiles = () => {
                         dispatch(setSelectedFile(v.value));
                     }
                 }}
-                placeholder="Select Files"
+                placeholder={selected_files_placeholer}
             />
         </div>
     </>

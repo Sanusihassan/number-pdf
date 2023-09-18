@@ -72,6 +72,12 @@ $color-map: (
 //   height: 100%;
 // }
 
+body {
+  @include ar-wrapper {
+    text-align: right !important;
+  }
+}
+
 .tools-page {
   min-height: fit-content;
 }

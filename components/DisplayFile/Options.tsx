@@ -9,7 +9,7 @@ export interface OptionsProps {
 const Options = ({ edit_page }: OptionsProps) => {
   return (
     <>
-      <NumberPDFOptions />
+      <NumberPDFOptions number_pdf_options={edit_page["number_pdf_options"]} />
     </>
   )
 };

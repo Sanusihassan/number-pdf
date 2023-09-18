@@ -46,6 +46,43 @@ export const edit_page = {
   },
   pages: "pages",
   page: "page",
+  number_pdf_options: {
+    page_mode: "page mode",
+    single_page: "Single Page",
+    facing_pages: "Facing Pages",
+    single_page_options: {
+      position: "position",
+      margin: "margin",
+      pages: "pages",
+      page_to_number: "which pages do you want to number?",
+      start_from: "Start From",
+      from: "From",
+      to: "To",
+      text: "text",
+      page_text_options: [
+        { value: 'insert only page number (recommended)', label: 'insert only page number (recommended)' },
+        { value: 'page n', label: 'page n' },
+        { value: 'page n of x', label: 'page n of x' },
+        { value: 'Custom', label: 'Custom' },
+      ],
+      custom_text: "Custom text",
+      text_sample: "text sample: page {n} of {x} total pages",
+      margin_options: [
+        { value: 'Small', label: 'Small' },
+        { value: 'Recommended', label: 'Recommended' },
+        { value: 'Big', label: 'Big' },
+      ],
+      text_format: "text format",
+      font: "font",
+      font_size: "font size",
+      bold: "bold",
+      italic: "italic",
+      underline: "underline",
+      color: "color"
+    },
+    first_page_is_cover: "First Page is the cover page"
+  },
+  selected_files_placeholer: "Select Files"
 };
 
 export const tools = {

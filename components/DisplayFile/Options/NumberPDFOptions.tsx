@@ -29,12 +29,15 @@ import { Form } from "react-bootstrap";
 import { SinglePage } from "./SinglePage";
 import { Checkbox, Radio } from "pretty-checkbox-react";
 import "pretty-checkbox/src/pretty-checkbox.scss";
-const NumberPDFOptions = () => {
+import type { edit_page } from "@/content";
+const NumberPDFOptions = ({ number_pdf_options }: {
+    number_pdf_options: edit_page["number_pdf_options"]
+}) => {
     const [pageMode, setPageMode] = useState("single");
 
     return (
         <div className="main-number-pdf container">
-            <h6 className="option-title number-pdf">Page Mode</h6>
+            <h6 className="option-title number-pdf">{number_pdf_options.page_mode}</h6>
             <Form className="main-form" onSubmit={e => e.preventDefault()}>
                 <fieldset className="row justify-content-between mode m-0 p-3">
                     <Radio
@@ -44,7 +47,7 @@ const NumberPDFOptions = () => {
                         onChange={() => setPageMode("single")}
                         shape="curve" variant="thick"
                     >
-                        Single Page
+                        {number_pdf_options.single_page}
                     </Radio>
                     <Radio
                         animation="smooth"
@@ -52,11 +55,11 @@ const NumberPDFOptions = () => {
                         onChange={() => setPageMode("facing")}
                         shape="curve" variant="thick"
                     >
-                        Facing Pages
+                        {number_pdf_options.facing_pages}
                     </Radio>
                 </fieldset>
                 {pageMode === "single" &&
-                    <SinglePage />
+                    <SinglePage single_page_options={number_pdf_options["single_page_options"]} />
                 }
                 {pageMode === "facing" &&
                     <div className="facing">
@@ -67,11 +70,11 @@ const NumberPDFOptions = () => {
                             color="primary"
                             //   defaultChecked={checked}
                             //   onChange={onChange}
-                            className="ml-1 my-3 mb-0"
+                            className="ml-1 my-3 mb-0 w-100"
                         >
-                            First Page is the cover page
+                            {number_pdf_options.first_page_is_cover}
                         </Checkbox>
-                        <SinglePage />
+                        <SinglePage single_page_options={number_pdf_options["single_page_options"]} />
                     </div>
                 }
             </Form>

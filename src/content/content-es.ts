@@ -57,6 +57,44 @@ export const edit_page: _edit_page = {
   },
   pages: "paginas",
   page: "página",
+
+  number_pdf_options: {
+    page_mode: "modo de página",
+    single_page: "Página única",
+    facing_pages: "Páginas enfrentadas",
+    single_page_options: {
+      position: "posición",
+      margin: "margen",
+      pages: "páginas",
+      page_to_number: "¿Qué páginas quieres numerar?",
+      start_from: "Comenzar desde",
+      from: "Desde",
+      to: "Hasta",
+      text: "texto",
+      page_text_options: [
+        { value: 'insert only page number (recommended)', label: 'insert only page number (recommended)' },
+        { value: 'page n', label: 'page n' },
+        { value: 'page n of x', label: 'page n of x' },
+        { value: 'Personalizado', label: 'Personalizado' },
+      ],
+      custom_text: "Texto personalizado",
+      text_sample: "muestra de texto: página {n} de {x} páginas en total",
+      margin_options: [
+        { value: 'Pequeño', label: 'Pequeño' },
+        { value: 'Recomendado', label: 'Recomendado' },
+        { value: 'Grande', label: 'Grande' },
+      ],
+      text_format: "formato de texto",
+      font: "fuente",
+      font_size: "tamaño de fuente",
+      bold: "negrita",
+      italic: "cursiva",
+      underline: "subrayado",
+      color: "color"
+    },
+    first_page_is_cover: "La primera página es la página de portada"
+  },
+  selected_files_placeholer: "Seleccionar archivos"
 };
 
 export const tools: _tools = {
