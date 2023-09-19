@@ -1,17 +1,14 @@
-// this is my code:
 import { NextRouter } from "next/router";
 import { Dispatch, useEffect, useMemo, useState } from "react";
 import { AnyAction } from "@reduxjs/toolkit";
 import type { errors as _ } from "../content";
 import { setErrorCode, setErrorMessage, ToolState } from "./store";
-// @ts-ignore
 import { getDocument } from "pdfjs-dist";
-// @ts-ignore
 import { PDFDocumentProxy, PageViewport, RenderTask } from "pdfjs-dist";
-// @ts-ignore
 const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.entry');
 import { GlobalWorkerOptions } from "pdfjs-dist";
 GlobalWorkerOptions.workerSrc = pdfjsWorker;
+
 export function useLoadedImage(src: string): HTMLImageElement | null {
   const [loadedImage, setLoadedImage] = useState<HTMLImageElement | null>(null);
 
