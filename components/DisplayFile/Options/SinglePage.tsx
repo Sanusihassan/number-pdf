@@ -5,6 +5,8 @@ import InputColor from 'react-input-color';
 import { Range } from 'react-range';
 import { ITrackProps, IThumbProps } from "react-range/lib/types";
 import { edit_page } from "@/content";
+import { ToolState, setBulletPosition, setGlobalMargin } from "@/src/store";
+import { useDispatch, useSelector } from "react-redux";
 
 export const THEME_COLOR = "#b71540";
 export const customStyles: StylesConfig<{ value: string; label: string }, false> = {
@@ -18,6 +20,7 @@ export const customStyles: StylesConfig<{ value: string; label: string }, false>
 export const SinglePage = ({ single_page_options }: {
     single_page_options: edit_page["number_pdf_options"]["single_page_options"]
 }) => {
+    const state = useSelector((state: { tool: ToolState }) => state.tool);
     const [position, setPosition] = useState(1);
     const [margin, setMargin] = useState(single_page_options.margin_options[1]);
     const [startNumber, setStartNumber] = useState(1);
@@ -30,6 +33,11 @@ export const SinglePage = ({ single_page_options }: {
     const [isBold, setIsBold] = useState(true);
     const [isItalic, setIsItalic] = useState(true);
     const [isUnderlined, setIsUnderlined] = useState(true);
+    const marginOptions = [
+        "small",
+        "recommended",
+        "big",
+    ]
 
     const fontOptions = [
         { label: 'Arial', value: 'arial' },
@@ -46,34 +54,76 @@ export const SinglePage = ({ single_page_options }: {
         { label: 'Verdana', value: 'verdana' }
     ];
     const [font, setFont] = useState({ label: 'Arial', value: 'arial' });
+    const dispatch = useDispatch();
+    const posToStr = (pos: number): string => {
+        let bulletPosition = "";
+        switch (pos) {
+            case 1:
+            case 7:
+                bulletPosition += "left";
+                break;
+            case 2:
+            case 8:
+                bulletPosition += "center";
+                break;
+            case 3:
+            case 9:
+                bulletPosition += "right";
+                break;
+        }
+        return bulletPosition;
+    }
+    const handleSetPositoin = (p: number) => {
+        let bulletPosition = "";
+
+        const _p = p + 1;
+        if ([1, 2, 3, 7, 8, 9].includes(_p)) {
+            setPosition((p == 0 ? 1 : p + 1));
+            if ([1, 2, 3].includes(_p)) {
+                bulletPosition += "top "
+                bulletPosition += posToStr(_p);
+            } else if ([7, 8, 9].includes(_p)) {
+                bulletPosition += "bottom ";
+                bulletPosition += posToStr(_p);
+            }
+            dispatch(setBulletPosition(bulletPosition));
+        }
+    }
     return (
         <div className="single-page d-flex flex-column justify-content-between">
             <Row className="position-margin-row">
                 <div className="position-col">
                     <h6 className="option-title number-pdf">{single_page_options.position}</h6>
-                    {/* each time i click on any of the inner boxes i want to add a display class to them */}
                     <div className="boxes-container">
                         {[...Array(9)].map((_, i) => (
                             <div
                                 className={`box box-${i + 1}`}
-                                onClick={() => setPosition(i + 1)}
+                                onClick={() => { handleSetPositoin(i); }}
                             >
-                                <div className={`inner-box${position == i + 1 ? " display" : ""}`}></div>
+                                {
+                                    [4, 5, 6].includes(i + 1) ?
+                                        <button className="btn inner-box w-100 h-100" disabled></button> :
+                                        <div className={`inner-box${position == (i == 0 ? 1 : i + 1) ? " display" : ""}`}></div>
+                                }
                             </div>
                         ))}
                     </div>
                 </div>
                 <div className="margin-col">
                     <h6 className="option-title number-pdf">{single_page_options.margin}</h6>
+                    {/* is there a way to know which item is clicked on i.e the item-1, 2 or 3? */}
                     <Select
                         className="margin-dropdown"
                         value={margin}
-                        onChange={(newValue) => {
+                        onChange={(newValue, m) => {
+                            const index = single_page_options.margin_options.findIndex(opt => opt.value === newValue?.value);
                             if (newValue !== null) {
                                 setMargin(newValue);
-                                console.log(margin);
+                                dispatch(setGlobalMargin(marginOptions[index]));
+                                console.log(m);
                             } else {
                                 setMargin(single_page_options.margin_options[1]);
+                                dispatch(setGlobalMargin("recommended"));
                             }
                         }}
                         // @ts-ignore
@@ -83,16 +133,23 @@ export const SinglePage = ({ single_page_options }: {
                     />
                 </div>
             </Row>
-            <Row className="start-number-row">
-                <div className="start-number-col">
+            <Row className="start-number-row w-100">
+                <div className="start-number-col col-12">
                     <InputGroup className="start-number-input-group">
                         <h6 className="option-title number-pdf">{single_page_options.pages}</h6>
                         <InputGroup.Text>{single_page_options.start_from}</InputGroup.Text>
                         <Form.Control
-                            className="start-number-input"
+                            className="start-number-input col p-2"
                             type="number"
+                            min={1}
+                            max={state.pageCount}
                             value={startNumber}
-                            onChange={(e) => setStartNumber(Number(e.target.value))}
+                            onChange={(e) => {
+                                const val = Number(e.target.value);
+                                if (val >= 1) {
+                                    setStartNumber(val);
+                                }
+                            }}
                         />
                     </InputGroup>
                 </div>
@@ -105,6 +162,8 @@ export const SinglePage = ({ single_page_options }: {
                         <Form.Control
                             className="from-page-input"
                             type="number"
+                            min={1}
+                            max={state.pageCount}
                             value={fromPage}
                             onChange={(e) => setFromPage(Number(e.target.value))}
                         />
@@ -114,7 +173,9 @@ export const SinglePage = ({ single_page_options }: {
                         <Form.Control
                             className="to-page-input"
                             type="number"
-                            value={toPage}
+                            min={1}
+                            defaultValue={state.pageCount}
+                            max={state.pageCount}
                             onChange={(e) => setToPage(Number(e.target.value))}
                         />
                     </InputGroup>
@@ -180,7 +241,7 @@ export const SinglePage = ({ single_page_options }: {
                     />
                 </div>
                 <div className="range-setting-col">
-                    
+
                     <Range
                         step={1}
                         min={8}
@@ -196,9 +257,8 @@ export const SinglePage = ({ single_page_options }: {
                                     height: '6px',
                                     width: '100%',
                                     backgroundColor: '#ccc',
-                                    display: "flex",
-                                    flexDirection: "row-reverse"
                                 }}
+                                className="range-track"
                             >
                                 {children}
                             </div>

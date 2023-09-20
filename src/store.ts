@@ -5,7 +5,6 @@ export interface ToolState {
   isSubmitted: boolean;
   errorMessage: string;
   showErrorMessage: boolean;
-  compressPdf: string | number;
   errorCode: string | null;
   path: string;
   click: boolean;
@@ -15,7 +14,9 @@ export interface ToolState {
   showOptions: boolean;
   nav_height: number;
   selectedFile: string;
-
+  bulletPosition: string;
+  margin: string;
+  pageCount: number;
 }
 
 const initialState: ToolState = {
@@ -23,7 +24,6 @@ const initialState: ToolState = {
   errorMessage: "",
   showErrorMessage: false,
   isSubmitted: false,
-  compressPdf: "recommended",
   errorCode: null,
   path: "",
   click: false,
@@ -32,7 +32,10 @@ const initialState: ToolState = {
   showDownloadBtn: false,
   showOptions: false,
   nav_height: 0,
-  selectedFile: ""
+  selectedFile: "",
+  bulletPosition: "top left",
+  margin: "recommended",
+  pageCount: 0
 };
 
 const toolSlice = createSlice({
@@ -70,9 +73,6 @@ const toolSlice = createSlice({
       state.errorCode = null;
       state.isSubmitted = false;
     },
-    setCompressPdf(state: ToolState, action: PayloadAction<string | number>) {
-      state.compressPdf = action.payload;
-    },
     setErrorCode(state: ToolState, action: PayloadAction<string | null>) {
       state.errorCode = action.payload;
     },
@@ -87,6 +87,15 @@ const toolSlice = createSlice({
     },
     setSelectedFile(state: ToolState, action: PayloadAction<string>) {
       state.selectedFile = action.payload;
+    },
+    setBulletPosition(state: ToolState, action: PayloadAction<string>) {
+      state.bulletPosition = action.payload;
+    },
+    setGlobalMargin(state: ToolState, action: PayloadAction<string>) {
+      state.margin = action.payload;
+    },
+    setPageCount(state: ToolState, action: PayloadAction<number>) {
+      state.pageCount = action.payload;
     }
   },
 });
@@ -96,7 +105,6 @@ export const {
   hideTool,
   setErrorMessage,
   resetErrorMessage,
-  setCompressPdf,
   setErrorCode,
   setIsSubmitted,
   setPath,
@@ -106,7 +114,10 @@ export const {
   setShowDownloadBtn,
   setShowOptions,
   setNavHeight,
-  setSelectedFile
+  setSelectedFile,
+  setBulletPosition,
+  setGlobalMargin,
+  setPageCount
 } = toolSlice.actions;
 
 export default toolSlice.reducer;

@@ -79,7 +79,7 @@
     // what i'm trying to do is when the language is not arabic apply this style
     :not([lang="ar"]) & {
       left: unset;
-      left: 30.5%;
+      right: 30.5%;
 
       @include xs {
         right: 1.5%

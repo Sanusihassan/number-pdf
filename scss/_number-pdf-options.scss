@@ -12,7 +12,7 @@
         @include extend("my-2");
     }
 
-    *.col {
+    *[class*=col]:not(input) {
         @include extend("p-0");
     }
 
@@ -69,6 +69,13 @@
 
             }
         }
+
+        .range-track {
+            @include ar-wrapper {
+                display: flex;
+                flex-direction: row-reverse
+            }
+        }
     }
 
 
@@ -98,9 +105,7 @@
                     border-right: 1px dashed #dcdc;
 
                     .inner-box {
-                        @include extend("p-2 rounded-circle");
-                        background-color: map-get($color-map, "number-pdf");
-                        transition: .3s;
+                        @extend %bullet;
                         opacity: 0;
 
                         &.display {

@@ -8,8 +8,9 @@ import {
   getNthPageAsImage,
   getPlaceHoderImageUrl,
 } from "../../src/utils";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ImageWithLoader from "./ImageWithLoader";
+import { ToolState, setPageCount } from "@/src/store";
 type OmitFileName<T extends ActionProps> = Omit<T, "fileName" | "index">;
 
 type CardProps = OmitFileName<ActionProps> & {
@@ -28,8 +29,8 @@ const FileCard = ({
   fileDetailProps,
 }: CardProps) => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const [pageCount, setPageCount] = useState(0);
   const [tooltipSize, setToolTipSize] = useState("");
+  const state = useSelector((state: { tool: ToolState }) => state.tool);
   const dispatch = useDispatch();
   let isSubscribed = true;
   useEffect(() => {
@@ -42,13 +43,13 @@ const FileCard = ({
       );
       let _pageCount = await calculatePages(file);
       setToolTipSize(size);
-      setPageCount(_pageCount);
+      dispatch(setPageCount(_pageCount))
     })();
     const processFile = async () => {
       try {
         if (extension && extension === ".pdf") {
           if (isSubscribed) {
-            for (let i = 1; i <= pageCount; i += 1) {
+            for (let i = 1; i <= state.pageCount; i += 1) {
               let url = await getNthPageAsImage(file, dispatch, errors, i);
               setImageUrls(prevUrls => [...prevUrls, url]);
             }
@@ -71,7 +72,7 @@ const FileCard = ({
     return () => {
       isSubscribed = false;
     };
-  }, [extension, file, pageCount]);
+  }, [extension, file, state.pageCount]);
   return (
     <>
       {imageUrls.length == 0 ?
@@ -83,9 +84,10 @@ const FileCard = ({
         imageUrls.map((imageUrl, index) => (
           <div
             key={index.toString()}
-            className="position-relative"
+            className="page"
           >
             <ImageWithLoader imageUrl={imageUrl} loader_text={loader_text} />
+            <div className={`page-number-bullet ${state.margin} ${state.bulletPosition}`}></div>
           </div>
         ))}
       </div>
