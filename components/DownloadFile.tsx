@@ -13,24 +13,29 @@ const DownloadFile = ({
   lang: string;
   downloadFile: downloadFile;
 }) => {
-  const state = useSelector((state: { tool: ToolState }) => state.tool);
+  // state variables
+  const statePath = useSelector(
+    (state: { tool: ToolState }) => state.tool.path
+  );
+  const showDownloadBtn = useSelector(
+    (state: { tool: ToolState }) => state.tool.showDownloadBtn
+  );
   const { files, downloadBtn } = useFileStore.getState();
 
   const dispatch = useDispatch();
-  const path = state.path;
-  useEffect(() => {}, [downloadFile, state.showDownloadBtn]);
+  const path = statePath;
+  useEffect(() => { }, [downloadFile, showDownloadBtn]);
   return (
     <div
-      className={`download-page flex-column align-items-center justify-content-center text-center${
-        state.showDownloadBtn ? " d-flex" : " d-none"
-      }`}
+      className={`download-page flex-column align-items-center justify-content-center text-center${showDownloadBtn ? " d-flex" : " d-none"
+        }`}
     >
       <h3 className="text-center mb-4">
         <bdi>
           {downloadFile.titles &&
             downloadFile.titles[path as keyof typeof downloadFile.titles] &&
             downloadFile.titles[path as keyof typeof downloadFile.titles][
-              files && files.length > 1 ? 0 : 1
+            files && files.length > 1 ? 0 : 1
             ]}
         </bdi>
       </h3>
@@ -51,7 +56,7 @@ const DownloadFile = ({
           <Tooltip id="download-btn-tooltip" />
         </button>
         <button
-          className={`download-btn btn btn-lg text-white position-relative overflow-hidden ${state.path}`}
+          className={`download-btn btn btn-lg text-white position-relative overflow-hidden ${statePath}`}
           onClick={() => {
             if (downloadBtn?.current) {
               downloadBtn.current.click();
@@ -63,7 +68,7 @@ const DownloadFile = ({
             {downloadFile.btnText &&
               downloadFile.btnText[path as keyof typeof downloadFile.btnText] &&
               downloadFile.btnText[path as keyof typeof downloadFile.btnText][
-                files && files.length > 1 ? 0 : 1
+              files && files.length > 1 ? 0 : 1
               ]}
           </bdi>
         </button>

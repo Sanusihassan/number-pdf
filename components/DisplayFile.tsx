@@ -1,9 +1,5 @@
-import { useEffect, useState, RefObject, useContext } from "react";
+import { useEffect, useState } from "react";
 import "react-tooltip/dist/react-tooltip.css";
-
-import {
-  getPlaceHoderImageUrl,
-} from "../src/utils";
 
 import { useRouter } from "next/router";
 
@@ -11,7 +7,6 @@ import { validateFiles } from "../src/utils";
 
 import type { errors as _, edit_page } from "../content";
 import Files from "./DisplayFile/Files";
-// import { ToolStoreContext } from "../src/ToolStoreContext";
 import { useSelector, useDispatch } from "react-redux";
 import { ToolState, resetErrorMessage, setPath } from "../src/store";
 import { useFileStore } from "../src/file-store";
@@ -32,11 +27,19 @@ const DisplayFile = ({
   errors,
   edit_page,
 }: propTypes) => {
-  const [showSpinner, setShowSpinner] = useState(true);
+  // const [showSpinner, setShowSpinner] = useState(true);
   const [toolTipSizes, setToolTipSizes] = useState<string[]>([]);
   // actual files
-  const { files, setFiles, imageUrls, setImageUrls } = useFileStore.getState();
-  const state = useSelector((state: { tool: ToolState }) => state.tool);
+  const { files } = useFileStore.getState();
+  const statePath = useSelector(
+    (state: { tool: ToolState }) => state.tool.path
+  );
+  const stateFocus = useSelector(
+    (state: { tool: ToolState }) => state.tool.focus
+  );
+  const stateClick = useSelector(
+    (state: { tool: ToolState }) => state.tool.click
+  );
   const dispatch = useDispatch();
   // router
   const router = useRouter();
@@ -44,10 +47,14 @@ const DisplayFile = ({
 
   useEffect(() => {
     // set the path if it's not already set
-    if (state.path == "" || state.path !== path) {
+    if (statePath == "" || statePath !== path) {
       dispatch(setPath(path));
     }
-    const isValid = validateFiles(files, extension, errors, dispatch, state);
+    const isValid = validateFiles(files, extension, errors, dispatch, {
+      path: statePath,
+      focus: stateFocus,
+      click: stateClick,
+    });
     if (isValid) {
       dispatch(resetErrorMessage());
     }
@@ -68,12 +75,12 @@ const DisplayFile = ({
     return () => {
       isSubscribed = false;
     };
-  }, [extension, state.rerender]);
-  const handleDragEnd = (result: any) => {
-    if (!result.destination) {
-      return;
-    }
-  };
+  }, [extension]);
+  // const handleDragEnd = (result: any) => {
+  //   if (!result.destination) {
+  //     return;
+  //   }
+  // };
 
   return (
     <>
@@ -83,7 +90,6 @@ const DisplayFile = ({
         setToolTipSizes={setToolTipSizes}
         toolTipSizes={toolTipSizes}
         loader_text={edit_page.loader_text}
-        showSpinner={showSpinner}
         fileDetailProps={[pages, page, lang]}
         selected_files_placeholer={edit_page.selected_files_placeholer}
       />

@@ -6,7 +6,6 @@ import type { errors as _ } from "../../content";
 import { AnyAction } from "@reduxjs/toolkit";
 // import { shallow } from "zustand"
 import {
-  ToolState,
   resetErrorMessage,
   setErrorMessage,
   setIsSubmitted,
@@ -18,7 +17,7 @@ export const handleUpload = async (
   e: React.FormEvent<HTMLFormElement>,
   downloadBtn: RefObject<HTMLAnchorElement>,
   dispatch: Dispatch<AnyAction>,
-  state: ToolState,
+  errorMessage: string,
   files: File[],
   errors: _,
   filesLengthOnSubmit: number,
@@ -40,17 +39,17 @@ export const handleUpload = async (
     formData.append("files", files[i]);
   }
   let url;
+  let path = "";
   // @ts-ignore
   if (process.env.NODE_ENV === "development") {
-    url = `http://127.0.0.1:5000/${state.path}`;
-    // url = `https://5000-planetcreat-pdfequipsap-te4zoi6qkr3.ws-eu102.gitpod.io/${state.path}`;
+    url = `http://127.0.0.1:5000/${path}`;
+    // url = `https://5000-planetcreat-pdfequipsap-te4zoi6qkr3.ws-eu102.gitpod.io/${path}`;
   } else {
-    url = `/api/${state.path}`;
+    url = `/api/${path}`;
   }
-  if (state?.errorMessage) {
+  if (errorMessage) {
     return;
   }
-  formData.append("compress_amount", String(state?.compressPdf));
   const originalFileName = files[0]?.name?.split(".").slice(0, -1).join(".");
 
   const mimeTypeLookupTable: {
@@ -58,44 +57,12 @@ export const handleUpload = async (
   } = {
     "application/zip": {
       outputFileMimeType: "application/zip",
-      outputFileName: `PDFEquips-${state.path}.zip`,
+      outputFileName: `PDFEquips-${path}.zip`,
     },
     "application/pdf": {
       outputFileMimeType: "application/pdf",
       outputFileName: `${originalFileName}.pdf`,
-    },
-    "application/msword": {
-      outputFileMimeType: "application/msword",
-      outputFileName: `${originalFileName}.docx`,
-    },
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
-      outputFileMimeType:
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      outputFileName: `${originalFileName}.docx`,
-    },
-    "application/vnd.ms-excel": {
-      outputFileMimeType: "application/vnd.ms-excel",
-      outputFileName: `${originalFileName}.xlsx`,
-    },
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
-      outputFileMimeType:
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      outputFileName: `${originalFileName}.xlsx`,
-    },
-    "application/vnd.ms-powerpoint": {
-      outputFileMimeType: "application/vnd.ms-powerpoint",
-      outputFileName: `${originalFileName}.pptx`,
-    },
-    "application/vnd.openxmlformats-officedocument.presentationml.presentation":
-      {
-        outputFileMimeType:
-          "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-        outputFileName: `${originalFileName}.pptx`,
-      },
-    "text/plain": {
-      outputFileMimeType: "text/plain",
-      outputFileName: `${originalFileName}.txt`,
-    },
+    }
   };
 
   try {

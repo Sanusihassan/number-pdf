@@ -28,7 +28,6 @@ const ConvertPDFDropdown = ({
   handleClick: () => void;
   nav_content: nav_content;
 }) => {
-  const state = useSelector((state: { tool: ToolState }) => state.tool);
   const dispatch = useDispatch();
   return (
     <>

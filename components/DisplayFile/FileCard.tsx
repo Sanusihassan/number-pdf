@@ -30,7 +30,15 @@ const FileCard = ({
 }: CardProps) => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [tooltipSize, setToolTipSize] = useState("");
-  const state = useSelector((state: { tool: ToolState }) => state.tool);
+  const pageCount = useSelector(
+    (state: { tool: ToolState }) => state.tool.pageCount
+  );
+  const bulletPosition = useSelector(
+    (state: { tool: ToolState }) => state.tool.bulletPosition
+  );
+  const margin = useSelector(
+    (state: { tool: ToolState }) => state.tool.margin
+  );
   const dispatch = useDispatch();
   let isSubscribed = true;
   useEffect(() => {
@@ -49,7 +57,7 @@ const FileCard = ({
       try {
         if (extension && extension === ".pdf") {
           if (isSubscribed) {
-            for (let i = 1; i <= state.pageCount; i += 1) {
+            for (let i = 1; i <= pageCount; i += 1) {
               let url = await getNthPageAsImage(file, dispatch, errors, i);
               setImageUrls(prevUrls => [...prevUrls, url]);
             }
@@ -72,7 +80,7 @@ const FileCard = ({
     return () => {
       isSubscribed = false;
     };
-  }, [extension, file, state.pageCount]);
+  }, [extension, file, pageCount]);
   return (
     <>
       {imageUrls.length == 0 ?
@@ -87,7 +95,7 @@ const FileCard = ({
             className="page"
           >
             <ImageWithLoader imageUrl={imageUrl} loader_text={loader_text} />
-            <div className={`page-number-bullet ${state.margin} ${state.bulletPosition}`}></div>
+            <div className={`page-number-bullet ${margin} ${bulletPosition}`}></div>
           </div>
         ))}
       </div>

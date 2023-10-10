@@ -20,7 +20,10 @@ export const customStyles: StylesConfig<{ value: string; label: string }, false>
 export const SinglePage = ({ single_page_options }: {
     single_page_options: edit_page["number_pdf_options"]["single_page_options"]
 }) => {
-    const state = useSelector((state: { tool: ToolState }) => state.tool);
+    // state variables:
+    const pageCount = useSelector(
+        (state: { tool: ToolState }) => state.tool.pageCount
+    );
     const [position, setPosition] = useState(1);
     const [margin, setMargin] = useState(single_page_options.margin_options[1]);
     const [startNumber, setStartNumber] = useState(1);
@@ -99,6 +102,7 @@ export const SinglePage = ({ single_page_options }: {
                             <div
                                 className={`box box-${i + 1}`}
                                 onClick={() => { handleSetPositoin(i); }}
+                                key={i}
                             >
                                 {
                                     [4, 5, 6].includes(i + 1) ?
@@ -142,12 +146,13 @@ export const SinglePage = ({ single_page_options }: {
                             className="start-number-input col p-2"
                             type="number"
                             min={1}
-                            max={state.pageCount}
+                            max={pageCount}
                             value={startNumber}
                             onChange={(e) => {
                                 const val = Number(e.target.value);
                                 if (val >= 1) {
                                     setStartNumber(val);
+                                    setFromPage(val);
                                 }
                             }}
                         />
@@ -162,8 +167,8 @@ export const SinglePage = ({ single_page_options }: {
                         <Form.Control
                             className="from-page-input"
                             type="number"
-                            min={1}
-                            max={state.pageCount}
+                            min={fromPage || 1}
+                            max={pageCount}
                             value={fromPage}
                             onChange={(e) => setFromPage(Number(e.target.value))}
                         />
@@ -174,8 +179,8 @@ export const SinglePage = ({ single_page_options }: {
                             className="to-page-input"
                             type="number"
                             min={1}
-                            defaultValue={state.pageCount}
-                            max={state.pageCount}
+                            defaultValue={pageCount}
+                            max={pageCount}
                             onChange={(e) => setToPage(Number(e.target.value))}
                         />
                     </InputGroup>

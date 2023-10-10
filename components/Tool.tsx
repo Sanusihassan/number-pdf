@@ -52,7 +52,6 @@ const Tool: React.FC<ToolProps> = ({
   page,
   downloadFile,
 }) => {
-  const state = useSelector((state: { tool: ToolState }) => state.tool);
   // the files:
   const { files, setFiles, fileInput } = useFileStore.getState();
   const dispatch = useDispatch();
@@ -63,9 +62,18 @@ const Tool: React.FC<ToolProps> = ({
     dispatch(dispatch(hideTool()));
   };
   let path = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");
+  const statePath = useSelector(
+    (state: { tool: ToolState }) => state.tool.path
+  );
+  const stateShowTool = useSelector(
+    (state: { tool: ToolState }) => state.tool.showTool
+  );
+  const errorMessage = useSelector(
+    (state: { tool: ToolState }) => state.tool.errorMessage
+  );
   useEffect(() => {
     // set the path if it has not been set yet
-    if (state.path == "") {
+    if (statePath == "") {
       dispatch(setPath(path));
     }
     dispatch(setShowDownloadBtn(false));
@@ -81,7 +89,7 @@ const Tool: React.FC<ToolProps> = ({
   const { getRootProps, isDragActive } = useDropzone({ onDrop });
 
   // file input change handler
-  let showTool = state!.showTool && state!.errorMessage?.length > 0;
+  let showTool = stateShowTool && errorMessage?.length > 0;
   // accepted file types
   const acceptedFileTypes = {
     ".pdf": ".pdf, .PDF",
@@ -96,7 +104,7 @@ const Tool: React.FC<ToolProps> = ({
     <>
       <div
         className="tools-page container-fluid position-relative"
-        {...(state!.showTool && getRootProps())}
+        {...(stateShowTool && getRootProps())}
       // onClick={(e) => {
       //   e.preventDefault();
       // }}
@@ -106,7 +114,7 @@ const Tool: React.FC<ToolProps> = ({
         )}
         <div
           className={`text-center ${!showTool ? "" : "d-flex"
-            } flex-column tools ${state!.showTool ? "" : "d-none"}`}
+            } flex-column tools ${stateShowTool ? "" : "d-none"}`}
         >
           <h1 className="display-3">
             <bdi>{data.title}</bdi>

@@ -32,9 +32,11 @@ const NavBar = ({
   nav_content: nav_content;
   lang: string;
 }) => {
-  const state = useSelector((state: { tool: ToolState }) => state.tool);
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
+  const statePath = useSelector(
+    (state: { tool: ToolState }) => state.tool.path
+  );
   const router = useRouter();
   let path = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");
   const { files, setFiles } = useFileStore.getState();
@@ -43,8 +45,8 @@ const NavBar = ({
       dispatch(showTool());
     }
     if (
-      !state.path.startsWith("pdf-") ||
-      !["merge-pdf", "compress-pdf"].includes(state.path)
+      !statePath.startsWith("pdf-") ||
+      !["merge-pdf", "compress-pdf"].includes(statePath)
     ) {
       setFiles([]);
     } else {

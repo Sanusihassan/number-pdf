@@ -182,7 +182,11 @@ export const validateFiles = (
   extension: string,
   errors: _,
   dispatch: Dispatch<AnyAction>,
-  state: ToolState
+  state: {
+    path: string;
+    click: boolean;
+    focus: boolean;
+  }
 ) => {
   const files = Array.from(_files); // convert FileList to File[] array
 

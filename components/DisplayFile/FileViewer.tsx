@@ -21,23 +21,20 @@ export const FileViewer = ({
     selected_files_placeholer: string;
 }) => {
     const { files } = useFileStore.getState();
-    const state = useSelector((state: { tool: ToolState }) => state.tool);
-    // const _print = (...args: any) => {
-    //     console.log(...args);
-    //     return true;
-    // }
-
+    const selectedFile = useSelector(
+        (state: { tool: ToolState }) => state.tool.selectedFile
+    );
     const dispatch = useDispatch();
     useEffect(() => {
-        if (state.selectedFile == "" && files.length) {
+        if (selectedFile == "" && files.length) {
             dispatch(setSelectedFile(files[0]!.name));
         }
-        console.log(state.selectedFile)
-    }, [state.selectedFile, files])
+        console.log(selectedFile)
+    }, [selectedFile, files])
     return (<>
         <SelectedFiles selected_files_placeholer={selected_files_placeholer} />
         {files.map(file => (
-            file.name === state.selectedFile ?
+            file.name === selectedFile ?
                 <FileCard
                     file={file}
                     errors={errors}
@@ -54,7 +51,7 @@ export const FileViewer = ({
                 fileDetailProps={fileDetailProps}
                 extension={extension}
             />
-        ) : (currentFile && (currentFile.name === state.selectedFile) ?
+        ) : (currentFile && (currentFile.name === selectedFile) ?
             <FileCard
                 file={currentFile}
                 errors={errors}

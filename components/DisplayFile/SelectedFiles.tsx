@@ -15,7 +15,9 @@ export const SelectedFiles = ({ selected_files_placeholer }: {
         label: string;
         value: string;
     }[]>([]);
-    const state = useSelector((state: { tool: ToolState }) => state.tool);
+    const selectedFile = useSelector(
+        (state: { tool: ToolState }) => state.tool.selectedFile
+    );
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,7 +25,7 @@ export const SelectedFiles = ({ selected_files_placeholer }: {
             label: file.name,
             value: file.name
         }));
-        if (state.selectedFile == "" && selecteFiles.length > 0) {
+        if (selectedFile == "" && selecteFiles.length > 0) {
             dispatch(setSelectedFile(selecteFiles[0].value));
         }
 

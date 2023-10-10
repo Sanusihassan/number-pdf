@@ -3,7 +3,7 @@ import type { errors as _ } from "../../content";
 import { isDraggableExtension } from "../../src/utils";
 import { useRouter } from "next/router";
 import { useFileStore } from "../../src/file-store";
-import { FileViewer } from "./FileViwer";
+import { FileViewer } from "./FileViewer";
 
 type FileProps = {
   errors: _;
@@ -11,7 +11,6 @@ type FileProps = {
   toolTipSizes: string[];
   setToolTipSizes: Dispatch<SetStateAction<string[]>>;
   loader_text: string;
-  showSpinner: boolean;
   fileDetailProps: [string, string, string];
   selected_files_placeholer: string;
 };
@@ -20,12 +19,10 @@ const Files = ({
   extension,
   toolTipSizes,
   loader_text,
-  showSpinner,
   fileDetailProps,
   selected_files_placeholer
 }: FileProps) => {
-  // const store = useSelector((state: { tool: ToolState }) => state.tool);
-  const { files, imageUrls, setImageUrls } = useFileStore.getState();
+  const { files } = useFileStore.getState();
 
   useEffect(() => { }, [files]);
 
