@@ -8,7 +8,6 @@ import ConvertPDFDropdown from "./NavBar/ConvertDropDown";
 import LanguageDropdown from "./NavBar/LanguageDropDown";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-
 import { useFileStore } from "../src/file-store";
 import {
   showTool,
@@ -19,6 +18,7 @@ import {
   setNavHeight,
 } from "../src/store";
 import { useEffect, useRef } from "react";
+
 
 /**
  * this code works fine for the all pages but the home page where there are no sub routes but the /lang route

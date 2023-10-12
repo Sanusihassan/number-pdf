@@ -30,8 +30,9 @@ import { SinglePage } from "./SinglePage";
 import { Checkbox, Radio } from "pretty-checkbox-react";
 import "pretty-checkbox/src/pretty-checkbox.scss";
 import type { edit_page } from "@/content";
-const NumberPDFOptions = ({ number_pdf_options }: {
-    number_pdf_options: edit_page["number_pdf_options"]
+const NumberPDFOptions = ({ number_pdf_options, lang }: {
+    number_pdf_options: edit_page["number_pdf_options"];
+    lang: string;
 }) => {
     const [pageMode, setPageMode] = useState("single");
 
@@ -59,7 +60,7 @@ const NumberPDFOptions = ({ number_pdf_options }: {
                     </Radio>
                 </fieldset>
                 {pageMode === "single" &&
-                    <SinglePage single_page_options={number_pdf_options["single_page_options"]} />
+                    <SinglePage single_page_options={number_pdf_options["single_page_options"]} lang={lang} />
                 }
                 {pageMode === "facing" &&
                     <div className="facing">
@@ -74,7 +75,7 @@ const NumberPDFOptions = ({ number_pdf_options }: {
                         >
                             {number_pdf_options.first_page_is_cover}
                         </Checkbox>
-                        <SinglePage single_page_options={number_pdf_options["single_page_options"]} />
+                        <SinglePage single_page_options={number_pdf_options["single_page_options"]} lang={lang} />
                     </div>
                 }
             </Form>

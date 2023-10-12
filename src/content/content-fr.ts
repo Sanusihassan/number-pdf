@@ -114,7 +114,11 @@ export const edit_page: _edit_page = {
       bold: "gras",
       italic: "italique",
       underline: "souligné",
-      color: "couleur"
+      color: "couleur",
+      document_language: "Langue du Document",
+      select_language_placeholder: "Sélectionner la Langue",
+      select_margin_placeholder: "Sélectionner la Marge",
+      select_font_placeholder: "Sélectionner la Police"
     },
     first_page_is_cover: "La première page est la page de couverture"
   },

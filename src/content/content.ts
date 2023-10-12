@@ -78,9 +78,13 @@ export const edit_page = {
       bold: "bold",
       italic: "italic",
       underline: "underline",
-      color: "color"
+      color: "color",
+      document_language: "Document Language",
+      select_language_placeholder: "Select Language",
+      select_margin_placeholder: "Select Margin",
+      select_font_placeholder: "Select Font",
     },
-    first_page_is_cover: "First Page is the cover page"
+    first_page_is_cover: "First Page is the cover page",
   },
   selected_files_placeholer: "Select Files"
 };

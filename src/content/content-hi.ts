@@ -108,7 +108,11 @@ export const edit_page: _edit_page = {
       bold: "मोटा",
       italic: "तिरछा",
       underline: "नीला",
-      color: "रंग"
+      color: "रंग",
+      document_language: "दस्तावेज़ भाषा",
+      select_language_placeholder: "भाषा चुनें",
+      select_margin_placeholder: "मार्जिन का चयन करें",
+      select_font_placeholder: "फ़ॉन्ट का चयन करें"
     },
     first_page_is_cover: "पहला पृष्ठ कोर का पृष्ठ है"
   },

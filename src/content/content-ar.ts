@@ -108,7 +108,11 @@ export const edit_page: _edit_page = {
       bold: "عريض",
       italic: "مائل",
       underline: "تسطير",
-      color: "اللون"
+      color: "اللون",
+      document_language: "لغة المستند",
+      select_language_placeholder: "اختر اللغة",
+      select_margin_placeholder: "حدد الهامش",
+      select_font_placeholder: "اختر الخط"
     },
     first_page_is_cover: "الصفحة الأولى هي صفحة الغلاف"
   },

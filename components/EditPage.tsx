@@ -138,7 +138,7 @@ const EditPage = ({
             }
           </bdi>
         </h5>
-        <Options edit_page={edit_page} />
+        <Options edit_page={edit_page} lang={lang} />
         <SubmitBtn k={k} edit_page={edit_page} />
       </section>
     </aside>

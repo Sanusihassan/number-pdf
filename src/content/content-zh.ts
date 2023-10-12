@@ -100,12 +100,15 @@ export const edit_page: _edit_page = {
       bold: "粗体",
       italic: "斜体",
       underline: "下划线",
-      color: "颜色"
+      color: "颜色",
+      document_language: "文件语言",
+      select_language_placeholder: "選擇語言",
+      select_margin_placeholder: "選擇邊距",
+      select_font_placeholder: "選擇字體"
     },
     first_page_is_cover: "第一页是封面"
   },
   selected_files_placeholer: "选择文件"
-
 };
 
 export const tools: _tools = {

@@ -54,7 +54,7 @@
 
     &>*,
     .single-page>* {
-        @include extend("justify-content-between");
+        &:not(.ignore){@include extend("justify-content-between");}
 
         [class*=input-group] {
 

@@ -90,7 +90,11 @@ export const edit_page: _edit_page = {
       bold: "negrita",
       italic: "cursiva",
       underline: "subrayado",
-      color: "color"
+      color: "color",
+      document_language: "Idioma del Documento",
+      select_language_placeholder: "Seleccionar Idioma",
+      select_margin_placeholder: "Seleccionar Margen",
+      select_font_placeholder: "Seleccionar Fuente"
     },
     first_page_is_cover: "La primera página es la página de portada"
   },

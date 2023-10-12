@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Row, Col, InputGroup, Form } from "react-bootstrap"
 import Select, { CSSObjectWithLabel, GroupBase, OptionProps, StylesConfig } from 'react-select';
 import InputColor from 'react-input-color';
@@ -7,6 +7,7 @@ import { ITrackProps, IThumbProps } from "react-range/lib/types";
 import { edit_page } from "@/content";
 import { ToolState, setBulletPosition, setGlobalMargin } from "@/src/store";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 export const THEME_COLOR = "#b71540";
 export const customStyles: StylesConfig<{ value: string; label: string }, false> = {
@@ -17,8 +18,9 @@ export const customStyles: StylesConfig<{ value: string; label: string }, false>
     }),
 };
 
-export const SinglePage = ({ single_page_options }: {
-    single_page_options: edit_page["number_pdf_options"]["single_page_options"]
+export const SinglePage = ({ single_page_options, lang }: {
+    single_page_options: edit_page["number_pdf_options"]["single_page_options"];
+    lang: string;
 }) => {
     // state variables:
     const pageCount = useSelector(
@@ -36,12 +38,12 @@ export const SinglePage = ({ single_page_options }: {
     const [isBold, setIsBold] = useState(true);
     const [isItalic, setIsItalic] = useState(true);
     const [isUnderlined, setIsUnderlined] = useState(true);
+    const [documentLanguage, setDocumentLanguage] = useState("")
     const marginOptions = [
         "small",
         "recommended",
         "big",
     ]
-
     const fontOptions = [
         { label: 'Arial', value: 'arial' },
         { label: 'Calibri', value: 'calibri' },
@@ -92,6 +94,24 @@ export const SinglePage = ({ single_page_options }: {
             dispatch(setBulletPosition(bulletPosition));
         }
     }
+    type LanguageOption = {
+        label: string;
+        value: string;
+    };
+
+    const [languages, setLanguages] = useState<LanguageOption[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const response = await axios.get("/languages.json");
+            const languageOptions = Object.entries(response.data).map(([value, language]: [string, unknown]) => ({
+                value,
+                label: (language as { nativeName: string }).nativeName,
+            }));
+            setLanguages(languageOptions);
+        })();
+        console.log(languages[0]);
+    }, []);
     return (
         <div className="single-page d-flex flex-column justify-content-between">
             <Row className="position-margin-row">
@@ -133,7 +153,7 @@ export const SinglePage = ({ single_page_options }: {
                         // @ts-ignore
                         options={single_page_options.margin_options}
                         styles={customStyles}
-                        placeholder="Select Margin"
+                        placeholder={single_page_options.select_margin_placeholder}
                     />
                 </div>
             </Row>
@@ -242,11 +262,10 @@ export const SinglePage = ({ single_page_options }: {
                         }}
                         options={fontOptions}
                         styles={customStyles}
-                        placeholder="Select Margin"
+                        placeholder={single_page_options.select_font_placeholder}
                     />
                 </div>
                 <div className="range-setting-col">
-
                     <Range
                         step={1}
                         min={8}
@@ -283,10 +302,34 @@ export const SinglePage = ({ single_page_options }: {
                     />
                 </div>
             </Row>
+            <Row className="justify-content-center ignore">
+                <span>{single_page_options.document_language}</span>
+            </Row>
+            <Row className="justify-content-center ignore">
+                <div className="lang-setting-col col-7 font-col">
+                    <Select
+                        className="font-dropdown"
+                        defaultValue={languages.find((language) => language.value === "en")}
+                        onChange={(newValue) => {
+                            console.log(newValue);
+                            if (newValue !== null) {
+                                setDocumentLanguage(newValue.value);
+                            } else {
+                                setDocumentLanguage(lang == "" ? "en" : lang);
+                            }
+                        }}
+
+                        options={languages}
+                        styles={customStyles}
+                        placeholder={single_page_options.select_language_placeholder}
+                    />
+                </div>
+            </Row>
             <Row>
                 <span className="col">{single_page_options.bold}</span>
                 <span className="col">{single_page_options.italic}</span>
                 <span className="col">{single_page_options.underline}</span>
+                <span className="col">{single_page_options.color}</span>
                 <span className="col">{single_page_options.color}</span>
             </Row>
             <Row className="sytle-settings-row">
