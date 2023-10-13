@@ -49,16 +49,16 @@ const initialState: ToolState = {
   pageCount: 0,
   options: {
     margin: "recommended",
-    bulletPosition: "",
+    bulletPosition: "top left",
     font: "arial",
     startPage: 0,
     rangeToNumber: { start: 1, end: 0 },
     text: "",
     fontSize: 0,
     documentLanguage: "en",
-    isBold: false,
-    isItalic: false,
-    isUnderlined: false,
+    isBold: true,
+    isItalic: true,
+    isUnderlined: true,
     color: "#000",
     firstPageIsCover: false
   }

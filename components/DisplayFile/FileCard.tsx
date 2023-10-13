@@ -34,10 +34,10 @@ const FileCard = ({
     (state: { tool: ToolState }) => state.tool.pageCount
   );
   const bulletPosition = useSelector(
-    (state: { tool: ToolState }) => state.tool.bulletPosition
+    (state: { tool: ToolState }) => state.tool.options.bulletPosition
   );
   const margin = useSelector(
-    (state: { tool: ToolState }) => state.tool.margin
+    (state: { tool: ToolState }) => state.tool.options.margin
   );
   const dispatch = useDispatch();
   let isSubscribed = true;
