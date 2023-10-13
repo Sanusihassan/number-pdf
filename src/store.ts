@@ -1,4 +1,4 @@
-import { applyMiddleware, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ToolState {
   showTool: boolean;
@@ -13,8 +13,23 @@ export interface ToolState {
   showOptions: boolean;
   nav_height: number;
   selectedFile: string;
-  bulletPosition: string;
-  margin: string;
+  options: {
+    margin: "small" |
+    "recommended" |
+    "big",
+    bulletPosition: string;
+    font: string;
+    startPage: number;
+    rangeToNumber: { start: number; end: number };
+    text: string;
+    fontSize: number;
+    documentLanguage: string;
+    isBold: boolean;
+    isItalic: boolean;
+    isUnderlined: boolean;
+    color: string;
+    firstPageIsCover: boolean;
+  },
   pageCount: number;
 }
 
@@ -31,9 +46,22 @@ const initialState: ToolState = {
   showOptions: false,
   nav_height: 0,
   selectedFile: "",
-  bulletPosition: "top left",
-  margin: "recommended",
-  pageCount: 0
+  pageCount: 0,
+  options: {
+    margin: "recommended",
+    bulletPosition: "",
+    font: "arial",
+    startPage: 0,
+    rangeToNumber: { start: 1, end: 0 },
+    text: "",
+    fontSize: 0,
+    documentLanguage: "en",
+    isBold: false,
+    isItalic: false,
+    isUnderlined: false,
+    color: "#000",
+    firstPageIsCover: false
+  }
 };
 
 const toolSlice = createSlice({
@@ -83,14 +111,29 @@ const toolSlice = createSlice({
     setSelectedFile(state: ToolState, action: PayloadAction<string>) {
       state.selectedFile = action.payload;
     },
-    setBulletPosition(state: ToolState, action: PayloadAction<string>) {
-      state.bulletPosition = action.payload;
-    },
-    setGlobalMargin(state: ToolState, action: PayloadAction<string>) {
-      state.margin = action.payload;
-    },
     setPageCount(state: ToolState, action: PayloadAction<number>) {
       state.pageCount = action.payload;
+    },
+    // instead of setting the entire option at once when calling this function, why not setting one option each time the function is called, like sometimes i just want to set the margin, and sometimes the font and so on.
+    setOptions(state: ToolState, action: PayloadAction<Partial<{
+      margin: "small" | "recommended" | "big";
+      bulletPosition: string;
+      font: string;
+      startPage: number;
+      rangeToNumber: { start: number; end: number };
+      text: string;
+      fontSize: number;
+      documentLanguage: string;
+      isBold: boolean;
+      isItalic: boolean;
+      isUnderlined: boolean;
+      color: string;
+      firstPageIsCover: boolean;
+    }>>) {
+      state.options = {
+        ...state.options,
+        ...action.payload,
+      };
     }
   },
 });
@@ -109,9 +152,8 @@ export const {
   setShowOptions,
   setNavHeight,
   setSelectedFile,
-  setBulletPosition,
-  setGlobalMargin,
-  setPageCount
+  setPageCount,
+  setOptions
 } = toolSlice.actions;
 
 export default toolSlice.reducer;

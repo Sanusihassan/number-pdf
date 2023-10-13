@@ -1,11 +1,11 @@
 import axios from "axios";
 import { Dispatch, RefObject } from "react";
-import type { ToolData, errorType } from "../../components/Tool";
 import { downloadConvertedFile } from "../downloadFile";
 import type { errors as _ } from "../../content";
 import { AnyAction } from "@reduxjs/toolkit";
 // import { shallow } from "zustand"
 import {
+  ToolState,
   resetErrorMessage,
   setErrorMessage,
   setIsSubmitted,
@@ -21,7 +21,8 @@ export const handleUpload = async (
   files: File[],
   errors: _,
   filesLengthOnSubmit: number,
-  setFilesLengthOnSubmit: (value: number) => void
+  setFilesLengthOnSubmit: (value: number) => void,
+  options: ToolState["options"]
 ) => {
   e.preventDefault();
   dispatch(setIsSubmitted(true));
@@ -38,8 +39,9 @@ export const handleUpload = async (
   for (let i = 0; i < files.length; i++) {
     formData.append("files", files[i]);
   }
+  formData.append("options", JSON.stringify(options));
   let url;
-  let path = "";
+  let path = "number-pdf";
   // @ts-ignore
   if (process.env.NODE_ENV === "development") {
     url = `http://127.0.0.1:5000/${path}`;

@@ -46,6 +46,9 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
   const errorMessage = useSelector(
     (state: { tool: ToolState }) => state.tool.errorMessage
   );
+  const stateOptions = useSelector(
+    (state: { tool: ToolState }) => state.tool.options
+  );
   const dispatch = useDispatch();
   // file store
   const { files, setFiles, setFileInput, setDownloadBtn, setSubmitBtn, filesLengthOnSubmit, setFilesLengthOnSubmit } =
@@ -81,7 +84,7 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
         e.stopPropagation();
       }}
       onSubmit={(e) =>
-        handleUpload(e, downloadBtn, dispatch, errorMessage, files, errors, filesLengthOnSubmit, setFilesLengthOnSubmit)
+        handleUpload(e, downloadBtn, dispatch, errorMessage, files, errors, filesLengthOnSubmit, setFilesLengthOnSubmit, stateOptions)
       }
       method="POST"
       encType="multipart/form-data"
@@ -133,7 +136,7 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
         href=""
         className="d-none"
         ref={downloadBtn}
-        download="__output.pdf"
+        download="output.pdf"
       ></a>
       {/* <div className="my-4">
           </div> */}

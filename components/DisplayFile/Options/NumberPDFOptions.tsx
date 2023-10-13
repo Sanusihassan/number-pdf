@@ -30,12 +30,14 @@ import { SinglePage } from "./SinglePage";
 import { Checkbox, Radio } from "pretty-checkbox-react";
 import "pretty-checkbox/src/pretty-checkbox.scss";
 import type { edit_page } from "@/content";
+import { useDispatch } from "react-redux";
+import { setOptions } from "@/src/store";
 const NumberPDFOptions = ({ number_pdf_options, lang }: {
     number_pdf_options: edit_page["number_pdf_options"];
     lang: string;
 }) => {
     const [pageMode, setPageMode] = useState("single");
-
+    const dispatch = useDispatch();
     return (
         <div className="main-number-pdf container">
             <h6 className="option-title number-pdf">{number_pdf_options.page_mode}</h6>
@@ -70,7 +72,9 @@ const NumberPDFOptions = ({ number_pdf_options, lang }: {
                             animation="smooth"
                             color="primary"
                             //   defaultChecked={checked}
-                            //   onChange={onChange}
+                            onChange={(e) => {
+                                dispatch(setOptions({ firstPageIsCover: e.target.checked }));
+                            }}
                             className="ml-1 my-3 mb-0 w-100"
                         >
                             {number_pdf_options.first_page_is_cover}

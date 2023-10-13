@@ -5,7 +5,7 @@ import InputColor from 'react-input-color';
 import { Range } from 'react-range';
 import { ITrackProps, IThumbProps } from "react-range/lib/types";
 import { edit_page } from "@/content";
-import { ToolState, setBulletPosition, setGlobalMargin } from "@/src/store";
+import { ToolState, setOptions } from "@/src/store";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
@@ -26,24 +26,32 @@ export const SinglePage = ({ single_page_options, lang }: {
     const pageCount = useSelector(
         (state: { tool: ToolState }) => state.tool.pageCount
     );
+    const StateOptions = useSelector(
+        (state: { tool: ToolState }) => state.tool.options
+    );
     const [position, setPosition] = useState(1);
     const [margin, setMargin] = useState(single_page_options.margin_options[1]);
     const [startNumber, setStartNumber] = useState(1);
     const [fromPage, setFromPage] = useState(1);
-    const [toPage, setToPage] = useState(1);
+    const [__, setToPage] = useState(1);
     const [textFormat, setTextFormat] = useState(single_page_options.page_text_options[0]);
     const [customText, setCustomText] = useState('page n of x');
-    const [color, setColor] = useState({});
     const [fontSize, setFontSize] = useState([16]);
     const [isBold, setIsBold] = useState(true);
     const [isItalic, setIsItalic] = useState(true);
     const [isUnderlined, setIsUnderlined] = useState(true);
-    const [documentLanguage, setDocumentLanguage] = useState("")
+    const [_, setDocumentLanguage] = useState("")
     const marginOptions = [
         "small",
         "recommended",
         "big",
-    ]
+    ] as const;
+    const textOptions = [
+        { value: 'insert only page number (recommended)', label: 'insert only page number (recommended)' },
+        { value: 'page n', label: 'page n' },
+        { value: 'page n of x', label: 'page n of x' },
+        { value: 'Custom', label: 'Custom' },
+    ] as const;
     const fontOptions = [
         { label: 'Arial', value: 'arial' },
         { label: 'Calibri', value: 'calibri' },
@@ -58,6 +66,7 @@ export const SinglePage = ({ single_page_options, lang }: {
         { label: 'Trebuchet MS', value: 'trebuchet-ms' },
         { label: 'Verdana', value: 'verdana' }
     ];
+
     const [font, setFont] = useState({ label: 'Arial', value: 'arial' });
     const dispatch = useDispatch();
     const posToStr = (pos: number): string => {
@@ -91,7 +100,7 @@ export const SinglePage = ({ single_page_options, lang }: {
                 bulletPosition += "bottom ";
                 bulletPosition += posToStr(_p);
             }
-            dispatch(setBulletPosition(bulletPosition));
+            dispatch(setOptions({ bulletPosition }));
         }
     }
     type LanguageOption = {
@@ -110,8 +119,8 @@ export const SinglePage = ({ single_page_options, lang }: {
             }));
             setLanguages(languageOptions);
         })();
-        console.log(languages[0]);
-    }, []);
+        console.log(StateOptions);
+    }, [StateOptions]);
     return (
         <div className="single-page d-flex flex-column justify-content-between">
             <Row className="position-margin-row">
@@ -135,22 +144,24 @@ export const SinglePage = ({ single_page_options, lang }: {
                 </div>
                 <div className="margin-col">
                     <h6 className="option-title number-pdf">{single_page_options.margin}</h6>
-                    {/* is there a way to know which item is clicked on i.e the item-1, 2 or 3? */}
+                    {/* 
+                        in this Select i'm dispatching the changed value, and this is fine, if the current language is english
+                        but my website is multilingual and the margin property could be set to somthing out of the marginOptions or not in the marginType
+                        i want to get the current index of the selected item for example and get the value from the marginOptions then set the margin property of the global state based on that.
+                    */}
                     <Select
                         className="margin-dropdown"
-                        value={margin}
+                        defaultValue={margin}
                         onChange={(newValue, m) => {
                             const index = single_page_options.margin_options.findIndex(opt => opt.value === newValue?.value);
                             if (newValue !== null) {
                                 setMargin(newValue);
-                                dispatch(setGlobalMargin(marginOptions[index]));
-                                console.log(m);
+                                dispatch(setOptions({ margin: (marginOptions[index]) }));
                             } else {
                                 setMargin(single_page_options.margin_options[1]);
-                                dispatch(setGlobalMargin("recommended"));
+                                dispatch(setOptions({ margin: "recommended" }));
                             }
                         }}
-                        // @ts-ignore
                         options={single_page_options.margin_options}
                         styles={customStyles}
                         placeholder={single_page_options.select_margin_placeholder}
@@ -174,6 +185,8 @@ export const SinglePage = ({ single_page_options, lang }: {
                                     setStartNumber(val);
                                     setFromPage(val);
                                 }
+                                dispatch(setOptions({ startPage: startNumber }));
+                                dispatch(setOptions({ rangeToNumber: { ...StateOptions.rangeToNumber, start: startNumber } }));
                             }}
                         />
                     </InputGroup>
@@ -187,10 +200,13 @@ export const SinglePage = ({ single_page_options, lang }: {
                         <Form.Control
                             className="from-page-input"
                             type="number"
-                            min={fromPage || 1}
+                            min={1}
                             max={pageCount}
-                            value={fromPage}
-                            onChange={(e) => setFromPage(Number(e.target.value))}
+                            defaultValue={fromPage}
+                            onChange={(e) => {
+                                setFromPage(Number(e.target.value));
+                                dispatch(setOptions({ rangeToNumber: { ...StateOptions.rangeToNumber, start: Number(e.target.value) } }))
+                            }}
                         />
                     </InputGroup>
                     <InputGroup className="to-page-input-group">
@@ -201,7 +217,10 @@ export const SinglePage = ({ single_page_options, lang }: {
                             min={1}
                             defaultValue={pageCount}
                             max={pageCount}
-                            onChange={(e) => setToPage(Number(e.target.value))}
+                            onChange={(e) => {
+                                setToPage(Number(e.target.value));
+                                dispatch(setOptions({ rangeToNumber: { ...StateOptions.rangeToNumber, end: Number(e.target.value) } }))
+                            }}
                         />
                     </InputGroup>
                 </div>
@@ -214,8 +233,10 @@ export const SinglePage = ({ single_page_options, lang }: {
                         className="text-format-dropdown"
                         value={textFormat}
                         onChange={(newValue) => {
+                            const index = single_page_options.page_text_options.findIndex(opt => opt.value === newValue?.value);
                             if (newValue !== null) {
                                 setTextFormat(newValue);
+                                dispatch(setOptions({ text: textOptions[index].value }));
                             } else {
                                 setTextFormat(single_page_options.page_text_options[0]);
                             }
@@ -232,7 +253,10 @@ export const SinglePage = ({ single_page_options, lang }: {
                                 className="form-control"
                                 type="text"
                                 value={customText}
-                                onChange={(e) => setCustomText(e.target.value)}
+                                onChange={(e) => {
+                                    setCustomText(e.target.value);
+                                    dispatch(setOptions({ text: e.target.value }));
+                                }}
                             />
                             <div>
                                 <small className="text-secondary text-sample">{single_page_options.text_sample}</small>
@@ -241,8 +265,6 @@ export const SinglePage = ({ single_page_options, lang }: {
                     }
                 </Col>
             </Row>
-            {/* for this row instead of input elements i want to use selectors for each item i.e font selector font size custom range input, bold a button with text "B", italic same with "I" same for underline but for the color i want a color selector */}
-            {/* are there any react solutions for these? */}
             <h6 className="option-title number-pdf">{single_page_options.text_format}</h6>
             <Row className="font-setting-values justify-content-between">
                 <span>{single_page_options.font}</span>
@@ -256,6 +278,7 @@ export const SinglePage = ({ single_page_options, lang }: {
                         onChange={(newValue) => {
                             if (newValue !== null) {
                                 setFont(newValue);
+                                dispatch(setOptions({ font: newValue.value }));
                             } else {
                                 setFont({ label: 'Arial', value: 'arial' });
                             }
@@ -271,7 +294,10 @@ export const SinglePage = ({ single_page_options, lang }: {
                         min={8}
                         max={72}
                         values={fontSize}
-                        onChange={(values: number[]) => setFontSize(values)}
+                        onChange={(values: number[]) => {
+                            setFontSize(values);
+                            dispatch(setOptions({ fontSize: values[0] }))
+                        }}
                         renderTrack={({ props, children }: { props: ITrackProps, children: ReactNode }) => (
                             <div
                                 {...props}
@@ -309,11 +335,12 @@ export const SinglePage = ({ single_page_options, lang }: {
                 <div className="lang-setting-col col-7 font-col">
                     <Select
                         className="font-dropdown"
-                        defaultValue={languages.find((language) => language.value === "en")}
+                        defaultValue={languages.find((language) => language.value === ("" === lang ? "en" : lang))}
                         onChange={(newValue) => {
                             console.log(newValue);
                             if (newValue !== null) {
                                 setDocumentLanguage(newValue.value);
+                                dispatch(setOptions({ documentLanguage: newValue.value }));
                             } else {
                                 setDocumentLanguage(lang == "" ? "en" : lang);
                             }
@@ -330,13 +357,15 @@ export const SinglePage = ({ single_page_options, lang }: {
                 <span className="col">{single_page_options.italic}</span>
                 <span className="col">{single_page_options.underline}</span>
                 <span className="col">{single_page_options.color}</span>
-                <span className="col">{single_page_options.color}</span>
             </Row>
             <Row className="sytle-settings-row">
                 <Col className="font-weight-setting-col">
                     <button
                         className={`btn${isBold ? " font-weight-bold" : ""} p-0 m-0`}
-                        onClick={() => setIsBold(!isBold)}
+                        onClick={() => {
+                            setIsBold(!isBold);
+                            dispatch(setOptions({ isBold: !isBold }))
+                        }}
                     >
                         B
                     </button>
@@ -347,7 +376,10 @@ export const SinglePage = ({ single_page_options, lang }: {
                         style={{
                             fontFamily: "serif"
                         }}
-                        onClick={() => setIsItalic(!isItalic)}
+                        onClick={() => {
+                            setIsItalic(!isItalic);
+                            dispatch(setOptions({ isItalic: !isItalic }));
+                        }}
                     >
                         I
                     </button>
@@ -355,7 +387,10 @@ export const SinglePage = ({ single_page_options, lang }: {
                 <Col className="font-setting-col">
                     <button
                         className={`_btn${isUnderlined ? " text-underline" : ""} p-0 m-0`}
-                        onClick={() => setIsUnderlined(!isUnderlined)}
+                        onClick={() => {
+                            setIsUnderlined(!isUnderlined);
+                            dispatch(setOptions({ isUnderlined: !isUnderlined }));
+                        }}
                     >
                         U
                     </button>
@@ -363,8 +398,10 @@ export const SinglePage = ({ single_page_options, lang }: {
                 <Col className="color-setting-col">
                     <InputColor
                         initialValue="#000"
-                        onChange={setColor}
-                        placement="right"
+                        onChange={(color) => {
+                            dispatch(setOptions({ color: color.hex }));
+                        }}
+                        placement="left"
                     />
                 </Col>
             </Row>
