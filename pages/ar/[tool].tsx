@@ -1,11 +1,10 @@
 import Head from "next/head";
-import NavBar from "../../components/NavBar";
+import NavBar from "@/components/NavBar/NavBar";
 import Tool from "../../components/Tool";
 import { useRouter } from "next/router";
 import {
   edit_page,
   errors,
-  nav_content,
   tool,
   tools,
   downloadFile,
@@ -62,7 +61,7 @@ export default ({ item, lang }: { item: data_type; lang: string }) => {
         <link rel="icon" href="/logo.png" />
         {/* needed for styles */}
       </Head>
-      <NavBar lang={lang} nav_content={nav_content} />
+      <NavBar lang={lang} />
       <Tool
         tools={tools}
         data={item}

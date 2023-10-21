@@ -1,5 +1,4 @@
 import type {
-  nav_content as _nav_content,
   tool as _tool,
   web2pdftool as _web2pdftool,
   tools as _tools,
@@ -9,31 +8,6 @@ import type {
   downloadFile as _downloadFile,
   landing_page as _landing_page,
 } from "../../content";
-export const nav_content: _nav_content = {
-  brand: "Equips",
-  merge_pdf: "合并PDF",
-  split_pdf: "拆分PDF",
-  compress_pdf: "压缩PDF",
-  convert_pdf: "转换PDF",
-  convert_to_pdf: "转换为PDF",
-  jpg_to_pdf: "JPG转PDF",
-  word_to_pdf: "Word转PDF",
-  markdown_to_pdf: "降价到 PDF",
-  powerpoint_to_pdf: "PowerPoint转PDF",
-  excel_to_pdf: "Excel转PDF",
-  html_to_pdf: "HTML转PDF",
-  web_to_pdf: "网页转 PDF",
-  convert_from_pdf: "从PDF转换",
-  read_edit_pdf: "阅读和编辑 PDF",
-  pdf_to_jpg: "PDF转JPG",
-  pdf_to_word: "PDF转Word",
-  pdf_to_powerpoint: "PDF转PowerPoint",
-  pdf_to_excel: "PDF转Excel",
-  pdf_to_pdf_a: "PDF转PDF/A",
-  pdf_to_text: "PDF 转文本",
-  pdf_to_html: "PDF 到 HTML",
-  pdf_to_markdown: "PDF 到 Markdown",
-};
 
 export const tool = {
   Number_PDF: {
@@ -59,12 +33,12 @@ export const downloadFile: _downloadFile = {
 
 export const edit_page: _edit_page = {
   edit_page_titles: {
-    number_pdf: "编号 PDF 选项"
+    number_pdf: "编号 PDF 选项",
   },
   loader_text: "请稍等...",
   add_more_button: "添加更多文件",
   action_buttons: {
-    number_pdf: "给PDF编号"
+    number_pdf: "给PDF编号",
   },
   pages: "页",
   page: "页",
@@ -82,17 +56,17 @@ export const edit_page: _edit_page = {
       to: "到",
       text: "文本",
       page_text_options: [
-        { value: '仅插入页码（推荐）', label: '仅插入页码（推荐）' },
-        { value: '第 n 页', label: '第 n 页' },
-        { value: '第 n 页，共 x 页', label: '第 n 页，共 x 页' },
-        { value: '自定义', label: '自定义' },
+        { value: "仅插入页码（推荐）", label: "仅插入页码（推荐）" },
+        { value: "第 n 页", label: "第 n 页" },
+        { value: "第 n 页，共 x 页", label: "第 n 页，共 x 页" },
+        { value: "自定义", label: "自定义" },
       ],
       custom_text: "自定义文本",
       text_sample: "文本样本：第 {n} 页，共 {x} 页",
       margin_options: [
-        { value: '小', label: '小' },
-        { value: '推荐', label: '推荐' },
-        { value: '大', label: '大' },
+        { value: "小", label: "小" },
+        { value: "推荐", label: "推荐" },
+        { value: "大", label: "大" },
       ],
       text_format: "文本格式",
       font: "字体",
@@ -104,11 +78,11 @@ export const edit_page: _edit_page = {
       document_language: "文件语言",
       select_language_placeholder: "選擇語言",
       select_margin_placeholder: "選擇邊距",
-      select_font_placeholder: "選擇字體"
+      select_font_placeholder: "選擇字體",
     },
-    first_page_is_cover: "第一页是封面"
+    first_page_is_cover: "第一页是封面",
   },
-  selected_files_placeholer: "选择文件"
+  selected_files_placeholer: "选择文件",
 };
 
 export const tools: _tools = {

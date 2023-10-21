@@ -1,5 +1,4 @@
 import type {
-  nav_content as nav_content_type,
   tool as _tool,
   web2pdftool as _web2pdftool,
   tools as _tools,
@@ -10,37 +9,11 @@ import type {
   landing_page as _landing_page,
 } from "../../content";
 
-export const nav_content: nav_content_type = {
-  // इसे अनदेखा करें
-  brand: "Equips",
-  merge_pdf: "पीडीएफ विलय करें",
-  split_pdf: "पीडीएफ विभाजित करें",
-  compress_pdf: "पीडीएफ संपीड़ित करें",
-  convert_pdf: "पीडीएफ परिवर्तित करें",
-  convert_to_pdf: "पीडीएफ में परिवर्तित करें",
-  jpg_to_pdf: "जेपीजी से पीडीएफ",
-  word_to_pdf: "शब्द से पीडीएफ",
-  markdown_to_pdf: "पीडीएफ में मार्कडाउन करें",
-  powerpoint_to_pdf: "पावरपॉइंट से पीडीएफ",
-  excel_to_pdf: "एक्सेल से पीडीएफ",
-  html_to_pdf: "एचटीएमएल से पीडीएफ",
-  web_to_pdf: "वेब से पीडीएफ",
-  convert_from_pdf: "पीडीएफ से परिवर्तित करें",
-  read_edit_pdf: "पीडीएफ पढ़ें और संपादित करें",
-  pdf_to_jpg: "पीडीएफ से जेपीजी",
-  pdf_to_word: "पीडीएफ से शब्द",
-  pdf_to_powerpoint: "पीडीएफ से पावरपॉइंट",
-  pdf_to_excel: "पीडीएफ से एक्सेल",
-  pdf_to_pdf_a: "पीडीएफ से पीडीएफ/ए",
-  pdf_to_text: "पाठ के लिए पीडीएफ",
-  pdf_to_html: "पीडीएफ से एचटीएमएल",
-  pdf_to_markdown: "PDF से मार्कडाउन तक",
-};
 export const tool = {
-  Number_PDF:
-  {
+  Number_PDF: {
     title: "PDF संख्या दें",
-    description: "अलग-अलग शैलियों और विकल्पों के साथ अपने PDF दस्तावेज़ में पृष्ठ संख्याएँ जोड़ें",
+    description:
+      "अलग-अलग शैलियों और विकल्पों के साथ अपने PDF दस्तावेज़ में पृष्ठ संख्याएँ जोड़ें",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",
@@ -67,12 +40,12 @@ export const downloadFile: _downloadFile = {
 
 export const edit_page: _edit_page = {
   edit_page_titles: {
-    number_pdf: "संख्या पीडीएफ विकल्प"
+    number_pdf: "संख्या पीडीएफ विकल्प",
   },
   loader_text: "कृपया प्रतीक्षा करें...",
   add_more_button: "अधिक फ़ाइलें जोड़ें",
   action_buttons: {
-    number_pdf: "PDF संख्या दें"
+    number_pdf: "PDF संख्या दें",
   },
   pages: "पृष्ठों",
   page: "पृष्ठ",
@@ -90,17 +63,20 @@ export const edit_page: _edit_page = {
       to: "तक",
       text: "पाठ",
       page_text_options: [
-        { value: 'केवल पृष्ठ संख्या डालें (सिफारिश की जाती है)', label: 'केवल पृष्ठ संख्या डालें (सिफारिश की जाती है)' },
-        { value: 'पृष्ठ n', label: 'पृष्ठ n' },
-        { value: 'पृष्ठ n का x', label: 'पृष्ठ n का x' },
-        { value: 'कस्टम', label: 'कस्टम' },
+        {
+          value: "केवल पृष्ठ संख्या डालें (सिफारिश की जाती है)",
+          label: "केवल पृष्ठ संख्या डालें (सिफारिश की जाती है)",
+        },
+        { value: "पृष्ठ n", label: "पृष्ठ n" },
+        { value: "पृष्ठ n का x", label: "पृष्ठ n का x" },
+        { value: "कस्टम", label: "कस्टम" },
       ],
       custom_text: "कस्टम पाठ",
       text_sample: "पाठ नमूना: {x} कुल पृष्ठों में से पृष्ठ {n}",
       margin_options: [
-        { value: 'सामान्य', label: 'सामान्य' },
-        { value: 'सिफारिश की गई', label: 'सिफारिश की गई' },
-        { value: 'बड़ा', label: 'बड़ा' },
+        { value: "सामान्य", label: "सामान्य" },
+        { value: "सिफारिश की गई", label: "सिफारिश की गई" },
+        { value: "बड़ा", label: "बड़ा" },
       ],
       text_format: "पाठ स्वरूप",
       font: "फोंट",
@@ -112,12 +88,11 @@ export const edit_page: _edit_page = {
       document_language: "दस्तावेज़ भाषा",
       select_language_placeholder: "भाषा चुनें",
       select_margin_placeholder: "मार्जिन का चयन करें",
-      select_font_placeholder: "फ़ॉन्ट का चयन करें"
+      select_font_placeholder: "फ़ॉन्ट का चयन करें",
     },
-    first_page_is_cover: "पहला पृष्ठ कोर का पृष्ठ है"
+    first_page_is_cover: "पहला पृष्ठ कोर का पृष्ठ है",
   },
-  selected_files_placeholer: "फाइलें चुनें"
-
+  selected_files_placeholer: "फाइलें चुनें",
 };
 
 export const tools: _tools = {

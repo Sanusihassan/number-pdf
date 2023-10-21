@@ -1,33 +1,8 @@
-export const nav_content = {
-  brand: "Equips",
-  merge_pdf: "Merge PDF",
-  split_pdf: "Split PDF",
-  compress_pdf: "Compress PDF",
-  convert_pdf: "Convert PDF",
-  convert_to_pdf: "Convert to PDF",
-  jpg_to_pdf: "JPG to PDF",
-  word_to_pdf: "WORD to PDF",
-  powerpoint_to_pdf: "POWERPOINT to PDF",
-  excel_to_pdf: "EXCEL to PDF",
-  html_to_pdf: "HTML to PDF",
-  web_to_pdf: "Web to PDF",
-  markdown_to_pdf: "Markdown to PDF",
-  convert_from_pdf: "Convert from PDF",
-  read_edit_pdf: "Read & Edit PDF",
-  pdf_to_jpg: "PDF to JPG",
-  pdf_to_word: "PDF to WORD",
-  pdf_to_powerpoint: "PDF to POWERPOINT",
-  pdf_to_excel: "PDF to EXCEL",
-  pdf_to_pdf_a: "PDF to PDF/A",
-  pdf_to_text: "PDF to text",
-  pdf_to_html: "PDF to HTML",
-  pdf_to_markdown: "PDF to Markdown",
-};
-// i want the arabic version of this object:
 export const tool = {
   Number_PDF: {
     title: "Number PDF",
-    description: "Add page numbers to your PDF document with different styles and options",
+    description:
+      "Add page numbers to your PDF document with different styles and options",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",
@@ -60,17 +35,20 @@ export const edit_page = {
       to: "To",
       text: "text",
       page_text_options: [
-        { value: 'insert only page number (recommended)', label: 'insert only page number (recommended)' },
-        { value: 'page n', label: 'page n' },
-        { value: 'page n of x', label: 'page n of x' },
-        { value: 'Custom', label: 'Custom' },
+        {
+          value: "insert only page number (recommended)",
+          label: "insert only page number (recommended)",
+        },
+        { value: "page n", label: "page n" },
+        { value: "page n of x", label: "page n of x" },
+        { value: "Custom", label: "Custom" },
       ],
       custom_text: "Custom text",
       text_sample: "text sample: page {n} of {x} total pages",
       margin_options: [
-        { value: 'Small', label: 'Small' },
-        { value: 'Recommended', label: 'Recommended' },
-        { value: 'Big', label: 'Big' },
+        { value: "Small", label: "Small" },
+        { value: "Recommended", label: "Recommended" },
+        { value: "Big", label: "Big" },
       ],
       text_format: "text format",
       font: "font",
@@ -86,7 +64,7 @@ export const edit_page = {
     },
     first_page_is_cover: "First Page is the cover page",
   },
-  selected_files_placeholer: "Select Files"
+  selected_files_placeholer: "Select Files",
 };
 
 export const tools = {
@@ -151,5 +129,5 @@ export const errors = {
     message:
       "A network error occurred. Please check your internet connection and try again.",
     code: "ERR_NETWORK",
-  }
+  },
 };

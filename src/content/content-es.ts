@@ -1,5 +1,4 @@
 import type {
-  nav_content as nav_content_type,
   tool as _tool,
   web2pdftool as _web2pdftool,
   tools as _tools,
@@ -10,36 +9,11 @@ import type {
   landing_page as _landing_page,
 } from "../../content";
 
-export const nav_content: nav_content_type = {
-  brand: "Equips",
-  merge_pdf: "Combinar PDF",
-  split_pdf: "Dividir PDF",
-  compress_pdf: "Comprimir PDF",
-  convert_pdf: "Convertir PDF",
-  convert_to_pdf: "Convertir a PDF",
-  jpg_to_pdf: "JPG a PDF",
-  word_to_pdf: "Word a PDF",
-  powerpoint_to_pdf: "Powerpoint a PDF",
-  web_to_pdf: "Web a PDF",
-  markdown_to_pdf: "Markdown a PDF",
-  excel_to_pdf: "Excel a PDF",
-  html_to_pdf: "HTML a PDF",
-  convert_from_pdf: "Convertir desde PDF",
-  read_edit_pdf: "Leer y editar PDF",
-  pdf_to_jpg: "PDF a JPG",
-  pdf_to_word: "PDF a Word",
-  pdf_to_powerpoint: "PDF a Powerpoint",
-  pdf_to_excel: "PDF a Excel",
-  pdf_to_pdf_a: "PDF a PDF/A",
-  pdf_to_text: "PDF a texto",
-  pdf_to_html: "PDF a HTML",
-  pdf_to_markdown: "PDF a Markdown",
-};
-
 export const tool: _tool = {
   Number_PDF: {
     title: "Numerar PDF",
-    description: "Añade números de página a tu documento PDF con diferentes estilos y opciones",
+    description:
+      "Añade números de página a tu documento PDF con diferentes estilos y opciones",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",
@@ -48,12 +22,12 @@ export const tool: _tool = {
 
 export const edit_page: _edit_page = {
   edit_page_titles: {
-    number_pdf: "Número de opciones de PDF"
+    number_pdf: "Número de opciones de PDF",
   },
   loader_text: "Por favor espera...",
   add_more_button: "Agrega más archivos",
   action_buttons: {
-    number_pdf: "Numerar PDF"
+    number_pdf: "Numerar PDF",
   },
   pages: "paginas",
   page: "página",
@@ -72,17 +46,20 @@ export const edit_page: _edit_page = {
       to: "Hasta",
       text: "texto",
       page_text_options: [
-        { value: 'insert only page number (recommended)', label: 'insert only page number (recommended)' },
-        { value: 'page n', label: 'page n' },
-        { value: 'page n of x', label: 'page n of x' },
-        { value: 'Personalizado', label: 'Personalizado' },
+        {
+          value: "insert only page number (recommended)",
+          label: "insert only page number (recommended)",
+        },
+        { value: "page n", label: "page n" },
+        { value: "page n of x", label: "page n of x" },
+        { value: "Personalizado", label: "Personalizado" },
       ],
       custom_text: "Texto personalizado",
       text_sample: "muestra de texto: página {n} de {x} páginas en total",
       margin_options: [
-        { value: 'Pequeño', label: 'Pequeño' },
-        { value: 'Recomendado', label: 'Recomendado' },
-        { value: 'Grande', label: 'Grande' },
+        { value: "Pequeño", label: "Pequeño" },
+        { value: "Recomendado", label: "Recomendado" },
+        { value: "Grande", label: "Grande" },
       ],
       text_format: "formato de texto",
       font: "fuente",
@@ -94,11 +71,11 @@ export const edit_page: _edit_page = {
       document_language: "Idioma del Documento",
       select_language_placeholder: "Seleccionar Idioma",
       select_margin_placeholder: "Seleccionar Margen",
-      select_font_placeholder: "Seleccionar Fuente"
+      select_font_placeholder: "Seleccionar Fuente",
     },
-    first_page_is_cover: "La primera página es la página de portada"
+    first_page_is_cover: "La primera página es la página de portada",
   },
-  selected_files_placeholer: "Seleccionar archivos"
+  selected_files_placeholer: "Seleccionar archivos",
 };
 
 export const tools: _tools = {
@@ -167,5 +144,5 @@ export const errors: _errors = {
     message:
       "Ha ocurrido un error en la red. Por favor, comprueba tu conexión a internet e inténtalo de nuevo.",
     code: "ERR_NETWORK",
-  }
+  },
 };

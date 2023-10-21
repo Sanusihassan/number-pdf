@@ -1,3 +1,6 @@
+// #basic-nav-dropdown {
+//   padding-left: 1.5rem !important;
+// }
 .navbar {
   .convert-dropdown {
     * {
@@ -68,4 +71,15 @@
       transition: max-height 0.4s ease;
     }
   }
+}
+.html {
+  color: rgb(228, 77, 38);
+}
+
+.web {
+  color: #0984e3;
+}
+
+.text {
+  color: lighten(#2e86de, 5%);
 }

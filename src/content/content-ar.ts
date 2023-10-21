@@ -1,5 +1,4 @@
 import type {
-  nav_content as nav_content_type,
   tool as _tool,
   tools as _tools,
   edit_page as _edit_page,
@@ -9,37 +8,11 @@ import type {
   landing_page as _landing_page,
 } from "../../content";
 
-export const nav_content: nav_content_type = {
-  brand: "Equips",
-  merge_pdf: "دمج PDF",
-  split_pdf: "تقسيم PDF",
-  compress_pdf: "ضغط PDF",
-  convert_pdf: "تحويل PDF",
-  convert_to_pdf: "تحويل إلى PDF",
-  jpg_to_pdf: "JPG إلى PDF",
-  word_to_pdf: "Word إلى PDF",
-  powerpoint_to_pdf: "PowerPoint إلى PDF",
-  excel_to_pdf: "Excel إلى PDF",
-  html_to_pdf: "HTML إلى PDF",
-  markdown_to_pdf: "Markdown إلى PDF",
-  convert_from_pdf: "تحويل من PDF",
-  read_edit_pdf: "قراءة وتحرير PDF",
-  web_to_pdf: "من الويب إلى PDF",
-  pdf_to_jpg: "PDF إلى JPG",
-  pdf_to_word: "PDF إلى Word",
-  pdf_to_powerpoint: "PDF إلى PowerPoint",
-  pdf_to_excel: "PDF إلى Excel",
-  pdf_to_pdf_a: "PDF إلى PDF/A",
-  pdf_to_text: "PDF إلى نص",
-  pdf_to_html: "PDF إلى HTML",
-  pdf_to_markdown: "PDF إلى Markdown",
-};
-
-
 export const tool: _tool = {
   Number_PDF: {
     title: "رقّم PDF",
-    description: "أضف أرقام الصفحات إلى مستند PDF الخاص بك بأنماط وخيارات مختلفة",
+    description:
+      "أضف أرقام الصفحات إلى مستند PDF الخاص بك بأنماط وخيارات مختلفة",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",
@@ -67,7 +40,7 @@ export const downloadFile: _downloadFile = {
 
 export const edit_page: _edit_page = {
   edit_page_titles: {
-    number_pdf: "خيارات ترقيم ملف ال PDF"
+    number_pdf: "خيارات ترقيم ملف ال PDF",
   },
   loader_text: "يرجى الانتظار...",
   add_more_button: "إضافة المزيد من الملفات",
@@ -90,17 +63,20 @@ export const edit_page: _edit_page = {
       to: "إلى",
       text: "النص",
       page_text_options: [
-        { value: 'أدخل رقم الصفحة فقط (مستحسن)', label: 'أدخل رقم الصفحة فقط (مستحسن)' },
-        { value: 'صفحة n', label: 'صفحة n' },
-        { value: 'صفحة n من x', label: 'صفحة n من x' },
-        { value: 'تخصيص', label: 'تخصيص' },
+        {
+          value: "أدخل رقم الصفحة فقط (مستحسن)",
+          label: "أدخل رقم الصفحة فقط (مستحسن)",
+        },
+        { value: "صفحة n", label: "صفحة n" },
+        { value: "صفحة n من x", label: "صفحة n من x" },
+        { value: "تخصيص", label: "تخصيص" },
       ],
       custom_text: "نص مخصص",
       text_sample: "نموذج نص: الصفحة {ن} من إجمالي {س} من الصفحات",
       margin_options: [
-        { value: 'صغير', label: 'صغير' },
-        { value: 'مستحسن', label: 'مستحسن' },
-        { value: 'كبير', label: 'كبير' },
+        { value: "صغير", label: "صغير" },
+        { value: "مستحسن", label: "مستحسن" },
+        { value: "كبير", label: "كبير" },
       ],
       text_format: "تنسيق النص",
       font: "الخط",
@@ -112,13 +88,11 @@ export const edit_page: _edit_page = {
       document_language: "لغة المستند",
       select_language_placeholder: "اختر اللغة",
       select_margin_placeholder: "حدد الهامش",
-      select_font_placeholder: "اختر الخط"
+      select_font_placeholder: "اختر الخط",
     },
-    first_page_is_cover: "الصفحة الأولى هي صفحة الغلاف"
+    first_page_is_cover: "الصفحة الأولى هي صفحة الغلاف",
   },
-  selected_files_placeholer: "اختر الملفات"
-
-
+  selected_files_placeholer: "اختر الملفات",
 };
 
 export const errors: _errors = {
@@ -160,5 +134,5 @@ export const errors: _errors = {
     message:
       "حدث خطأ في الشبكة. يرجى التحقق من اتصالك بالإنترنت وحاول مرة أخرى.",
     code: "ERR_NETWORK",
-  }
+  },
 };
