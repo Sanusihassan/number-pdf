@@ -44,7 +44,7 @@ export const handleUpload = async (
   let path = "number-pdf";
   // @ts-ignore
   if (process.env.NODE_ENV === "development") {
-    url = `http://127.0.0.1:5000/${path}`;
+    url = `https://5000-sanusihassa-pdfequipsap-d4dcanvkx7o.ws-eu105.gitpod.io/api/${path}`;
     // url = `https://5000-planetcreat-pdfequipsap-te4zoi6qkr3.ws-eu102.gitpod.io/${path}`;
   } else {
     url = `/api/${path}`;
@@ -64,7 +64,7 @@ export const handleUpload = async (
     "application/pdf": {
       outputFileMimeType: "application/pdf",
       outputFileName: `${originalFileName}.pdf`,
-    }
+    },
   };
 
   try {

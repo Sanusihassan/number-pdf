@@ -76,15 +76,18 @@ export const tools = {
 
 export const downloadFile = {
   titles: {
-    "merge-pdf": ["PDF files have been merged!", "PDF file has been merged!"],
+    "number-pdf": [
+      "PDF files have been numbered!",
+      "PDF file has been numbered!",
+    ],
   },
 
   btnText: {
-    "merge-pdf": ["Download Merged PDF files", "Download Merged PDF file"],
+    "number-pdf": ["Download Numbered PDF files", "Download Numbered PDF file"],
   },
 
   backto: {
-    "merge-pdf": "Back To Merge PDF",
+    "number-pdf": "Back To Number PDF",
   },
 };
 

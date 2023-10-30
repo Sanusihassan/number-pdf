@@ -87,19 +87,21 @@ export const tools: _tools = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "merge-pdf": [
-      "¡Combinación de archivos PDF exitosa!",
-      "¡Combinación de archivo PDF exitosa!",
+    "number-pdf": [
+      "¡Los archivos PDF han sido numerados!",
+      "¡El archivo PDF ha sido numerado!",
     ],
   },
+
   btnText: {
-    "merge-pdf": [
-      "Descargar archivos PDF combinados",
-      "Descargar archivo PDF combinado",
+    "number-pdf": [
+      "Descargar archivos PDF numerados",
+      "Descargar archivo PDF numerado",
     ],
   },
+
   backto: {
-    "merge-pdf": "Volver a unir PDF",
+    "number-pdf": "Volver a numerar PDF",
   },
 };
 

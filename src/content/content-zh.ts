@@ -21,13 +21,15 @@ export const tool = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "merge-pdf": ["PDF文件已合并！", "PDF文件已合并！"],
+    "number-pdf": ["PDF文件已编号！", "PDF文件已编号！"],
   },
+
   btnText: {
-    "merge-pdf": ["下载合并后的PDF文件", "下载合并后的PDF文件"],
+    "number-pdf": ["下载已编号的PDF文件", "下载已编号的PDF文件"],
   },
+
   backto: {
-    "merge-pdf": "返回合并PDF",
+    "number-pdf": "返回到编号PDF",
   },
 };
 

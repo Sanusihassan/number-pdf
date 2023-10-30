@@ -28,13 +28,15 @@ export const tools: _tools = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "merge-pdf": ["تم دمج ملفات ال PDF!", "تم دمج ملف ال PDF!"],
+    "number-pdf": ["تم ترقيم ملفات PDF!", "تم ترقيم ملف PDF!"],
   },
+
   btnText: {
-    "merge-pdf": ["تحميل ملفات PDF المدموجة", "تحميل ملف PDF مدموج"],
+    "number-pdf": ["تنزيل ملفات PDF المرقمة", "تنزيل ملف PDF المرقم"],
   },
+
   backto: {
-    "merge-pdf": "العودة إلى دمج ملفات PDF",
+    "number-pdf": "العودة إلى ترقيم PDF",
   },
 };
 

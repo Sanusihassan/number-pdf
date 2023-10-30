@@ -28,19 +28,21 @@ export const tools: _tools = {
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "merge-pdf": [
-      "Fusion de fichiers PDF réussie !",
-      "Fusion de fichier PDF réussie !",
+    "number-pdf": [
+      "Les fichiers PDF ont été numérotés!",
+      "Le fichier PDF a été numéroté!",
     ],
   },
+
   btnText: {
-    "merge-pdf": [
-      "Télécharger les fichiers PDF fusionnés",
-      "Télécharger le fichier PDF fusionné",
+    "number-pdf": [
+      "Télécharger les fichiers PDF numérotés",
+      "Télécharger le fichier PDF numéroté",
     ],
   },
+
   backto: {
-    "merge-pdf": "Retour à Fusionner PDF",
+    "number-pdf": "Retourner à la numérotation PDF",
   },
 };
 

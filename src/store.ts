@@ -50,7 +50,7 @@ const initialState: ToolState = {
   options: {
     margin: "recommended",
     bulletPosition: "top left",
-    font: "arial",
+    font: "DejaVu",
     startPage: 0,
     rangeToNumber: { start: 1, end: 0 },
     text: "",
