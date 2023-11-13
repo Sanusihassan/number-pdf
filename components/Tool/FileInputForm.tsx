@@ -51,8 +51,15 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
   );
   const dispatch = useDispatch();
   // file store
-  const { files, setFiles, setFileInput, setDownloadBtn, setSubmitBtn, filesLengthOnSubmit, setFilesLengthOnSubmit } =
-    useFileStore.getState();
+  const {
+    files,
+    setFiles,
+    setFileInput,
+    setDownloadBtn,
+    setSubmitBtn,
+    filesLengthOnSubmit,
+    setFilesLengthOnSubmit,
+  } = useFileStore();
   // refs
   const fileInput = useRef<HTMLInputElement>(null);
   const submitBtn = useRef<HTMLButtonElement>(null);
@@ -84,7 +91,17 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
         e.stopPropagation();
       }}
       onSubmit={(e) =>
-        handleUpload(e, downloadBtn, dispatch, errorMessage, files, errors, filesLengthOnSubmit, setFilesLengthOnSubmit, stateOptions)
+        handleUpload(
+          e,
+          downloadBtn,
+          dispatch,
+          errorMessage,
+          files,
+          errors,
+          filesLengthOnSubmit,
+          setFilesLengthOnSubmit,
+          stateOptions
+        )
       }
       method="POST"
       encType="multipart/form-data"
@@ -132,12 +149,7 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
           }}
         />
       </div>
-      <a
-        href=""
-        className="d-none"
-        ref={downloadBtn}
-        download="output.pdf"
-      ></a>
+      <a href="" className="d-none" ref={downloadBtn} download="output.pdf"></a>
       {/* <div className="my-4">
           </div> */}
       <button type="submit" ref={submitBtn} className="d-none">

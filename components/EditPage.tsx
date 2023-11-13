@@ -68,7 +68,7 @@ const EditPage = ({
   );
   const dispatch = useDispatch();
   // actual files;
-  const { files, setFiles, fileInput, submitBtn } = useFileStore.getState();
+  const { files, setFiles, fileInput, submitBtn } = useFileStore();
   useEffect(() => {
     if (errorCode == "ERR_NO_FILES_SELECTED" && files.length > 0) {
       dispatch(resetErrorMessage());
@@ -84,8 +84,7 @@ const EditPage = ({
   const gearRef = useRef(null);
   return (
     <aside
-      className={`edit-page ${showTool || showDownloadBtn ? "d-none" : ""
-        }`}
+      className={`edit-page ${showTool || showDownloadBtn ? "d-none" : ""}`}
     >
       <section className="edit-area position-relative">
         <DisplayFile
@@ -116,24 +115,35 @@ const EditPage = ({
           }}
           ref={gearRef}
           style={
-            showOptions ? {
-              top: navHeight + (gearRef.current ? (gearRef.current as HTMLElement).clientHeight : 0)
-            } : {}
+            showOptions
+              ? {
+                  top:
+                    navHeight +
+                    (gearRef.current
+                      ? (gearRef.current as HTMLElement).clientHeight
+                      : 0),
+                }
+              : {}
           }
         >
           <CogIcon className="w-6 h-6 me-2 gear-icon" />
         </button>
       </section>
-      <section className={`options bg-white ${showOptions ? " expanded" : ""}`} style={
-        showOptions ? {
-          top: navHeight
-        } : {}
-      }>
+      <section
+        className={`options bg-white ${showOptions ? " expanded" : ""}`}
+        style={
+          showOptions
+            ? {
+                top: navHeight,
+              }
+            : {}
+        }
+      >
         <h5 className="text-uppercase grid-header">
           <bdi>
             {
               edit_page.edit_page_titles[
-              k.replace(/-/g, "_") as keyof typeof edit_page.edit_page_titles
+                k.replace(/-/g, "_") as keyof typeof edit_page.edit_page_titles
               ]
             }
           </bdi>

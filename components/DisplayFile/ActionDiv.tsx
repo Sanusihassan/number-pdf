@@ -9,10 +9,10 @@ import type { errors as _ } from "../../content";
 // import { useFileStore } from "../../src/file-store";
 
 export type ActionProps = {
-    index: number;
-    extension: string;
-    errors: _;
-    fileName: string;
+  index: number;
+  extension: string;
+  errors: _;
+  fileName: string;
 };
 
 // /**
@@ -28,7 +28,7 @@ export type ActionProps = {
 // }: ActionProps) => {
 //   const state = useSelector((state: { tool: ToolState }) => state.tool);
 //   // the files:
-//   const { files, setFiles } = useFileStore.getState();
+//   const { files, setFiles } = useFileStore();
 //   const dispatch = useDispatch();
 //   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 //     dispatch(setRerender(!state.rerender));

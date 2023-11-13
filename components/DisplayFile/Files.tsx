@@ -20,11 +20,11 @@ const Files = ({
   toolTipSizes,
   loader_text,
   fileDetailProps,
-  selected_files_placeholer
+  selected_files_placeholer,
 }: FileProps) => {
-  const { files } = useFileStore.getState();
+  const { files } = useFileStore();
 
-  useEffect(() => { }, [files]);
+  useEffect(() => {}, [files]);
 
   const router = useRouter();
   const handleDragEnd = (result: any) => {
@@ -40,9 +40,7 @@ const Files = ({
 
   return (
     <>
-      <div
-        className="display-file"
-      >
+      <div className="display-file">
         <FileViewer
           errors={errors}
           loader_text={loader_text}

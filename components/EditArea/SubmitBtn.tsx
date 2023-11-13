@@ -3,7 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useFileStore } from "../../src/file-store";
 import { ToolState, setIsSubmitted, setShowOptions } from "../../src/store";
 import type { edit_page } from "../../content";
-export function SubmitBtn({ k, edit_page }: { k: string, edit_page: edit_page }): JSX.Element {
+export function SubmitBtn({
+  k,
+  edit_page,
+}: {
+  k: string;
+  edit_page: edit_page;
+}): JSX.Element {
   const errorMessage = useSelector(
     (state: { tool: ToolState }) => state.tool.errorMessage
   );
@@ -11,7 +17,7 @@ export function SubmitBtn({ k, edit_page }: { k: string, edit_page: edit_page })
     (state: { tool: ToolState }) => state.tool.isSubmitted
   );
   const dispatch = useDispatch();
-  const { submitBtn } = useFileStore.getState();
+  const { submitBtn } = useFileStore();
   return (
     <button
       className={`submit-btn btn btn-lg text-white position-relative overflow-hidden ${k} grid-footer`}
@@ -27,17 +33,12 @@ export function SubmitBtn({ k, edit_page }: { k: string, edit_page: edit_page })
       <bdi>
         {
           edit_page.action_buttons[
-          k.replace(/-/g, "_") as keyof typeof edit_page.action_buttons
+            k.replace(/-/g, "_") as keyof typeof edit_page.action_buttons
           ]
         }
       </bdi>{" "}
       {isSubmitted ? (
-        <Spinner
-          as="span"
-          animation="grow"
-          role="status"
-          aria-hidden="true"
-        />
+        <Spinner as="span" animation="grow" role="status" aria-hidden="true" />
       ) : null}
     </button>
   );
