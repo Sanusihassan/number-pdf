@@ -32,7 +32,7 @@ export const handleUpload = async (
   if (filesLengthOnSubmit == files.length) {
     dispatch(setShowDownloadBtn(true));
     dispatch(resetErrorMessage());
-    return;
+    // return;
   }
 
   const formData = new FormData();
@@ -44,7 +44,7 @@ export const handleUpload = async (
   let path = "number-pdf";
   // @ts-ignore
   if (process.env.NODE_ENV === "development") {
-    url = `https://5000-sanusihassa-pdfequipsap-d4dcanvkx7o.ws-eu105.gitpod.io/api/${path}`;
+    url = `https://5000-sanusihassa-pdfequipsap-dj7um7k8d9r.ws-eu106.gitpod.io/api/${path}`;
     // url = `https://5000-planetcreat-pdfequipsap-te4zoi6qkr3.ws-eu102.gitpod.io/${path}`;
   } else {
     url = `/api/${path}`;

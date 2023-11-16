@@ -14,9 +14,7 @@ export interface ToolState {
   nav_height: number;
   selectedFile: string;
   options: {
-    margin: "small" |
-    "recommended" |
-    "big",
+    margin: "small" | "recommended" | "big";
     bulletPosition: string;
     font: string;
     startPage: number;
@@ -29,7 +27,7 @@ export interface ToolState {
     isUnderlined: boolean;
     color: string;
     firstPageIsCover: boolean;
-  },
+  };
   pageCount: number;
 }
 
@@ -50,18 +48,18 @@ const initialState: ToolState = {
   options: {
     margin: "recommended",
     bulletPosition: "top left",
-    font: "DejaVu",
+    font: "Arial",
     startPage: 0,
     rangeToNumber: { start: 1, end: 0 },
     text: "",
-    fontSize: 0,
+    fontSize: 12,
     documentLanguage: "en",
     isBold: true,
     isItalic: true,
     isUnderlined: true,
-    color: "#000",
-    firstPageIsCover: false
-  }
+    color: "#00000000",
+    firstPageIsCover: false,
+  },
 };
 
 const toolSlice = createSlice({
@@ -115,26 +113,31 @@ const toolSlice = createSlice({
       state.pageCount = action.payload;
     },
     // instead of setting the entire option at once when calling this function, why not setting one option each time the function is called, like sometimes i just want to set the margin, and sometimes the font and so on.
-    setOptions(state: ToolState, action: PayloadAction<Partial<{
-      margin: "small" | "recommended" | "big";
-      bulletPosition: string;
-      font: string;
-      startPage: number;
-      rangeToNumber: { start: number; end: number };
-      text: string;
-      fontSize: number;
-      documentLanguage: string;
-      isBold: boolean;
-      isItalic: boolean;
-      isUnderlined: boolean;
-      color: string;
-      firstPageIsCover: boolean;
-    }>>) {
+    setOptions(
+      state: ToolState,
+      action: PayloadAction<
+        Partial<{
+          margin: "small" | "recommended" | "big";
+          bulletPosition: string;
+          font: string;
+          startPage: number;
+          rangeToNumber: { start: number; end: number };
+          text: string;
+          fontSize: number;
+          documentLanguage: string;
+          isBold: boolean;
+          isItalic: boolean;
+          isUnderlined: boolean;
+          color: string;
+          firstPageIsCover: boolean;
+        }>
+      >
+    ) {
       state.options = {
         ...state.options,
         ...action.payload,
       };
-    }
+    },
   },
 });
 
@@ -153,7 +156,7 @@ export const {
   setNavHeight,
   setSelectedFile,
   setPageCount,
-  setOptions
+  setOptions,
 } = toolSlice.actions;
 
 export default toolSlice.reducer;

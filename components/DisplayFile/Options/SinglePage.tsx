@@ -397,7 +397,7 @@ export const SinglePage = ({ single_page_options, lang }: {
                 </Col>
                 <Col className="color-setting-col">
                     <InputColor
-                        initialValue="#000"
+                        initialValue="#000000FF"
                         onChange={(color) => {
                             dispatch(setOptions({ color: color.hex }));
                         }}
