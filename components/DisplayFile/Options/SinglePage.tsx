@@ -37,9 +37,9 @@ export const SinglePage = ({ single_page_options, lang }: {
     const [textFormat, setTextFormat] = useState(single_page_options.page_text_options[0]);
     const [customText, setCustomText] = useState('page n of x');
     const [fontSize, setFontSize] = useState([16]);
-    const [isBold, setIsBold] = useState(true);
-    const [isItalic, setIsItalic] = useState(true);
-    const [isUnderlined, setIsUnderlined] = useState(true);
+    const [isBold, setIsBold] = useState(false);
+    const [isItalic, setIsItalic] = useState(false);
+    const [isUnderlined, setIsUnderlined] = useState(false);
     const [_, setDocumentLanguage] = useState("")
     const marginOptions = [
         "small",
@@ -48,8 +48,8 @@ export const SinglePage = ({ single_page_options, lang }: {
     ] as const;
     const textOptions = [
         { value: 'insert only page number (recommended)', label: 'insert only page number (recommended)' },
-        { value: 'page n', label: 'page n' },
-        { value: 'page n of x', label: 'page n of x' },
+        { value: 'page {n}', label: 'page n' },
+        { value: 'page {n} of {x}', label: 'page n of x' },
         { value: 'Custom', label: 'Custom' },
     ] as const;
     const fontOptions = [
