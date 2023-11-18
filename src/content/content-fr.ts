@@ -67,7 +67,7 @@ export const edit_page: _edit_page = {
       margin: "marge",
       pages: "pages",
       page_to_number: "quelles pages souhaitez-vous numéroter ?",
-      start_from: "Commencer à partir de",
+      start_from: "Premier numéro",
       from: "De",
       to: "À",
       text: "texte",

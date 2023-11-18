@@ -53,7 +53,7 @@ export const edit_page: _edit_page = {
       margin: "边距",
       pages: "页数",
       page_to_number: "您想对哪些页面进行编号？",
-      start_from: "从哪开始",
+      start_from: "第一个数字",
       from: "从",
       to: "到",
       text: "文本",

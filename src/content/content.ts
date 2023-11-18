@@ -30,7 +30,7 @@ export const edit_page = {
       margin: "margin",
       pages: "pages",
       page_to_number: "which pages do you want to number?",
-      start_from: "Start From",
+      start_from: "First Number",
       from: "From",
       to: "To",
       text: "text",

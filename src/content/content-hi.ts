@@ -60,7 +60,7 @@ export const edit_page: _edit_page = {
       margin: "मार्जिन",
       pages: "पृष्ठ",
       page_to_number: "किस पृष्ठ को नंबर करना चाहते हैं?",
-      start_from: "से शुरू करें",
+      start_from: "पहला नंबर",
       from: "से",
       to: "तक",
       text: "पाठ",

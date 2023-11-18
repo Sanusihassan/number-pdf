@@ -60,7 +60,7 @@ export const edit_page: _edit_page = {
       margin: "الهامش",
       pages: "الصفحات",
       page_to_number: "أي الصفحات ترغب في ترقيمها؟",
-      start_from: "ابدأ من",
+      start_from: "الرقم الأول",
       from: "من",
       to: "إلى",
       text: "النص",
