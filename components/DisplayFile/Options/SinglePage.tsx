@@ -12,7 +12,8 @@ import { ITrackProps, IThumbProps } from "react-range/lib/types";
 import { edit_page } from "@/content";
 import { ToolState, setOptions } from "@/src/store";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import { languages as languages_json } from "@/src/content/content";
+// import {languages}
 
 export const THEME_COLOR = "#b71540";
 export const customStyles: StylesConfig<
@@ -130,17 +131,13 @@ export const SinglePage = ({
   const [languages, setLanguages] = useState<LanguageOption[]>([]);
 
   useEffect(() => {
-    (async () => {
-      const response = await axios.get("/languages.json");
-      const languageOptions = Object.entries(response.data).map(
-        ([value, language]: [string, unknown]) => ({
-          value,
-          label: (language as { nativeName: string }).nativeName,
-        })
-      );
-      setLanguages(languageOptions);
-    })();
-    console.log(StateOptions);
+    const languageOptions = Object.entries(languages_json).map(
+      ([value, language]: [string, unknown]) => ({
+        value,
+        label: (language as { nativeName: string }).nativeName,
+      })
+    );
+    setLanguages(languageOptions);
   }, [StateOptions]);
   return (
     <div className="single-page d-flex flex-column justify-content-between">
@@ -178,11 +175,6 @@ export const SinglePage = ({
           <h6 className="option-title number-pdf">
             {single_page_options.margin}
           </h6>
-          {/* 
-                        in this Select i'm dispatching the changed value, and this is fine, if the current language is english
-                        but my website is multilingual and the margin property could be set to somthing out of the marginOptions or not in the marginType
-                        i want to get the current index of the selected item for example and get the value from the marginOptions then set the margin property of the global state based on that.
-                    */}
           <Select
             className="margin-dropdown"
             defaultValue={margin}
@@ -224,7 +216,6 @@ export const SinglePage = ({
                   setFromPage(val);
                 }
                 dispatch(setOptions({ startPage: startNumber }));
-                // dispatch(setOptions({ rangeToNumber: { ...StateOptions.rangeToNumber, start: startNumber } }));
               }}
             />
           </InputGroup>
@@ -241,8 +232,8 @@ export const SinglePage = ({
               className="from-page-input"
               type="number"
               min={1}
+              defaultValue={1}
               max={pageCount}
-              defaultValue={fromPage}
               onChange={(e) => {
                 setFromPage(Number(e.target.value));
                 dispatch(

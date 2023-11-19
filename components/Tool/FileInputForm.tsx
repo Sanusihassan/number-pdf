@@ -4,7 +4,7 @@ import React, { RefObject, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 // store
-import { ToolState, setClick, setFocus } from "../../src/store";
+import { ToolState, setClick, setFocus, setOptions } from "../../src/store";
 import { handleUpload } from "../../src/handlers/handleUpload";
 import { handleChange } from "../../src/handlers/handleChange";
 import { useFileStore } from "../../src/file-store";
@@ -49,6 +49,9 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
   const stateOptions = useSelector(
     (state: { tool: ToolState }) => state.tool.options
   );
+  const pageCount = useSelector(
+    (state: { tool: ToolState }) => state.tool.pageCount
+  );
   const dispatch = useDispatch();
   // file store
   const {
@@ -80,8 +83,18 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
       });
       // }, 3000);
       // }
+      if (null === stateOptions.rangeToNumber.end && pageCount !== 0) {
+        dispatch(
+          setOptions({
+            rangeToNumber: {
+              ...stateOptions.rangeToNumber,
+              end: pageCount,
+            },
+          })
+        );
+      }
     });
-  }, []);
+  }, [pageCount]);
   // path
   const router = useRouter();
   let path = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");

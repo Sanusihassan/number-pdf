@@ -27,6 +27,9 @@ export const handleUpload = async (
   e.preventDefault();
   dispatch(setIsSubmitted(true));
 
+  console.log(options);
+  return;
+
   if (!files) return;
   // subscribe to the files state and get the previous files
   if (filesLengthOnSubmit == files.length) {
@@ -44,7 +47,7 @@ export const handleUpload = async (
   let path = "number-pdf";
   // @ts-ignore
   if (process.env.NODE_ENV === "development") {
-    url = `https://5000-sanusihassa-pdfequipsap-dj7um7k8d9r.ws-eu106.gitpod.io/api/${path}`;
+    url = `https://5000-planetcreat-pdfequipsap-20rnq604504.ws-eu106.gitpod.io/api/${path}`;
     // url = `https://5000-planetcreat-pdfequipsap-te4zoi6qkr3.ws-eu102.gitpod.io/${path}`;
   } else {
     url = `/api/${path}`;
