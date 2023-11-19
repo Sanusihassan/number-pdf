@@ -18,7 +18,7 @@ export interface ToolState {
     bulletPosition: string;
     font: string;
     startPage: number;
-    rangeToNumber: { start: number; end: number };
+    rangeToNumber: { start: number; end: number | null };
     text: string;
     fontSize: number;
     documentLanguage: string;
@@ -47,11 +47,11 @@ const initialState: ToolState = {
   pageCount: 0,
   options: {
     margin: "recommended",
-    bulletPosition: "top left",
+    bulletPosition: "bottom center",
     font: "Arial",
     startPage: 0,
-    rangeToNumber: { start: 1, end: 0 },
-    text: "",
+    rangeToNumber: { start: 1, end: null },
+    text: "insert only page number (recommended)",
     fontSize: 12,
     documentLanguage: "en",
     isBold: false,
@@ -121,7 +121,7 @@ const toolSlice = createSlice({
           bulletPosition: string;
           font: string;
           startPage: number;
-          rangeToNumber: { start: number; end: number };
+          rangeToNumber: { start: number; end: number | null };
           text: string;
           fontSize: number;
           documentLanguage: string;
