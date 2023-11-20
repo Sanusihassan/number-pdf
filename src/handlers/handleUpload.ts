@@ -27,9 +27,6 @@ export const handleUpload = async (
   e.preventDefault();
   dispatch(setIsSubmitted(true));
 
-  console.log(options);
-  return;
-
   if (!files) return;
   // subscribe to the files state and get the previous files
   if (filesLengthOnSubmit == files.length) {

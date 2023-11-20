@@ -47,8 +47,8 @@ const initialState: ToolState = {
   pageCount: 0,
   options: {
     margin: "recommended",
-    bulletPosition: "bottom center",
-    font: "Arial",
+    bulletPosition: "top left",
+    font: "arial",
     startPage: 0,
     rangeToNumber: { start: 1, end: null },
     text: "insert only page number (recommended)",
