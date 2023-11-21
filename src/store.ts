@@ -27,6 +27,7 @@ export interface ToolState {
     isUnderlined: boolean;
     color: string;
     firstPageIsCover: boolean;
+    layout: "Single page" | "Facing pages"
   };
   pageCount: number;
 }
@@ -59,6 +60,7 @@ const initialState: ToolState = {
     isUnderlined: false,
     color: "#00000000",
     firstPageIsCover: false,
+    layout: "Single page"
   },
 };
 
@@ -130,6 +132,7 @@ const toolSlice = createSlice({
           isUnderlined: boolean;
           color: string;
           firstPageIsCover: boolean;
+          layout: "Single page" | "Facing pages"
         }>
       >
     ) {
