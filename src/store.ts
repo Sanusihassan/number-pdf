@@ -27,6 +27,7 @@ export interface ToolState {
     isUnderlined: boolean;
     color: string;
     firstPageIsCover: boolean;
+    layout: "Single page" | "Facing pages";
   };
   pageCount: number;
 }
@@ -47,8 +48,8 @@ const initialState: ToolState = {
   pageCount: 0,
   options: {
     margin: "recommended",
-    bulletPosition: "bottom center",
-    font: "Arial",
+    bulletPosition: "top left",
+    font: "arial",
     startPage: 0,
     rangeToNumber: { start: 1, end: null },
     text: "insert only page number (recommended)",
@@ -59,6 +60,7 @@ const initialState: ToolState = {
     isUnderlined: false,
     color: "#00000000",
     firstPageIsCover: false,
+    layout: "Single page",
   },
 };
 
@@ -130,6 +132,7 @@ const toolSlice = createSlice({
           isUnderlined: boolean;
           color: string;
           firstPageIsCover: boolean;
+          layout: "Single page" | "Facing pages";
         }>
       >
     ) {

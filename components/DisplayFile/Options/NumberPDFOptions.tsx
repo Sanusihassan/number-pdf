@@ -5,7 +5,7 @@
  * tree: h6 + SinglePage | FacingPages
  * SinglePage:
  * consist of 5 rows each with 2 columns, each column consist of a title h6 & component
- * row 1: 
+ * row 1:
  *  column 1:title: "position", component: a grid of 9 small boxes to represent where to put the number.
  *  column 2:title: "margin" a dropdown menu, values: (Samall, Recommended, Big)
  * row 2:
@@ -30,61 +30,81 @@ import { SinglePage } from "./SinglePage";
 import { Checkbox, Radio } from "pretty-checkbox-react";
 import "pretty-checkbox/src/pretty-checkbox.scss";
 import type { edit_page } from "@/content";
-import { useDispatch } from "react-redux";
-import { setOptions } from "@/src/store";
-const NumberPDFOptions = ({ number_pdf_options, lang }: {
-    number_pdf_options: edit_page["number_pdf_options"];
-    lang: string;
+import { useDispatch, useSelector } from "react-redux";
+import { ToolState, setOptions } from "@/src/store";
+const NumberPDFOptions = ({
+  number_pdf_options,
+  lang,
+}: {
+  number_pdf_options: edit_page["number_pdf_options"];
+  lang: string;
 }) => {
-    const [pageMode, setPageMode] = useState("single");
-    const dispatch = useDispatch();
-    return (
-        <div className="main-number-pdf container">
-            <h6 className="option-title number-pdf">{number_pdf_options.page_mode}</h6>
-            <Form className="main-form" onSubmit={e => e.preventDefault()}>
-                <fieldset className="row justify-content-between mode m-0 p-3">
-                    <Radio
-                        animation="smooth"
-                        defaultChecked
-                        checked={pageMode === "single"}
-                        onChange={() => setPageMode("single")}
-                        shape="curve" variant="thick"
-                    >
-                        {number_pdf_options.single_page}
-                    </Radio>
-                    <Radio
-                        animation="smooth"
-                        checked={pageMode === "facing"}
-                        onChange={() => setPageMode("facing")}
-                        shape="curve" variant="thick"
-                    >
-                        {number_pdf_options.facing_pages}
-                    </Radio>
-                </fieldset>
-                {pageMode === "single" &&
-                    <SinglePage single_page_options={number_pdf_options["single_page_options"]} lang={lang} />
-                }
-                {pageMode === "facing" &&
-                    <div className="facing">
-                        {/* Components for facing pages go here */}
-                        {/* <> */}
-                        <Checkbox
-                            animation="smooth"
-                            color="primary"
-                            //   defaultChecked={checked}
-                            onChange={(e) => {
-                                dispatch(setOptions({ firstPageIsCover: e.target.checked }));
-                            }}
-                            className="ml-1 my-3 mb-0 w-100"
-                        >
-                            {number_pdf_options.first_page_is_cover}
-                        </Checkbox>
-                        <SinglePage single_page_options={number_pdf_options["single_page_options"]} lang={lang} />
-                    </div>
-                }
-            </Form>
-        </div>
-    );
+  // const [pageMode, setPageMode] = useState("single");
+  const options = useSelector(
+    (state: { tool: ToolState }) => state.tool.options
+  );
+  const dispatch = useDispatch();
+  return (
+    <div className="main-number-pdf container">
+      <h6 className="option-title number-pdf">
+        {number_pdf_options.page_mode}
+      </h6>
+      <Form className="main-form" onSubmit={(e) => e.preventDefault()}>
+        <fieldset className="row justify-content-between mode m-0 p-3">
+          <Radio
+            animation="smooth"
+            defaultChecked
+            checked={options.layout === "Single page"}
+            onChange={() =>
+              dispatch(setOptions({ ...options, layout: "Single page" }))
+            }
+            shape="curve"
+            variant="thick"
+          >
+            {number_pdf_options.single_page}
+          </Radio>
+          <Radio
+            animation="smooth"
+            checked={options.layout === "Facing pages"}
+            onChange={() =>
+              dispatch(setOptions({ ...options, layout: "Facing pages" }))
+            }
+            shape="curve"
+            variant="thick"
+          >
+            {number_pdf_options.facing_pages}
+          </Radio>
+        </fieldset>
+        {options.layout === "Single page" && (
+          <SinglePage
+            single_page_options={number_pdf_options["single_page_options"]}
+            lang={lang}
+          />
+        )}
+        {options.layout === "Facing pages" && (
+          <div className="facing">
+            {/* Components for facing pages go here */}
+            {/* <> */}
+            <Checkbox
+              animation="smooth"
+              color="primary"
+              //   defaultChecked={checked}
+              onChange={(e) => {
+                dispatch(setOptions({ firstPageIsCover: e.target.checked }));
+              }}
+              className="ml-1 my-3 mb-0 w-100"
+            >
+              {number_pdf_options.first_page_is_cover}
+            </Checkbox>
+            <SinglePage
+              single_page_options={number_pdf_options["single_page_options"]}
+              lang={lang}
+            />
+          </div>
+        )}
+      </Form>
+    </div>
+  );
 };
 
 export default NumberPDFOptions;
