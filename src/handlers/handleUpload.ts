@@ -29,11 +29,11 @@ export const handleUpload = async (
 
   if (!files) return;
   // subscribe to the files state and get the previous files
-  if (filesLengthOnSubmit == files.length) {
-    dispatch(setShowDownloadBtn(true));
-    dispatch(resetErrorMessage());
-    // return;
-  }
+  // if (filesLengthOnSubmit == files.length) {
+  //   dispatch(setShowDownloadBtn(true));
+  //   dispatch(resetErrorMessage());
+  //   // return;
+  // }
 
   const formData = new FormData();
   for (let i = 0; i < files.length; i++) {
@@ -44,7 +44,7 @@ export const handleUpload = async (
   let path = "number-pdf";
   // @ts-ignore
   if (process.env.NODE_ENV === "development") {
-    url = `https://5000-planetcreat-pdfequipsap-20rnq604504.ws-eu106.gitpod.io/api/${path}`;
+    url = `https://5000-sanusihassa-pdfequipsap-dvdgm7zyxi2.ws-eu106.gitpod.io/api/${path}`;
     // url = `https://5000-planetcreat-pdfequipsap-te4zoi6qkr3.ws-eu102.gitpod.io/${path}`;
   } else {
     url = `/api/${path}`;
