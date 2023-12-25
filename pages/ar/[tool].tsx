@@ -1,7 +1,6 @@
 import Head from "next/head";
-import NavBar from "@/components/NavBar/NavBar";
+import NavBar from "pdfequips-navbar/NavBar";
 import Tool from "../../components/Tool";
-import { useRouter } from "next/router";
 import {
   edit_page,
   errors,
@@ -9,7 +8,8 @@ import {
   tools,
   downloadFile,
 } from "../../src/content/content-ar";
-
+import { useRouter } from "next/router";
+import { NumberPDFHOWTO_ar } from "@/src/how-to";
 type data_type = {
   title: string;
   description: string;
@@ -39,6 +39,14 @@ export async function getStaticProps({
 
 export default ({ item, lang }: { item: data_type; lang: string }) => {
   const router = useRouter();
+  const { asPath } = router;
+  const websiteSchema = {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    name: `PDFEquips ${item.title}`,
+    description: item.description,
+    url: `https://www.pdfequips.com${asPath}`,
+  };
   let path = router.asPath;
 
   let appology_message = {
@@ -57,11 +65,23 @@ export default ({ item, lang }: { item: data_type; lang: string }) => {
     <>
       <Head>
         <title>{`PDFEquips | ${item.title}`}</title>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(NumberPDFHOWTO_ar),
+          }}
+        />
         <meta name="description" content={item.description} />
         <link rel="icon" href="/logo.png" />
         {/* needed for styles */}
       </Head>
-      <NavBar lang={lang} />
+      <NavBar path="number-pdf" lang={lang} />
       <Tool
         tools={tools}
         data={item}

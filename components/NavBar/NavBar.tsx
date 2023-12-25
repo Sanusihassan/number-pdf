@@ -47,7 +47,7 @@ const NavBar = ({ lang }: { lang: string }) => {
   }
   let langPath = lang.length > 0 ? `/${lang}/` : "/";
   return (
-    <Navbar
+    <NavBar path="number-pdf"
       bg="light"
       expand="lg"
       className={`${path !== "markdown-to-pdf" ? "shadow" : ""}`}
@@ -88,8 +88,8 @@ const NavBar = ({ lang }: { lang: string }) => {
         </a>
       </Link>
 
-      <Navbar.Toggle aria-controls="main-nav" />
-      <Navbar.Collapse id="main-nav">
+      <NavBar path="number-pdf".Toggle aria-controls="main-nav" />
+      <NavBar path="number-pdf".Collapse id="main-nav">
         <Nav className="align-items-center">
           {/* <Link 
           > */}
