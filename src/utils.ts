@@ -5,7 +5,7 @@ import type { errors as _ } from "../content";
 import { setErrorCode, setErrorMessage, ToolState } from "./store";
 import { getDocument } from "pdfjs-dist";
 import { PDFDocumentProxy, PageViewport, RenderTask } from "pdfjs-dist";
-const pdfjsWorker = await import('pdfjs-dist/build/pdf.worker.entry');
+const pdfjsWorker = await import("pdfjs-dist/build/pdf.worker.entry");
 import { GlobalWorkerOptions } from "pdfjs-dist";
 GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
@@ -43,7 +43,6 @@ function emptyPDFHandler(dispatch: Dispatch<AnyAction>, errors: _) {
   dispatch(setErrorCode("ERR_EMPTY_FILE"));
   return DEFAULT_PDF_IMAGE;
 }
-
 
 export const getFileDetailsTooltipContent = async (
   file: File,
@@ -90,8 +89,9 @@ export const getFileDetailsTooltipContent = async (
         const pdf = await getDocument(url).promise;
 
         const pageCount = pdf.numPages || 0;
-        tooltipContent += ` - ${lang === "ar" && pageCount === 1 ? "" : pageCount + " "
-          }${pageCount > 1 ? pages : page}`;
+        tooltipContent += ` - ${
+          lang === "ar" && pageCount === 1 ? "" : pageCount + " "
+        }${pageCount > 1 ? pages : page}`;
         URL.revokeObjectURL(url);
         if (!file.size) {
           emptyPDFHandler(dispatch, errors);
@@ -106,7 +106,6 @@ export const getFileDetailsTooltipContent = async (
 
   return tooltipContent;
 };
-
 
 // this funciton is using pdfjs-dist but i want to use pdf.js instead.
 export async function getNthPageAsImage(
@@ -145,13 +144,11 @@ export async function getNthPageAsImage(
       return canvas.toDataURL();
     } catch (error) {
       dispatch(setErrorMessage(errors.FILE_CORRUPT.message));
-      console.log(error);
+
       return DEFAULT_PDF_IMAGE; // Return the placeholder image URL when an error occurs
     }
   }
 }
-
-
 
 export const getPlaceHoderImageUrl = (extension: string) => {
   switch (extension) {
@@ -238,7 +235,7 @@ export const validateFiles = (
     ) {
       const errorMessage =
         errors.NOT_SUPPORTED_TYPE.types[
-        extension as keyof typeof errors.NOT_SUPPORTED_TYPE.types
+          extension as keyof typeof errors.NOT_SUPPORTED_TYPE.types
         ] || errors.NOT_SUPPORTED_TYPE.message;
       dispatch(setErrorMessage(errorMessage));
       return false;
@@ -248,7 +245,7 @@ export const validateFiles = (
       return false;
     } else if (!file.size) {
       // handle EMPTY_FILE error
-      console.log("file.size", file.size);
+
       dispatch(setErrorMessage(errors.EMPTY_FILE.message));
       dispatch(setErrorCode("ERR_EMPTY_FILE"));
       return false;

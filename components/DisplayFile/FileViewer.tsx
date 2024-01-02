@@ -31,7 +31,6 @@ export const FileViewer = ({
     if (selectedFile == "" && files.length) {
       dispatch(setSelectedFile(files[0]!.name));
     }
-    console.log(selectedFile);
   }, [selectedFile, files]);
   return (
     <>

@@ -3,7 +3,6 @@ import { Dispatch, RefObject } from "react";
 import { downloadConvertedFile } from "../downloadFile";
 import type { errors as _ } from "../../content";
 import { AnyAction } from "@reduxjs/toolkit";
-// import { shallow } from "zustand"
 import {
   ToolState,
   resetErrorMessage,
@@ -12,7 +11,8 @@ import {
   setShowDownloadBtn,
 } from "../store";
 
-// this is the handleUpload function that is calling the download function maybe the issue is here
+let prevState: ToolState["options"] = {} as ToolState["options"];
+
 export const handleUpload = async (
   e: React.FormEvent<HTMLFormElement>,
   downloadBtn: RefObject<HTMLAnchorElement>,
@@ -20,20 +20,31 @@ export const handleUpload = async (
   errorMessage: string,
   files: File[],
   errors: _,
-  filesLengthOnSubmit: number,
-  setFilesLengthOnSubmit: (value: number) => void,
+  filesOnSubmit: string[],
+  setFilesOnSubmit: (value: string[]) => void,
   options: ToolState["options"]
 ) => {
   e.preventDefault();
   dispatch(setIsSubmitted(true));
 
   if (!files) return;
-  // subscribe to the files state and get the previous files
-  // if (filesLengthOnSubmit == files.length) {
-  //   dispatch(setShowDownloadBtn(true));
-  //   dispatch(resetErrorMessage());
-  //   // return;
-  // }
+  // Extract file names from the File[] array
+  const fileNames = files.map((file) => file.name);
+
+  // Check if every file name in files is present in filesOnSubmit
+  const allFilesPresent = fileNames.every((fileName) =>
+    filesOnSubmit.includes(fileName)
+  );
+
+  if (
+    allFilesPresent &&
+    files.length === filesOnSubmit.length &&
+    JSON.stringify(prevState) === JSON.stringify(options)
+  ) {
+    dispatch(setShowDownloadBtn(true));
+    dispatch(resetErrorMessage());
+    return;
+  }
 
   const formData = new FormData();
   for (let i = 0; i < files.length; i++) {
@@ -86,7 +97,8 @@ export const handleUpload = async (
       outputFileName,
       downloadBtn
     );
-    setFilesLengthOnSubmit(files.length);
+    setFilesOnSubmit(files.map((f) => f.name));
+    prevState = options;
 
     if (response.status !== 200) {
       throw new Error(`HTTP error! status: ${response.status}`);

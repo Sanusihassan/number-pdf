@@ -401,7 +401,6 @@ export const SinglePage = ({
               (language) => language.value === ("" === lang ? "en" : lang)
             )}
             onChange={(newValue) => {
-              console.log(newValue);
               if (newValue !== null) {
                 setDocumentLanguage(newValue.value);
                 dispatch(setOptions({ documentLanguage: newValue.value }));
