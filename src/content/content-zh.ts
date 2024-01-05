@@ -11,8 +11,9 @@ import type {
 
 export const tool = {
   Number_PDF: {
-    title: "给PDF编号",
-    description: "使用不同的样式和选项为您的PDF文档添加页码",
+    title: "为 PDF 加页码",
+    seoTitle: "在线为 PDF 添加页码 - PDF 页码添加工具 | PDFEquips",
+    description: "使用不同样式和选项将页码添加到您的 PDF 文档中",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",

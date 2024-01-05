@@ -10,9 +10,11 @@ import type {
 
 export const tool: _tool = {
   Number_PDF: {
-    title: "رقّم PDF",
+    title: "إضافة أرقام للصفحات في PDF",
+    seoTitle:
+      "إضافة أرقام للصفحات في PDF عبر الإنترنت - أداة ترقيم صفحات PDF | PDFEquips",
     description:
-      "أضف أرقام الصفحات إلى مستند PDF الخاص بك بأنماط وخيارات مختلفة",
+      "أضف أرقام للصفحات في مستند PDF الخاص بك بأنماط وخيارات مختلفة",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",

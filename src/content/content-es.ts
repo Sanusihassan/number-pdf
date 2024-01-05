@@ -12,8 +12,10 @@ import type {
 export const tool: _tool = {
   Number_PDF: {
     title: "Numerar PDF",
+    seoTitle:
+      "Agregar Números de Página a PDF en Línea - Herramienta de Numeración de Páginas PDF | PDFEquips",
     description:
-      "Añade números de página a tu documento PDF con diferentes estilos y opciones",
+      "Agrega números de página a tu documento PDF con diferentes estilos y opciones",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",

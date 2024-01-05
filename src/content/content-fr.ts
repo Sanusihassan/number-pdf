@@ -12,6 +12,8 @@ import type {
 export const tool: _tool = {
   Number_PDF: {
     title: "Numéroter PDF",
+    seoTitle:
+      "Ajouter des Numéros de Page au PDF en Ligne - Outil de Numérotation de Pages PDF | PDFEquips",
     description:
       "Ajoutez des numéros de page à votre document PDF avec différents styles et options",
     color: "#e55039",

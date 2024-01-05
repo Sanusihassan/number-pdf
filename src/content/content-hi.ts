@@ -11,9 +11,11 @@ import type {
 
 export const tool = {
   Number_PDF: {
-    title: "PDF संख्या दें",
+    title: "PDF में नंबर दें",
+    seoTitle:
+      "PDF में पेज नंबर्स ऑनलाइन जोड़ें - PDF पेज नंबरिंग टूल | PDFEquips",
     description:
-      "अलग-अलग शैलियों और विकल्पों के साथ अपने PDF दस्तावेज़ में पृष्ठ संख्याएँ जोड़ें",
+      "अपने PDF दस्तावेज़ में विभिन्न शैलियों और विकल्पों के साथ पेज नंबर जोड़ें",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",

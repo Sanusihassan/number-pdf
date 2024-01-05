@@ -1,6 +1,8 @@
 export const tool = {
   Number_PDF: {
     title: "Number PDF",
+    seoTitle:
+      "Add Page Numbers to PDF Online - PDF Page Numbering Tool | PDFEquips",
     description:
       "Add page numbers to your PDF document with different styles and options",
     color: "#e55039",
