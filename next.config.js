@@ -1,12 +1,13 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const withTM = require("next-transpile-modules")(["pdfequips-navbar"]);
-
+const isProd = process.env.NODE_ENV === "production";
 module.exports = withTM({
   sassOptions: {
     includePaths: [path.join(__dirname, "node_modules")],
   },
-  output: "standalone",
+  assetPrefix: isProd ? "/number-pdf" : "",
+  output: "export",
   webpack: (config, { isServer }) => {
     // Only run this configuration on the client side
     if (!isServer) {
