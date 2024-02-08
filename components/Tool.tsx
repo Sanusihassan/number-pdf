@@ -29,6 +29,7 @@ export type ToolData = {
   description: string;
   color: string;
   type: string;
+  to: string;
 };
 
 type ToolProps = {
@@ -105,17 +106,16 @@ const Tool: React.FC<ToolProps> = ({
       <div
         className="tools-page container-fluid position-relative"
         {...(stateShowTool && getRootProps())}
-        // onClick={(e) => {
-        //   e.preventDefault();
-        // }}
+      // onClick={(e) => {
+      //   e.preventDefault();
+      // }}
       >
         {isDragActive && (
           <div className="overlay display-4">{tools.drop_files}</div>
         )}
         <div
-          className={`text-center ${
-            !showTool ? "" : "d-flex"
-          } flex-column tools ${stateShowTool ? "" : "d-none"}`}
+          className={`text-center ${!showTool ? "" : "d-flex"
+            } flex-column tools ${stateShowTool ? "" : "d-none"}`}
         >
           <h1 className="display-3">
             <bdi>{data.title}</bdi>
