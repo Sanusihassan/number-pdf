@@ -2,7 +2,7 @@ import { NextRouter } from "next/router";
 import { Dispatch, useEffect, useMemo, useState } from "react";
 import { AnyAction } from "@reduxjs/toolkit";
 import type { errors as _ } from "../content";
-import { setErrorCode, setErrorMessage, ToolState } from "./store";
+import { setField } from "./store";
 import { getDocument } from "pdfjs-dist";
 import { PDFDocumentProxy, PageViewport, RenderTask } from "pdfjs-dist";
 const pdfjsWorker = await import("pdfjs-dist/build/pdf.worker.entry");
@@ -39,8 +39,8 @@ export function useRotatedImage(imageUrl: string): string | null {
 
 const DEFAULT_PDF_IMAGE = "/images/corrupted.png";
 function emptyPDFHandler(dispatch: Dispatch<AnyAction>, errors: _) {
-  dispatch(setErrorMessage(errors.EMPTY_FILE.message));
-  dispatch(setErrorCode("ERR_EMPTY_FILE"));
+  dispatch(setField({ errorMessage: errors.EMPTY_FILE.message }));
+  dispatch(setField({ errorCode: "ERR_EMPTY_FILE" }));
   return DEFAULT_PDF_IMAGE;
 }
 
@@ -89,9 +89,8 @@ export const getFileDetailsTooltipContent = async (
         const pdf = await getDocument(url).promise;
 
         const pageCount = pdf.numPages || 0;
-        tooltipContent += ` - ${
-          lang === "ar" && pageCount === 1 ? "" : pageCount + " "
-        }${pageCount > 1 ? pages : page}`;
+        tooltipContent += ` - ${lang === "ar" && pageCount === 1 ? "" : pageCount + " "
+          }${pageCount > 1 ? pages : page}`;
         URL.revokeObjectURL(url);
         if (!file.size) {
           emptyPDFHandler(dispatch, errors);
@@ -143,7 +142,7 @@ export async function getNthPageAsImage(
 
       return canvas.toDataURL();
     } catch (error) {
-      dispatch(setErrorMessage(errors.FILE_CORRUPT.message));
+      dispatch(setField({ errorMessage: errors.FILE_CORRUPT.message }));
 
       return DEFAULT_PDF_IMAGE; // Return the placeholder image URL when an error occurs
     }
@@ -198,8 +197,8 @@ export const validateFiles = (
     "application/vnd.ms-excel",
   ];
   if (files.length == 0 && (state.click || state.focus)) {
-    dispatch(setErrorMessage(errors.NO_FILES_SELECTED.message));
-    dispatch(setErrorCode("ERR_NO_FILES_SELECTED"));
+    dispatch(setField({ errorMessage: errors.NO_FILES_SELECTED.message }));
+    dispatch(setField({ errorCode: "ERR_NO_FILES_SELECTED" }));
     return false;
   }
   const fileSizeLimit = 50 * 1024 * 1024; // 50 MB
@@ -223,11 +222,11 @@ export const validateFiles = (
 
     if (!file || !file.name) {
       // handle FILE_CORRUPT error
-      dispatch(setErrorMessage(errors.FILE_CORRUPT.message));
+      dispatch(setField({ errorMessage: errors.FILE_CORRUPT.message }));
       return false;
     } else if (!file.type) {
       // handle NOT_SUPPORTED_TYPE error
-      dispatch(setErrorMessage(errors.NOT_SUPPORTED_TYPE.message));
+      dispatch(setField({ errorMessage: errors.NOT_SUPPORTED_TYPE.message }));
       return false;
     } else if (
       !allowedMimeTypes.includes(file.type) ||
@@ -235,19 +234,19 @@ export const validateFiles = (
     ) {
       const errorMessage =
         errors.NOT_SUPPORTED_TYPE.types[
-          extension as keyof typeof errors.NOT_SUPPORTED_TYPE.types
+        extension as keyof typeof errors.NOT_SUPPORTED_TYPE.types
         ] || errors.NOT_SUPPORTED_TYPE.message;
-      dispatch(setErrorMessage(errorMessage));
+      dispatch(setField({ errorMessage: errorMessage }));
       return false;
     } else if (file.size > fileSizeLimit) {
       // handle FILE_TOO_LARGE error
-      dispatch(setErrorMessage(errors.FILE_TOO_LARGE.message));
+      dispatch(setField({ errorMessage: errors.FILE_TOO_LARGE.message }));
       return false;
     } else if (!file.size) {
       // handle EMPTY_FILE error
 
-      dispatch(setErrorMessage(errors.EMPTY_FILE.message));
-      dispatch(setErrorCode("ERR_EMPTY_FILE"));
+      dispatch(setField({ errorMessage: errors.EMPTY_FILE.message }));
+      dispatch(setField({ errorCode: "ERR_EMPTY_FILE" }));
       return false;
     }
   }

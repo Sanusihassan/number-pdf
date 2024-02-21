@@ -4,7 +4,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import type { errors as _ } from "../content/content"; // import the errors constant
 
 import { validateFiles } from "../utils";
-import { ToolState, hideTool, resetErrorMessage } from "../store";
+import { setField, resetErrorMessage } from "../store";
 export const handleChange = (
   e: React.ChangeEvent<HTMLInputElement>,
   dispatch: Dispatch<AnyAction>,
@@ -24,7 +24,7 @@ export const handleChange = (
     setFiles([...files, ...Array.from(!_files ? [] : _files)]);
   }
   if (isValid && files) {
-    dispatch(hideTool());
+    dispatch(setField({ showTool: false }));
     dispatch(resetErrorMessage());
   }
 };

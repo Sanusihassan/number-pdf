@@ -3,9 +3,7 @@ import { useCallback, useEffect, useRef, useState, useContext } from "react";
 import { useDropzone } from "react-dropzone";
 
 import EditPage from "./EditPage";
-import { ToolState, hideTool, setPath, setShowDownloadBtn } from "../src/store";
-
-import { useRouter } from "next/router";
+import { ToolState, setField } from "../src/store";
 import type { edit_page, tools, downloadFile } from "../content";
 import type { errors as _ } from "../content";
 import ErrorElement from "./ErrorElement";
@@ -55,17 +53,11 @@ const Tool: React.FC<ToolProps> = ({
 }) => {
   // the files:
   const { files, setFiles, fileInput } = useFileStore();
+  let path = data.to.replace("/", "");
   const dispatch = useDispatch();
-  // const dispatch = useDispatch();
-  const router = useRouter();
-  // i want mobx version of this
   const handleHideTool = () => {
-    dispatch(dispatch(hideTool()));
+    dispatch(dispatch(setField({ showTool: false })));
   };
-  let path = router.asPath.replace(/^\/[a-z]{2}\//, "").replace(/^\//, "");
-  const statePath = useSelector(
-    (state: { tool: ToolState }) => state.tool.path
-  );
   const stateShowTool = useSelector(
     (state: { tool: ToolState }) => state.tool.showTool
   );
@@ -73,11 +65,7 @@ const Tool: React.FC<ToolProps> = ({
     (state: { tool: ToolState }) => state.tool.errorMessage
   );
   useEffect(() => {
-    // set the path if it has not been set yet
-    if (statePath == "") {
-      dispatch(setPath(path));
-    }
-    dispatch(setShowDownloadBtn(false));
+    dispatch(setField({ showDownloadBtn: false }));
   }, []);
 
   // endpoint
@@ -129,6 +117,7 @@ const Tool: React.FC<ToolProps> = ({
             errors={errors}
             tools={tools}
             acceptedFileTypes={acceptedFileTypes}
+            path={path}
           />
           <p>{tools.or_drop}</p>
           <ErrorElement />
@@ -141,8 +130,9 @@ const Tool: React.FC<ToolProps> = ({
           page={page}
           lang={lang}
           errors={errors}
+          path={path}
         />
-        <DownloadFile lang={lang} downloadFile={downloadFile} />
+        <DownloadFile lang={lang} downloadFile={downloadFile} path={path} />
         {/* )} */}
       </div>
     </>

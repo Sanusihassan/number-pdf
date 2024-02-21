@@ -50,6 +50,11 @@
     & *.row {
         @include extend("m-0");
     }
+    > form > fieldset > div.pretty {
+        @include xs {
+            padding: 0!important;
+        }
+    }
 
 
     &>*,
@@ -66,7 +71,6 @@
                     border-top-left-radius: .25rem;
                     border-bottom-left-radius: .25rem;
                 }
-
             }
         }
 

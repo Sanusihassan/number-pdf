@@ -2,7 +2,7 @@ import type { errors } from "@/content";
 import FileCard from "./FileCard";
 import { useFileStore } from "@/src/file-store";
 import { SelectedFiles } from "./SelectedFiles";
-import { ToolState, setSelectedFile } from "@/src/store";
+import { ToolState, setField } from "@/src/store";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -29,13 +29,13 @@ export const FileViewer = ({
   const dispatch = useDispatch();
   useEffect(() => {
     if (selectedFile == "" && files.length) {
-      dispatch(setSelectedFile(files[0]!.name));
+      dispatch(setField({ selectedFile: files[0]!.name }));
     }
   }, [selectedFile, files]);
   return (
     <>
       <SelectedFiles selected_files_placeholer={selected_files_placeholer} />
-      {files.map((file) =>
+      {files.map((file, i) =>
         file.name === selectedFile ? (
           <FileCard
             file={file}
@@ -43,6 +43,7 @@ export const FileViewer = ({
             loader_text={loader_text}
             fileDetailProps={fileDetailProps}
             extension={extension}
+            key={i}
           />
         ) : null
       )}

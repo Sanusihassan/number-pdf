@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import { customStyles } from "./Options/SinglePage";
 import { useDispatch, useSelector } from "react-redux";
-import { ToolState, setSelectedFile } from "@/src/store";
+import { ToolState, setField } from "@/src/store";
 /**
  * the problem might be that it
  */
@@ -30,7 +30,7 @@ export const SelectedFiles = ({
       value: file.name,
     }));
     if (selectedFile == "" && selecteFiles.length > 0) {
-      dispatch(setSelectedFile(selecteFiles[0].value));
+      dispatch(setField({ selectedFile: selecteFiles[0].value }));
     }
 
     setSelectedFiles(newSelectedFiles);
@@ -45,7 +45,7 @@ export const SelectedFiles = ({
           styles={customStyles}
           onChange={(v) => {
             if (v) {
-              dispatch(setSelectedFile(v.value));
+              dispatch(setField({ selectedFile: v.value }));
             }
           }}
           placeholder={selected_files_placeholer}

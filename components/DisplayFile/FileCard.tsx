@@ -10,7 +10,7 @@ import {
 } from "../../src/utils";
 import { useDispatch, useSelector } from "react-redux";
 import ImageWithLoader from "./ImageWithLoader";
-import { ToolState, setPageCount } from "@/src/store";
+import { ToolState, setField } from "@/src/store";
 type OmitFileName<T extends ActionProps> = Omit<T, "fileName" | "index">;
 
 type CardProps = OmitFileName<ActionProps> & {
@@ -51,7 +51,7 @@ const FileCard = ({
       );
       let _pageCount = await calculatePages(file);
       setToolTipSize(size);
-      dispatch(setPageCount(_pageCount))
+      dispatch(setField({ pageCount: _pageCount }))
     })();
     const processFile = async () => {
       try {
