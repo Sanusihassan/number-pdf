@@ -11,9 +11,6 @@ export interface ToolState {
   errorMessage: string;
   showErrorMessage: boolean;
   errorCode: string | null;
-  path: string;
-  click: boolean;
-  focus: boolean;
   showDownloadBtn: boolean;
   showOptions: boolean;
   nav_height: number;
@@ -43,9 +40,6 @@ const initialState: ToolState = {
   showErrorMessage: false,
   isSubmitted: false,
   errorCode: null,
-  path: "",
-  click: false,
-  focus: false,
   showDownloadBtn: false,
   showOptions: false,
   nav_height: 0,
