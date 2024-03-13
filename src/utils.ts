@@ -180,8 +180,6 @@ export const validateFiles = (
   dispatch: Dispatch<AnyAction>,
   state: {
     path: string;
-    click: boolean;
-    focus: boolean;
   }
 ) => {
   const files = Array.from(_files); // convert FileList to File[] array
@@ -196,7 +194,7 @@ export const validateFiles = (
     "application/vnd.ms-powerpoint",
     "application/vnd.ms-excel",
   ];
-  if (files.length == 0 && (state.click || state.focus)) {
+  if (files.length == 0) {
     dispatch(setField({ errorMessage: errors.NO_FILES_SELECTED.message }));
     dispatch(setField({ errorCode: "ERR_NO_FILES_SELECTED" }));
     return false;
