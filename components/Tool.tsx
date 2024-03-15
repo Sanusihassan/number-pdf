@@ -1,4 +1,3 @@
-// this is a very crowded tsx component, how can i simplify it further by separating the logics / parts to other components
 import { useCallback, useEffect, useRef, useState, useContext } from "react";
 import { useDropzone } from "react-dropzone";
 

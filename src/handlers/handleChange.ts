@@ -14,8 +14,6 @@ export const handleChange = (
   files: File[],
   state: {
     path: string;
-    click: boolean;
-    focus: boolean;
   }
 ) => {
   const _files = (e.target?.files as FileList) || null;

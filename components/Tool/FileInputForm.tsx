@@ -32,12 +32,6 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
   path
 }) => {
   let t: NodeJS.Timer;
-  const stateFocus = useSelector(
-    (state: { tool: ToolState }) => state.tool.focus
-  );
-  const stateClick = useSelector(
-    (state: { tool: ToolState }) => state.tool.click
-  );
   const errorMessage = useSelector(
     (state: { tool: ToolState }) => state.tool.errorMessage
   );
@@ -136,8 +130,6 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
           onChange={(e) => {
             handleChange(e, dispatch, setFiles, data.type, errors, files, {
               path,
-              focus: stateFocus,
-              click: stateClick,
             });
           }}
         />
