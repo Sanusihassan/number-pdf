@@ -1,6 +1,9 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
-const withTM = require("next-transpile-modules")(["pdfequips-navbar"]);
+const withTM = require("next-transpile-modules")([
+  "pdfequips-navbar",
+  "pdfequips-open-graph",
+]);
 const isProd = process.env.NODE_ENV === "production";
 module.exports = withTM({
   sassOptions: {
