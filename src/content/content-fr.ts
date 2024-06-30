@@ -9,18 +9,33 @@ import type {
   landing_page as _landing_page,
 } from "../../content";
 
+
 export const tool: _tool = {
   Number_PDF: {
     title: "Numéroter PDF",
-    seoTitle:
-      "Ajouter des Numéros de Page au PDF en Ligne - Outil de Numérotation de Pages PDF | PDFEquips",
-    description:
-      "Ajoutez des numéros de page à votre document PDF avec différents styles et options",
+    seoTitle: "Ajouter des Numéros de Page en Ligne - Numérotation PDF Facile",
+    description: "Ajoutez des numéros de page à votre document PDF avec différents styles et options.",
+    keywords: "ajouter des numéros de page à PDF, outil de numérotation PDF, numérotation PDF en ligne, numéroter les pages PDF, personnaliser les numéros de page PDF, ajouter des numéros séquentiels à PDF",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",
+    features: [
+      {
+        title: "Styles de numérotation personnalisables",
+        description: "Choisissez parmi différents styles et formats de numérotation pour répondre aux besoins de votre document."
+      },
+      {
+        title: "Support multilingue",
+        description: "Sélectionnez la langue du document pour utiliser les scripts numériques appropriés."
+      },
+      {
+        title: "Facile à utiliser",
+        description: "Notre outil est convivial, vous permettant d'ajouter des numéros de page à votre PDF en quelques clics seulement."
+      }
+    ]
   },
 };
+
 export const tools: _tools = {
   select: "Sélectionner",
   or_drop: "ou déposer des fichiers ici",
@@ -104,6 +119,13 @@ export const edit_page: _edit_page = {
     first_page_is_cover: "La première page est la page de couverture",
   },
   selected_files_placeholer: "Sélectionner des fichiers",
+};
+
+export const footer: _footer = {
+  brand: "PDFEquips",
+  terms: "conditions",
+  conditions: "conditions d'utilisation",
+  privacy_policy: "politique de confidentialité",
 };
 
 export const errors: _errors = {

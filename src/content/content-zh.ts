@@ -9,16 +9,32 @@ import type {
   landing_page as _landing_page,
 } from "../../content";
 
-export const tool = {
+export const tool: _tool = {
   Number_PDF: {
-    title: "为 PDF 加页码",
-    seoTitle: "在线为 PDF 添加页码 - PDF 页码添加工具 | PDFEquips",
-    description: "使用不同样式和选项将页码添加到您的 PDF 文档中",
+    title: "为 PDF 编号",
+    seoTitle: "在线添加页码 - 简易 PDF 编号",
+    description: "以不同的样式和选项为您的 PDF 文档添加页码。",
+    keywords: "为 PDF 添加页码, PDF 页码工具, 在线 PDF 编号, 为 PDF 页面编号, 自定义 PDF 页码, 为 PDF 添加顺序号",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",
+    features: [
+      {
+        title: "可定制的编号样式",
+        description: "从各种编号样式和格式中选择以满足您的文档需求。"
+      },
+      {
+        title: "多语言支持",
+        description: "选择文档语言以使用适当的数字脚本。"
+      },
+      {
+        title: "易于使用",
+        description: "我们的工具用户友好，只需几次点击即可为您的 PDF 添加页码。"
+      }
+    ]
   },
 };
+
 
 export const downloadFile: _downloadFile = {
   titles: {
@@ -93,6 +109,13 @@ export const tools: _tools = {
   or_drop: "或将文件拖放到此处",
   files: "文件",
   drop_files: "在此处拖放文件",
+};
+
+export const footer: _footer = {
+  brand: "PDFEquips",
+  terms: "条款",
+  conditions: "条件",
+  privacy_policy: "隐私政策",
 };
 
 export const errors: _errors = {

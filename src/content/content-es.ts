@@ -12,15 +12,29 @@ import type {
 export const tool: _tool = {
   Number_PDF: {
     title: "Numerar PDF",
-    seoTitle:
-      "Agregar Números de Página a PDF en Línea - Herramienta de Numeración de Páginas PDF | PDFEquips",
-    description:
-      "Agrega números de página a tu documento PDF con diferentes estilos y opciones",
+    seoTitle: "Agregar Números de Página en Línea - Numeración de PDF Fácil",
+    description: "Agrega números de página a tu documento PDF con diferentes estilos y opciones.",
+    keywords: "agregar números de página a PDF, herramienta de numeración de PDF, numeración de PDF en línea, numerar páginas de PDF, personalizar números de página de PDF, agregar números secuenciales a PDF",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",
+    features: [
+      {
+        title: "Estilos de numeración personalizables",
+        description: "Elige entre varios estilos y formatos de numeración para adaptarse a las necesidades de tu documento."
+      },
+      {
+        title: "Soporte multilingüe",
+        description: "Selecciona el idioma del documento para usar los guiones numéricos apropiados."
+      },
+      {
+        title: "Fácil de usar",
+        description: "Nuestra herramienta es fácil de usar, lo que te permite agregar números de página a tu PDF con solo unos pocos clics."
+      }
+    ]
   },
 };
+
 
 export const edit_page: _edit_page = {
   edit_page_titles: {
@@ -105,6 +119,13 @@ export const downloadFile: _downloadFile = {
   backto: {
     "number-pdf": "Volver a numerar PDF",
   },
+};
+
+export const footer: _footer = {
+  brand: "PDFEquips",
+  terms: "términos",
+  conditions: "condiciones",
+  privacy_policy: "política de privacidad",
 };
 
 export const errors: _errors = {

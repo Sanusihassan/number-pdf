@@ -1,15 +1,29 @@
 export const tool = {
   Number_PDF: {
     title: "Number PDF",
-    seoTitle:
-      "Add Page Numbers to PDF Online - PDF Page Numbering Tool | PDFEquips",
-    description:
-      "Add page numbers to your PDF document with different styles and options",
+    seoTitle: "Add Page Numbers Online - Easy PDF Numbering",
+    description: "Add page numbers to your PDF document with different styles and options.",
+    keywords: "add page numbers to PDF, PDF page numbering tool, online PDF numbering, number PDF pages, customize PDF page numbers, add sequential numbers to PDF",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",
+    features: [
+      {
+        title: "Customizable Numbering Styles",
+        description: "Choose from various numbering styles and formats to suit your document's needs."
+      },
+      {
+        title: "Multi-Language Support",
+        description: "Select the document language to use appropriate numeral scripts."
+      },
+      {
+        title: "Easy to Use",
+        description: "Our tool is user-friendly, allowing you to add page numbers to your PDF with just a few clicks."
+      }
+    ]
   },
 };
+
 
 export const edit_page = {
   edit_page_titles: {
@@ -92,6 +106,13 @@ export const downloadFile = {
     "number-pdf": "Back To Number PDF",
   },
 };
+
+export const footer = {
+  brand: "PDFEquips",
+  terms: "terms",
+  conditions: "conditions",
+  privacy_policy: "privacy policy",
+}
 
 export const errors = {
   EMPTY_FILE: {

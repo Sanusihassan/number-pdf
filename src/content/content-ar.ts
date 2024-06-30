@@ -10,16 +10,30 @@ import type {
 
 export const tool: _tool = {
   Number_PDF: {
-    title: "إضافة أرقام للصفحات في PDF",
-    seoTitle:
-      "إضافة أرقام للصفحات في PDF عبر الإنترنت - أداة ترقيم صفحات PDF | PDFEquips",
-    description:
-      "أضف أرقام للصفحات في مستند PDF الخاص بك بأنماط وخيارات مختلفة",
+    title: "ترقيم PDF",
+    seoTitle: "إضافة أرقام الصفحات عبر الإنترنت - ترقيم PDF بسهولة",
+    description: "أضف أرقام الصفحات إلى مستند PDF الخاص بك مع أنماط وخيارات مختلفة.",
+    keywords: "إضافة أرقام الصفحات إلى PDF, أداة ترقيم PDF, ترقيم PDF عبر الإنترنت, ترقيم صفحات PDF, تخصيص أرقام صفحات PDF, إضافة أرقام تسلسلية إلى PDF",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",
+    features: [
+      {
+        title: "أنماط الترقيم القابلة للتخصيص",
+        description: "اختر من بين أنماط وأشكال الترقيم المختلفة لتناسب احتياجات مستندك."
+      },
+      {
+        title: "دعم متعدد اللغات",
+        description: "حدد لغة المستند لاستخدام الرموز العددية المناسبة."
+      },
+      {
+        title: "سهل الاستخدام",
+        description: "أداتنا سهلة الاستخدام، مما يتيح لك إضافة أرقام الصفحات إلى ملف PDF الخاص بك ببضع نقرات فقط."
+      }
+    ]
   },
 };
+
 
 export const tools: _tools = {
   select: "اختر",
@@ -97,6 +111,13 @@ export const edit_page: _edit_page = {
     first_page_is_cover: "الصفحة الأولى هي صفحة الغلاف",
   },
   selected_files_placeholer: "اختر الملفات",
+};
+
+export const footer: _footer = {
+  brand: "PDFEquips",
+  terms: "الشروط",
+  conditions: "والأحكام",
+  privacy_policy: "سياسة الخصوصية",
 };
 
 export const errors: _errors = {

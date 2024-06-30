@@ -9,18 +9,32 @@ import type {
   landing_page as _landing_page,
 } from "../../content";
 
-export const tool = {
+export const tool: _tool = {
   Number_PDF: {
-    title: "PDF में नंबर दें",
-    seoTitle:
-      "PDF में पेज नंबर्स ऑनलाइन जोड़ें - PDF पेज नंबरिंग टूल | PDFEquips",
-    description:
-      "अपने PDF दस्तावेज़ में विभिन्न शैलियों और विकल्पों के साथ पेज नंबर जोड़ें",
+    title: "PDF को संख्या दें",
+    seoTitle: "ऑनलाइन पृष्ठ संख्या जोड़ें - आसान PDF संख्या",
+    description: "अपने PDF दस्तावेज़ में विभिन्न शैलियों और विकल्पों के साथ पृष्ठ संख्या जोड़ें।",
+    keywords: "PDF में पृष्ठ संख्या जोड़ें, PDF संख्या उपकरण, ऑनलाइन PDF संख्या, PDF पृष्ठ संख्या दें, PDF पृष्ठ संख्याएँ अनुकूलित करें, PDF में क्रमांकित संख्या जोड़ें",
     color: "#e55039",
     type: ".pdf",
     to: "/number-pdf",
+    features: [
+      {
+        title: "अनुकूलन योग्य संख्या शैलियाँ",
+        description: "अपने दस्तावेज़ की आवश्यकताओं के अनुरूप विभिन्न संख्या शैलियों और प्रारूपों में से चुनें।"
+      },
+      {
+        title: "मल्टी-लैंग्वेज समर्थन",
+        description: "उपयुक्त अंक स्क्रिप्ट का उपयोग करने के लिए दस्तावेज़ भाषा का चयन करें।"
+      },
+      {
+        title: "आसानी से उपयोगी",
+        description: "हमारा उपकरण उपयोगकर्ता के अनुकूल है, जिससे आप केवल कुछ क्लिक में अपने PDF में पृष्ठ संख्या जोड़ सकते हैं।"
+      }
+    ]
   },
 };
+
 
 export const downloadFile: _downloadFile = {
   titles: {
@@ -104,6 +118,13 @@ export const tools: _tools = {
   or_drop: "या फ़ाइलें यहां छोड़ें",
   files: "फाइलें",
   drop_files: "फ़ाइलें यहाँ खींचें",
+};
+
+export const footer: _footer = {
+  brand: "PDFEquips",
+  terms: "शर्तें",
+  conditions: "उपयोग की शर्तें",
+  privacy_policy: "गोपनीयता नीति",
 };
 
 export const errors: _errors = {
