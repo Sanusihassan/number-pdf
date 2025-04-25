@@ -144,11 +144,11 @@ const EditPage = ({
         </h5>
         <Options edit_page={edit_page} lang={lang} />
         <div className="hide-onsmall">
-          <SubmitBtn k={path} edit_page={edit_page} />
+          <SubmitBtn k={path} edit_page={edit_page} lang={lang} />
         </div>
       </section>
       <div className="show-onsmall">
-        <SubmitBtn k={path} edit_page={edit_page} />
+        <SubmitBtn k={path} edit_page={edit_page} lang={lang} />
       </div>
     </aside>
   );
