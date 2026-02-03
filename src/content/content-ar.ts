@@ -1,27 +1,28 @@
 import type { tool as _tool, tools as _tools, edit_page as _edit_page, downloadFile as _downloadFile, errors as _errors } from "../content";
 import type { adBlockerContentType } from "./content";
 
+
 export const tool: _tool = {
-    Rotate_PDF: {
-        title: "تدوير PDF",
-        seoTitle: "تدوير صفحات PDF عبر الإنترنت - تدوير صفحات PDF بسهولة",
-        description: "قم بتدوير صفحات مستندات PDF الخاصة بك بسهولة لتحقيق الاتجاه الأمثل.",
-        keywords: "تدوير PDF, تدوير صفحات PDF, تدوير PDF عبر الإنترنت, ضبط اتجاه PDF, تدوير صفحات PDF بسهولة",
-        color: "#10ac84",
+    Number_PDF: {
+        title: "ترقيم PDF",
+        seoTitle: "إضافة أرقام الصفحات عبر الإنترنت - ترقيم PDF بسهولة",
+        description: "أضف أرقام الصفحات إلى مستند PDF الخاص بك مع أنماط وخيارات مختلفة.",
+        keywords: "إضافة أرقام الصفحات إلى PDF, أداة ترقيم PDF, ترقيم PDF عبر الإنترنت, ترقيم صفحات PDF, تخصيص أرقام صفحات PDF, إضافة أرقام تسلسلية إلى PDF",
+        color: "#e55039",
         type: ".pdf",
-        to: "/rotate-pdf",
+        to: "/number-pdf",
         features: [
             {
-                title: "تدوير الصفحات بسهولة",
-                description: "قم بتدوير صفحات PDF بسهولة إلى الاتجاه المطلوب ببضع نقرات فقط."
+                title: "أنماط الترقيم القابلة للتخصيص",
+                description: "اختر من بين أنماط وأشكال الترقيم المختلفة لتناسب احتياجات مستندك."
             },
             {
-                title: "تدوير الدفعات",
-                description: "قم بتدوير صفحات متعددة في وقت واحد لتعديلات المستند الفعالة."
+                title: "دعم متعدد اللغات",
+                description: "حدد لغة المستند لاستخدام الرموز العددية المناسبة."
             },
             {
-                title: "آمن وخاص",
-                description: "يتم معالجة ملفاتك بأمان ويتم حذفها بعد وقت قصير من المعالجة."
+                title: "سهل الاستخدام",
+                description: "أداتنا سهلة الاستخدام، مما يتيح لك إضافة أرقام الصفحات إلى ملف PDF الخاص بك ببضع نقرات فقط."
             }
         ]
     }
@@ -29,23 +30,77 @@ export const tool: _tool = {
 
 export const edit_page: _edit_page = {
     edit_page_titles: {
-        rotate_pdf: "خيارات تدوير ملف PDF"
+        number_pdf: "خيارات ترقيم ملف ال PDF"
     },
     loader_text: "يرجى الانتظار...",
     add_more_button: "إضافة المزيد من الملفات",
     action_buttons: {
-        rotate_pdf: "تدوير ملف PDF"
+        number_pdf: "رقّم PDF"
     },
-    pages: "صفحات",
+    pages: "صفحة",
     page: "صفحة واحدة",
-    rotate_pdf_options: {
-        info1: "حرك الماوس فوق ملف PDF لكشف",
-        info2: "الأيقونات. انقر على أي من الأيقونات لتدوير ملفات PDF الخاصة بك.",
-        rotation: "التدوير",
-        left: "يسار",
-        right: "يمين",
-        reset_all: "إعادة تعيين الكل"
+    number_pdf_options: {
+        page_mode: "وضع الصفحة",
+        single_page: "صفحة واحدة",
+        facing_pages: "صفحات متجاورة",
+        single_page_options: {
+            position: "الموضع",
+            margin: "الهامش",
+            pages: "الصفحات",
+            page_to_number: "أي الصفحات ترغب في ترقيمها؟",
+            start_from: "الرقم الأول",
+            from: "من",
+            to: "إلى",
+            text: "النص",
+            page_text_options: [
+                {
+                    value: "أدخل رقم الصفحة فقط (مستحسن)",
+                    label: "أدخل رقم الصفحة فقط (مستحسن)"
+                },
+                {
+                    value: "صفحة n",
+                    label: "صفحة n"
+                },
+                {
+                    value: "صفحة n من x",
+                    label: "صفحة n من x"
+                },
+                {
+                    value: "تخصيص",
+                    label: "تخصيص"
+                }
+            ],
+            custom_text: "نص مخصص",
+            text_sample: "نموذج نص: الصفحة {ن} من إجمالي {س} من الصفحات",
+            margin_options: [
+                {
+                    value: "صغير",
+                    label: "صغير"
+                },
+                {
+                    value: "مستحسن",
+                    label: "مستحسن"
+                },
+                {
+                    value: "كبير",
+                    label: "كبير"
+                }
+            ],
+            text_format: "تنسيق النص",
+            font: "الخط",
+            font_size: "حجم الخط",
+            bold: "عريض",
+            italic: "مائل",
+            underline: "تسطير",
+            color: "اللون",
+            document_language: "لغة المستند",
+            select_language_placeholder: "اختر اللغة",
+            select_margin_placeholder: "حدد الهامش",
+            select_font_placeholder: "اختر الخط"
+        },
+        first_page_is_cover: "الصفحة الأولى هي صفحة الغلاف"
     },
+    selected_files_placeholer: "اختر الملفات",
     filenameOptions: {
         label: "اسم الملف الناتج (اختياري)",
         placeholder: "أدخل اسم الملف",
@@ -56,27 +111,23 @@ export const edit_page: _edit_page = {
             cta: "الترقية الآن",
         },
     },
-    actionContent: {
-        current: "الحالي",
-        info: "إيجابي = في اتجاه عقارب الساعة، سلبي = عكس اتجاه عقارب الساعة",
-    }
 };
 
 export const downloadFile: _downloadFile = {
     titles: {
-        "rotate-pdf": [
-            "تم تدوير ملفات PDF!",
-            "تم تدوير ملف PDF!"
+        "number-pdf": [
+            "تم ترقيم ملفات PDF!",
+            "تم ترقيم ملف PDF!"
         ]
     },
     btnText: {
-        "rotate-pdf": [
-            "تنزيل ملفات PDF المدوّرة",
-            "تنزيل ملف PDF المدوّر"
+        "number-pdf": [
+            "تنزيل ملفات PDF المرقمة",
+            "تنزيل ملف PDF المرقم"
         ]
     },
     backto: {
-        "rotate-pdf": "العودة إلى تدوير ملف PDF"
+        "number-pdf": "العودة إلى ترقيم PDF"
     }
 };
 

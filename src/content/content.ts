@@ -1,24 +1,24 @@
 export const tool = {
-  Rotate_PDF: {
-    title: "Rotate PDF",
-    seoTitle: "Rotate PDF Pages Online - Easy PDF Page Rotation",
-    description: "Easily rotate pages within your PDF documents to achieve optimal orientation.",
-    keywords: "rotate PDF, PDF page rotation, rotate PDF online, adjust PDF orientation, rotate pages in PDF",
-    color: "#10ac84",
+  Number_PDF: {
+    title: "Number PDF",
+    seoTitle: "Add Page Numbers Online - Easy PDF Numbering",
+    description: "Add page numbers to your PDF document with different styles and options.",
+    keywords: "add page numbers to PDF, PDF page numbering tool, online PDF numbering, number PDF pages, customize PDF page numbers, add sequential numbers to PDF",
+    color: "#e55039",
     type: ".pdf",
-    to: "/rotate-pdf",
+    to: "/number-pdf",
     features: [
       {
-        title: "Simple Page Rotation",
-        description: "Easily rotate PDF pages to the desired orientation with just a few clicks."
+        title: "Customizable Numbering Styles",
+        description: "Choose from various numbering styles and formats to suit your document's needs."
       },
       {
-        title: "Batch Rotation",
-        description: "Rotate multiple pages at once for efficient document adjustments."
+        title: "Multi-Language Support",
+        description: "Select the document language to use appropriate numeral scripts."
       },
       {
-        title: "Secure and Private",
-        description: "Your files are processed securely and are deleted shortly after processing."
+        title: "Easy to Use",
+        description: "Our tool is user-friendly, allowing you to add page numbers to your PDF with just a few clicks."
       }
     ]
   }
@@ -26,23 +26,77 @@ export const tool = {
 
 export const edit_page = {
   edit_page_titles: {
-    rotate_pdf: "Rotate PDF options"
+    number_pdf: "Number PDF options"
   },
   loader_text: "please wait...",
   add_more_button: "Add more files",
   action_buttons: {
-    rotate_pdf: "Rotate PDF"
+    number_pdf: "Number PDF"
   },
   pages: "pages",
   page: "page",
-  rotate_pdf_options: {
-    info1: "Hover over the PDF file to reveal a",
-    info2: "icons. Click any of the icons to rotate your PDFs.",
-    left: "Left",
-    right: "Right",
-    rotation: "Rotation",
-    reset_all: "Reset All"
+  number_pdf_options: {
+    page_mode: "page mode",
+    single_page: "Single Page",
+    facing_pages: "Facing Pages",
+    single_page_options: {
+      position: "position",
+      margin: "margin",
+      pages: "pages",
+      page_to_number: "which pages do you want to number?",
+      start_from: "First Number",
+      from: "From",
+      to: "To",
+      text: "text",
+      page_text_options: [
+        {
+          value: "insert only page number (recommended)",
+          label: "insert only page number (recommended)"
+        },
+        {
+          value: "page n",
+          label: "page n"
+        },
+        {
+          value: "page n of x",
+          label: "page n of x"
+        },
+        {
+          value: "Custom",
+          label: "Custom"
+        }
+      ],
+      custom_text: "Custom text",
+      text_sample: "text sample: page {n} of {x} total pages",
+      margin_options: [
+        {
+          value: "Small",
+          label: "Small"
+        },
+        {
+          value: "Recommended",
+          label: "Recommended"
+        },
+        {
+          value: "Big",
+          label: "Big"
+        }
+      ],
+      text_format: "text format",
+      font: "font",
+      font_size: "font size",
+      bold: "bold",
+      italic: "italic",
+      underline: "underline",
+      color: "color",
+      document_language: "Document Language",
+      select_language_placeholder: "Select Language",
+      select_margin_placeholder: "Select Margin",
+      select_font_placeholder: "Select Font"
+    },
+    first_page_is_cover: "First Page is the cover page"
   },
+  selected_files_placeholer: "Select Files",
   filenameOptions: {
     label: "Output File Name (Optional)",
     placeholder: "Enter file name",
@@ -53,29 +107,26 @@ export const edit_page = {
       cta: "Upgrade now",
     },
   },
-  actionContent: {
-    current: "Current",
-    info: "Positive = clockwise, Negative = counter-clockwise",
-  }
 };
 
 export const downloadFile = {
   titles: {
-    "rotate-pdf": [
-      "PDF files have been rotated!",
-      "PDF file has been rotated!"
+    "number-pdf": [
+      "PDF files have been numbered!",
+      "PDF file has been numbered!"
     ]
   },
   btnText: {
-    "rotate-pdf": [
-      "Download Rotated PDF files",
-      "Download Rotated PDF file"
+    "number-pdf": [
+      "Download Numbered PDF files",
+      "Download Numbered PDF file"
     ]
   },
   backto: {
-    "rotate-pdf": "Back To Rotate PDF"
+    "number-pdf": "Back To Number PDF"
   }
 };
+
 export type ToolType = {
   title: string;
   seoTitle: string;

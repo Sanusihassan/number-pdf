@@ -2,26 +2,26 @@ import type { edit_page as _edit_page, tool as _tool, tools as _tools, downloadF
 import type { adBlockerContentType } from "./content";
 
 export const tool: _tool = {
-    Rotate_PDF: {
-        title: "旋转 PDF",
-        seoTitle: "在线旋转 PDF 页 - 简单的 PDF 页旋转",
-        description: "轻松旋转 PDF 文档中的页面，以达到最佳方向。",
-        keywords: "旋转 PDF, PDF 页面旋转, 在线旋转 PDF, 调整 PDF 方向, 旋转 PDF 页",
-        color: "#10ac84",
+    Number_PDF: {
+        title: "为 PDF 编号",
+        seoTitle: "在线添加页码 - 简易 PDF 编号",
+        description: "以不同的样式和选项为您的 PDF 文档添加页码。",
+        keywords: "为 PDF 添加页码, PDF 页码工具, 在线 PDF 编号, 为 PDF 页面编号, 自定义 PDF 页码, 为 PDF 添加顺序号",
+        color: "#e55039",
         type: ".pdf",
-        to: "/rotate-pdf",
+        to: "/number-pdf",
         features: [
             {
-                title: "简单的页面旋转",
-                description: "只需几次点击即可轻松将 PDF 页面旋转到所需方向。"
+                title: "可定制的编号样式",
+                description: "从各种编号样式和格式中选择以满足您的文档需求。"
             },
             {
-                title: "批量旋转",
-                description: "一次旋转多个页面，实现高效的文档调整。"
+                title: "多语言支持",
+                description: "选择文档语言以使用适当的数字脚本。"
             },
             {
-                title: "安全且私密",
-                description: "您的文件会被安全处理，并在处理后不久被删除。"
+                title: "易于使用",
+                description: "我们的工具用户友好，只需几次点击即可为您的 PDF 添加页码。"
             }
         ]
     }
@@ -29,23 +29,77 @@ export const tool: _tool = {
 
 export const edit_page: _edit_page = {
     edit_page_titles: {
-        rotate_pdf: "旋转PDF选项"
+        number_pdf: "编号 PDF 选项"
     },
-    loader_text: "请稍候...",
+    loader_text: "请稍等...",
     add_more_button: "添加更多文件",
     action_buttons: {
-        rotate_pdf: "旋转PDF"
+        number_pdf: "给PDF编号"
     },
     pages: "页",
     page: "页",
-    rotate_pdf_options: {
-        info1: "将鼠标悬停在 PDF 文件上以显示",
-        info2: "图标。单击任何图标以旋转您的 PDFs。",
-        left: "左",
-        right: "右",
-        rotation: "旋转",
-        reset_all: "重置所有"
+    number_pdf_options: {
+        page_mode: "页面模式",
+        single_page: "单页",
+        facing_pages: "对页",
+        single_page_options: {
+            position: "位置",
+            margin: "边距",
+            pages: "页数",
+            page_to_number: "您想对哪些页面进行编号？",
+            start_from: "第一个数字",
+            from: "从",
+            to: "到",
+            text: "文本",
+            page_text_options: [
+                {
+                    value: "仅插入页码（推荐）",
+                    label: "仅插入页码（推荐）"
+                },
+                {
+                    value: "第 n 页",
+                    label: "第 n 页"
+                },
+                {
+                    value: "第 n 页，共 x 页",
+                    label: "第 n 页，共 x 页"
+                },
+                {
+                    value: "自定义",
+                    label: "自定义"
+                }
+            ],
+            custom_text: "自定义文本",
+            text_sample: "文本样本：第 {n} 页，共 {x} 页",
+            margin_options: [
+                {
+                    value: "小",
+                    label: "小"
+                },
+                {
+                    value: "推荐",
+                    label: "推荐"
+                },
+                {
+                    value: "大",
+                    label: "大"
+                }
+            ],
+            text_format: "文本格式",
+            font: "字体",
+            font_size: "字号",
+            bold: "粗体",
+            italic: "斜体",
+            underline: "下划线",
+            color: "颜色",
+            document_language: "文件语言",
+            select_language_placeholder: "選擇語言",
+            select_margin_placeholder: "選擇邊距",
+            select_font_placeholder: "選擇字體"
+        },
+        first_page_is_cover: "第一页是封面"
     },
+    selected_files_placeholer: "选择文件",
     filenameOptions: {
         label: "输出文件名（可选）",
         placeholder: "输入文件名",
@@ -56,29 +110,26 @@ export const edit_page: _edit_page = {
             cta: "立即升级",
         },
     },
-    actionContent: {
-        current: "当前",
-        info: "正 = 顺时针，负 = 逆时针",
-    }
 };
 
 export const downloadFile: _downloadFile = {
     titles: {
-        "rotate-pdf": [
-            "PDF文件已旋转！",
-            "PDF文件已旋转！"
+        "number-pdf": [
+            "PDF文件已编号！",
+            "PDF文件已编号！"
         ]
     },
     btnText: {
-        "rotate-pdf": [
-            "下载旋转后的PDF文件",
-            "下载旋转后的PDF文件"
+        "number-pdf": [
+            "下载已编号的PDF文件",
+            "下载已编号的PDF文件"
         ]
     },
     backto: {
-        "rotate-pdf": "返回旋转PDF"
+        "number-pdf": "返回到编号PDF"
     }
 };
+
 
 
 

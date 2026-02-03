@@ -2,26 +2,26 @@ import type { edit_page as _edit_page, tool as _tool, tools as _tools, downloadF
 import type { adBlockerContentType } from "./content";
 
 export const tool: _tool = {
-  Rotate_PDF: {
-    title: "Rotar PDF",
-    seoTitle: "Rotar Páginas PDF en Línea - Fácil Rotación de PDF",
-    description: "Gira fácilmente las páginas de tus documentos PDF para lograr la orientación óptima.",
-    keywords: "rotar PDF, rotación de páginas PDF, rotar PDF en línea, ajustar orientación de PDF, rotar páginas en PDF",
-    color: "#10ac84",
+  Number_PDF: {
+    title: "Numerar PDF",
+    seoTitle: "Agregar Números de Página en Línea - Numeración de PDF Fácil",
+    description: "Agrega números de página a tu documento PDF con diferentes estilos y opciones.",
+    keywords: "agregar números de página a PDF, herramienta de numeración de PDF, numeración de PDF en línea, numerar páginas de PDF, personalizar números de página de PDF, agregar números secuenciales a PDF",
+    color: "#e55039",
     type: ".pdf",
-    to: "/rotate-pdf",
+    to: "/number-pdf",
     features: [
       {
-        title: "Rotación de Páginas Simple",
-        description: "Gira fácilmente las páginas de PDF a la orientación deseada con solo unos pocos clics."
+        title: "Estilos de numeración personalizables",
+        description: "Elige entre varios estilos y formatos de numeración para adaptarse a las necesidades de tu documento."
       },
       {
-        title: "Rotación en Lote",
-        description: "Gira múltiples páginas a la vez para ajustes eficientes de documentos."
+        title: "Soporte multilingüe",
+        description: "Selecciona el idioma del documento para usar los guiones numéricos apropiados."
       },
       {
-        title: "Seguro y Privado",
-        description: "Tus archivos se procesan de manera segura y se eliminan poco después de la procesamiento."
+        title: "Fácil de usar",
+        description: "Nuestra herramienta es fácil de usar, lo que te permite agregar números de página a tu PDF con solo unos pocos clics."
       }
     ]
   }
@@ -29,23 +29,77 @@ export const tool: _tool = {
 
 export const edit_page: _edit_page = {
   edit_page_titles: {
-    rotate_pdf: "Opciones para Rotar PDF"
+    number_pdf: "Número de opciones de PDF"
   },
-  loader_text: "Por favor, espera...",
-  add_more_button: "Agregar más archivos",
+  loader_text: "Por favor espera...",
+  add_more_button: "Agrega más archivos",
   action_buttons: {
-    rotate_pdf: "Rotar PDF"
+    number_pdf: "Numerar PDF"
   },
-  pages: "páginas",
+  pages: "paginas",
   page: "página",
-  rotate_pdf_options: {
-    info1: "Pasa el cursor sobre el archivo PDF para revelar",
-    info2: "iconos. Haz clic en cualquiera de los iconos para rotar tus PDFs.",
-    left: "Izquierda",
-    right: "Derecha",
-    rotation: "Rotación",
-    reset_all: "Restablecer Todo"
+  number_pdf_options: {
+    page_mode: "modo de página",
+    single_page: "Página única",
+    facing_pages: "Páginas enfrentadas",
+    single_page_options: {
+      position: "posición",
+      margin: "margen",
+      pages: "páginas",
+      page_to_number: "¿Qué páginas quieres numerar?",
+      start_from: "Primer número",
+      from: "Desde",
+      to: "Hasta",
+      text: "texto",
+      page_text_options: [
+        {
+          value: "insert only page number (recommended)",
+          label: "insert only page number (recommended)"
+        },
+        {
+          value: "page n",
+          label: "page n"
+        },
+        {
+          value: "page n of x",
+          label: "page n of x"
+        },
+        {
+          value: "Personalizado",
+          label: "Personalizado"
+        }
+      ],
+      custom_text: "Texto personalizado",
+      text_sample: "muestra de texto: página {n} de {x} páginas en total",
+      margin_options: [
+        {
+          value: "Pequeño",
+          label: "Pequeño"
+        },
+        {
+          value: "Recomendado",
+          label: "Recomendado"
+        },
+        {
+          value: "Grande",
+          label: "Grande"
+        }
+      ],
+      text_format: "formato de texto",
+      font: "fuente",
+      font_size: "tamaño de fuente",
+      bold: "negrita",
+      italic: "cursiva",
+      underline: "subrayado",
+      color: "color",
+      document_language: "Idioma del Documento",
+      select_language_placeholder: "Seleccionar Idioma",
+      select_margin_placeholder: "Seleccionar Margen",
+      select_font_placeholder: "Seleccionar Fuente"
+    },
+    first_page_is_cover: "La primera página es la página de portada"
   },
+  selected_files_placeholer: "Seleccionar archivos",
   filenameOptions: {
     label: "Nombre del archivo de salida (opcional)",
     placeholder: "Ingrese el nombre del archivo",
@@ -56,30 +110,25 @@ export const edit_page: _edit_page = {
       cta: "Actualizar ahora",
     },
   },
-  actionContent: {
-    current: "Actual",
-    info: "Positivo = en sentido horario, Negativo = en sentido antihorario",
-  }
 };
 
 export const downloadFile: _downloadFile = {
   titles: {
-    "rotate-pdf": [
-      "¡Los archivos PDF han sido rotados!",
-      "¡El archivo PDF ha sido rotado!"
+    "number-pdf": [
+      "¡Los archivos PDF han sido numerados!",
+      "¡El archivo PDF ha sido numerado!"
     ]
   },
   btnText: {
-    "rotate-pdf": [
-      "Descargar archivos PDF rotados",
-      "Descargar archivo PDF rotado"
+    "number-pdf": [
+      "Descargar archivos PDF numerados",
+      "Descargar archivo PDF numerado"
     ]
   },
   backto: {
-    "rotate-pdf": "Volver a Rotar PDF"
+    "number-pdf": "Volver a numerar PDF"
   }
 };
-
 export const tools: _tools = {
   select: "Seleccionar",
   or_drop: "o suelta archivos aquí",

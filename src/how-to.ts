@@ -1,195 +1,255 @@
 // AUTO-GENERATED HOW-TO SCHEMAS – DO NOT EDIT
 
-import type { WithContext, HowTo as HowToType } from "schema-dts";
+import type { HowTo, WithContext } from "schema-dts";
 
 // ==================== DEFAULT (EN) ====================
 
-export const howToSchema: WithContext<HowToType> = {
-
+export const howToSchema: WithContext<HowTo> = {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  name: "How to Rotate PDF Pages?",
-  description: "Steps to rotate pages in your PDF document.",
+  name: "How to Add Page Numbers to PDF?",
+  description: "Steps to add page numbers to your PDF document.",
   step: [
     {
       "@type": "HowToStep",
       name: "Step 1",
-      text: "Open the Rotate PDF tool on PDFEquips."
+      text: "Open the PDF Numbering tool on PDFEquips."
     },
     {
       "@type": "HowToStep",
       name: "Step 2",
-      text: "Hover over the PDF file to reveal a rotate icon. Click on the icon to rotate your PDFs."
+      text: "Upload your PDF file by dragging and dropping or clicking the 'Select PDF' button."
     },
     {
       "@type": "HowToStep",
       name: "Step 3",
-      text: "Alternatively, you can use the buttons below to rotate the PDF file left or right."
+      text: "Choose the numbering style and format."
     },
     {
       "@type": "HowToStep",
       name: "Step 4",
-      text: "Click the 'Download Rotated PDF' button to save the rotated PDF file to your device."
+      text: "Select the document language to use the appropriate numeral script."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Step 5",
+      text: "Click the 'Add Page Numbers' button to apply the numbering."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Step 6",
+      text: "Download the numbered PDF file to your device."
     }
   ]
 };
 
 // ==================== AR ====================
 
-export const howToSchema_ar: WithContext<HowToType> = {
+export const howToSchema_ar: WithContext<HowTo> = {
 
   "@context": "https://schema.org",
   "@type": "HowTo",
-  name: "كيفية تدوير صفحات PDF؟",
-  description: "خطوات لتدوير صفحات مستند PDF الخاص بك.",
+  name: "كيفية إضافة أرقام الصفحات إلى PDF؟",
+  description: "خطوات لإضافة أرقام الصفحات إلى مستند PDF الخاص بك.",
   step: [
     {
       "@type": "HowToStep",
       name: "الخطوة 1",
-      text: "افتح أداة تدوير PDF على PDFEquips."
+      text: "افتح أداة ترقيم PDF على PDFEquips."
     },
     {
       "@type": "HowToStep",
       name: "الخطوة 2",
-      text: "حوم فوق ملف PDF لكشف رمز التدوير. انقر على الرمز لتدوير ملفات PDF الخاصة بك."
+      text: "قم بتحميل ملف PDF الخاص بك عن طريق السحب والإفلات أو النقر على زر 'اختر ملف PDF'."
     },
     {
       "@type": "HowToStep",
       name: "الخطوة 3",
-      text: "بدلاً من ذلك، يمكنك استخدام الأزرار أدناه لتدوير ملف PDF إلى اليسار أو اليمين."
+      text: "اختر نمط الترقيم والتنسيق."
     },
     {
       "@type": "HowToStep",
       name: "الخطوة 4",
-      text: "انقر على زر 'تنزيل PDF المُدوَّر' لحفظ ملف PDF المُدوَّر على جهازك."
+      text: "حدد لغة المستند لاستخدام الرموز العددية المناسبة."
+    },
+    {
+      "@type": "HowToStep",
+      name: "الخطوة 5",
+      text: "انقر على زر 'إضافة أرقام الصفحات' لتطبيق الترقيم."
+    },
+    {
+      "@type": "HowToStep",
+      name: "الخطوة 6",
+      text: "قم بتنزيل ملف PDF المرقم إلى جهازك."
     }
   ]
 };
 
 // ==================== ES ====================
 
-export const howToSchema_es: WithContext<HowToType> = {
+export const howToSchema_es: WithContext<HowTo> = {
 
   "@context": "https://schema.org",
   "@type": "HowTo",
-  name: "¿Cómo Rotar Páginas PDF?",
-  description: "Pasos para rotar páginas en su documento PDF.",
+  name: "¿Cómo agregar números de página a PDF?",
+  description: "Pasos para agregar números de página a tu documento PDF.",
   step: [
     {
       "@type": "HowToStep",
       name: "Paso 1",
-      text: "Abra la herramienta de Rotar PDF en PDFEquips."
+      text: "Abre la herramienta de numeración de PDF en PDFEquips."
     },
     {
       "@type": "HowToStep",
       name: "Paso 2",
-      text: "Pase el cursor sobre el archivo PDF para revelar un icono de rotación. Haga clic en el icono para rotar sus PDFs."
+      text: "Sube tu archivo PDF arrastrándolo y soltándolo o haciendo clic en el botón 'Seleccionar PDF'."
     },
     {
       "@type": "HowToStep",
       name: "Paso 3",
-      text: "Alternativamente, puede usar los botones a continuación para rotar el archivo PDF a la izquierda o a la derecha."
+      text: "Elige el estilo y formato de numeración."
     },
     {
       "@type": "HowToStep",
       name: "Paso 4",
-      text: "Haga clic en el botón 'Descargar PDF Rotado' para guardar el archivo PDF rotado en su dispositivo."
+      text: "Selecciona el idioma del documento para usar el guion numérico apropiado."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Paso 5",
+      text: "Haz clic en el botón 'Agregar números de página' para aplicar la numeración."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Paso 6",
+      text: "Descarga el archivo PDF numerado en tu dispositivo."
     }
   ]
 };
 
 // ==================== FR ====================
 
-export const howToSchema_fr: WithContext<HowToType> = {
+export const howToSchema_fr: WithContext<HowTo> = {
 
   "@context": "https://schema.org",
   "@type": "HowTo",
-  name: "Comment Faire Pivoter les Pages PDF?",
-  description: "Étapes pour faire pivoter les pages de votre document PDF.",
+  name: "Comment ajouter des numéros de page à un PDF?",
+  description: "Étapes pour ajouter des numéros de page à votre document PDF.",
   step: [
     {
       "@type": "HowToStep",
       name: "Étape 1",
-      text: "Ouvrez l'outil Faire Pivoter PDF sur PDFEquips."
+      text: "Ouvrez l'outil de numérotation PDF sur PDFEquips."
     },
     {
       "@type": "HowToStep",
       name: "Étape 2",
-      text: "Survolez le fichier PDF pour révéler une icône de rotation. Cliquez sur l'icône pour faire pivoter vos PDF."
+      text: "Téléchargez votre fichier PDF en le faisant glisser et en le déposant ou en cliquant sur le bouton 'Sélectionner un PDF'."
     },
     {
       "@type": "HowToStep",
       name: "Étape 3",
-      text: "Vous pouvez également utiliser les boutons ci-dessous pour faire pivoter le fichier PDF vers la gauche ou la droite."
+      text: "Choisissez le style et le format de numérotation."
     },
     {
       "@type": "HowToStep",
       name: "Étape 4",
-      text: "Cliquez sur le bouton 'Télécharger le PDF Pivoté' pour enregistrer le fichier PDF pivoté sur votre appareil."
+      text: "Sélectionnez la langue du document pour utiliser le script numérique approprié."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Étape 5",
+      text: "Cliquez sur le bouton 'Ajouter des numéros de page' pour appliquer la numérotation."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Étape 6",
+      text: "Téléchargez le fichier PDF numéroté sur votre appareil."
     }
   ]
 };
 
 // ==================== HI ====================
 
-export const howToSchema_hi: WithContext<HowToType> = {
+export const howToSchema_hi: WithContext<HowTo> = {
 
   "@context": "https://schema.org",
   "@type": "HowTo",
-  name: "PDF पृष्ठ कैसे घुमाएँ?",
-  description: "अपने PDF दस्तावेज़ में पृष्ठों को घुमाने के चरण।",
+  name: "PDF में पृष्ठ संख्या कैसे जोड़ें?",
+  description: "अपने PDF दस्तावेज़ में पृष्ठ संख्या जोड़ने के लिए कदम।",
   step: [
     {
       "@type": "HowToStep",
       name: "चरण 1",
-      text: "PDFEquips पर PDF घुमाएँ उपकरण खोलें।"
+      text: "PDFEquips पर PDF संख्या उपकरण खोलें।"
     },
     {
       "@type": "HowToStep",
       name: "चरण 2",
-      text: "PDF फ़ाइल पर होवर करें ताकि एक घुमाने वाला आइकन दिखाई दे। अपने PDFs को घुमाने के लिए आइकन पर क्लिक करें।"
+      text: "अपनी PDF फ़ाइल को खींचें और छोड़ें या 'PDF चुनें' बटन पर क्लिक करें।"
     },
     {
       "@type": "HowToStep",
       name: "चरण 3",
-      text: "वैकल्पिक रूप से, आप PDF फ़ाइल को बाएँ या दाएँ घुमाने के लिए नीचे दिए गए बटनों का उपयोग कर सकते हैं।"
+      text: "संख्या शैली और प्रारूप चुनें।"
     },
     {
       "@type": "HowToStep",
       name: "चरण 4",
-      text: "'घुमाए गए PDF को डाउनलोड करें' बटन पर क्लिक करें ताकि घुमाई गई PDF फ़ाइल आपके डिवाइस में सहेजी जा सके।"
+      text: "उपयुक्त अंक लिपि का उपयोग करने के लिए दस्तावेज़ भाषा चुनें।"
+    },
+    {
+      "@type": "HowToStep",
+      name: "चरण 5",
+      text: "'पृष्ठ संख्या जोड़ें' बटन पर क्लिक करें।"
+    },
+    {
+      "@type": "HowToStep",
+      name: "चरण 6",
+      text: "संख्यांकित PDF फ़ाइल को अपने डिवाइस पर डाउनलोड करें।"
     }
   ]
 };
 
 // ==================== ZH ====================
 
-export const howToSchema_zh: WithContext<HowToType> = {
+export const howToSchema_zh: WithContext<HowTo> = {
 
   "@context": "https://schema.org",
   "@type": "HowTo",
-  name: "如何旋转 PDF 页面？",
-  description: "旋转 PDF 文档页面的步骤。",
+  name: "如何给 PDF 添加页码?",
+  description: "给您的 PDF 文档添加页码的步骤。",
   step: [
     {
       "@type": "HowToStep",
       name: "步骤 1",
-      text: "打开 PDFEquips 上的 PDF 旋转工具。"
+      text: "在 PDFEquips 上打开 PDF 编号工具。"
     },
     {
       "@type": "HowToStep",
       name: "步骤 2",
-      text: "将鼠标悬停在 PDF 文件上以显示旋转图标。点击图标以旋转您的 PDF。"
+      text: "通过拖放或点击 '选择 PDF' 按钮上传您的 PDF 文件。"
     },
     {
       "@type": "HowToStep",
       name: "步骤 3",
-      text: "或者，您可以使用下面的按钮将 PDF 文件向左或向右旋转。"
+      text: "选择编号样式和格式。"
     },
     {
       "@type": "HowToStep",
       name: "步骤 4",
-      text: "点击 '下载旋转的 PDF' 按钮，将旋转后的 PDF 文件保存到您的设备中。"
+      text: "选择文档语言以使用适当的数字脚本。"
+    },
+    {
+      "@type": "HowToStep",
+      name: "步骤 5",
+      text: "点击 '添加页码' 按钮以应用编号。"
+    },
+    {
+      "@type": "HowToStep",
+      name: "步骤 6",
+      text: "将编号后的 PDF 文件下载到您的设备。"
     }
   ]
 };
+

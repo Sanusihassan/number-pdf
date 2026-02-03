@@ -2,26 +2,26 @@ import type { adBlockerContentType } from "./content";
 import type { edit_page as _edit_page, tool as _tool, tools as _tools, downloadFile as _downloadFile, errors as _ } from "../content";
 
 export const tool: _tool = {
-    Rotate_PDF: {
-        title: "Faire Pivoter PDF",
-        seoTitle: "Pivoter Pages PDF en Ligne - Rotation Facile de PDF",
-        description: "Faites pivoter facilement les pages de vos documents PDF pour obtenir l'orientation optimale.",
-        keywords: "pivoter PDF, rotation de pages PDF, pivoter PDF en ligne, ajuster l'orientation PDF, pivoter les pages de PDF",
-        color: "#10ac84",
+    Number_PDF: {
+        title: "Numéroter PDF",
+        seoTitle: "Ajouter des Numéros de Page en Ligne - Numérotation PDF Facile",
+        description: "Ajoutez des numéros de page à votre document PDF avec différents styles et options.",
+        keywords: "ajouter des numéros de page à PDF, outil de numérotation PDF, numérotation PDF en ligne, numéroter les pages PDF, personnaliser les numéros de page PDF, ajouter des numéros séquentiels à PDF",
+        color: "#e55039",
         type: ".pdf",
-        to: "/rotate-pdf",
+        to: "/number-pdf",
         features: [
             {
-                title: "Rotation Simple des Pages",
-                description: "Faites pivoter facilement les pages PDF à l'orientation souhaitée en quelques clics."
+                title: "Styles de numérotation personnalisables",
+                description: "Choisissez parmi différents styles et formats de numérotation pour répondre aux besoins de votre document."
             },
             {
-                title: "Rotation par Lots",
-                description: "Faites pivoter plusieurs pages à la fois pour des ajustements de documents efficaces."
+                title: "Support multilingue",
+                description: "Sélectionnez la langue du document pour utiliser les scripts numériques appropriés."
             },
             {
-                title: "Sûr et Privé",
-                description: "Vos fichiers sont traités en toute sécurité et sont supprimés peu de temps après le traitement."
+                title: "Facile à utiliser",
+                description: "Notre outil est convivial, vous permettant d'ajouter des numéros de page à votre PDF en quelques clics seulement."
             }
         ]
     }
@@ -29,23 +29,77 @@ export const tool: _tool = {
 
 export const edit_page: _edit_page = {
     edit_page_titles: {
-        rotate_pdf: "Options de rotation de PDF"
+        number_pdf: "Nombre d'options PDF"
     },
     loader_text: "Veuillez patienter...",
     add_more_button: "Ajouter plus de fichiers",
     action_buttons: {
-        rotate_pdf: "Rotation du PDF"
+        number_pdf: "Numéroter PDF"
     },
     pages: "pages",
     page: "page",
-    rotate_pdf_options: {
-        info1: "Survolez le fichier PDF pour révéler des",
-        info2: "icônes. Cliquez sur n'importe laquelle des icônes pour faire pivoter vos PDFs.",
-        left: "Gauche",
-        right: "Droite",
-        rotation: "Rotation",
-        reset_all: "Réinitialiser Tout"
+    number_pdf_options: {
+        page_mode: "mode de page",
+        single_page: "Page unique",
+        facing_pages: "Pages en vis-à-vis",
+        single_page_options: {
+            position: "position",
+            margin: "marge",
+            pages: "pages",
+            page_to_number: "quelles pages souhaitez-vous numéroter ?",
+            start_from: "Premier numéro",
+            from: "De",
+            to: "À",
+            text: "texte",
+            page_text_options: [
+                {
+                    value: "insérer uniquement le numéro de page (recommandé)",
+                    label: "insérer uniquement le numéro de page (recommandé)"
+                },
+                {
+                    value: "page n",
+                    label: "page n"
+                },
+                {
+                    value: "page n de x",
+                    label: "page n de x"
+                },
+                {
+                    value: "Personnalisé",
+                    label: "Personnalisé"
+                }
+            ],
+            custom_text: "Texte personnalisé",
+            text_sample: "échantillon de texte : page {n} sur {x} pages au total",
+            margin_options: [
+                {
+                    value: "Petit",
+                    label: "Petit"
+                },
+                {
+                    value: "Recommandé",
+                    label: "Recommandé"
+                },
+                {
+                    value: "Grand",
+                    label: "Grand"
+                }
+            ],
+            text_format: "format de texte",
+            font: "police de caractères",
+            font_size: "taille de police",
+            bold: "gras",
+            italic: "italique",
+            underline: "souligné",
+            color: "couleur",
+            document_language: "Langue du Document",
+            select_language_placeholder: "Sélectionner la Langue",
+            select_margin_placeholder: "Sélectionner la Marge",
+            select_font_placeholder: "Sélectionner la Police"
+        },
+        first_page_is_cover: "La première page est la page de couverture"
     },
+    selected_files_placeholer: "Sélectionner des fichiers",
     filenameOptions: {
         label: "Nom du fichier de sortie (facultatif)",
         placeholder: "Entrez le nom du fichier",
@@ -56,27 +110,23 @@ export const edit_page: _edit_page = {
             cta: "Mettre à niveau maintenant",
         },
     },
-    actionContent: {
-        current: "Actuel",
-        info: "Positif = sens horaire, Négatif = sens antihoraire",
-    }
 };
 
 export const downloadFile: _downloadFile = {
     titles: {
-        "rotate-pdf": [
-            "Les fichiers PDF ont été tournés !",
-            "Le fichier PDF a été tourné !"
+        "number-pdf": [
+            "Les fichiers PDF ont été numérotés!",
+            "Le fichier PDF a été numéroté!"
         ]
     },
     btnText: {
-        "rotate-pdf": [
-            "Télécharger les fichiers PDF tournés",
-            "Télécharger le fichier PDF tourné"
+        "number-pdf": [
+            "Télécharger les fichiers PDF numérotés",
+            "Télécharger le fichier PDF numéroté"
         ]
     },
     backto: {
-        "rotate-pdf": "Retour à la rotation du PDF"
+        "number-pdf": "Retourner à la numérotation PDF"
     }
 };
 

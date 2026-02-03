@@ -1,27 +1,26 @@
 import type { adBlockerContentType } from "./content";
 import type { edit_page as _edit_page, tool as _tool, tools as _tools, downloadFile as _downloadFile, errors as _ } from "../content";
-
 export const tool: _tool = {
-    Rotate_PDF: {
-        title: "पीडीएफ घुमाएँ",
-        seoTitle: "पीडीएफ पृष्ठ ऑनलाइन घुमाएँ - आसान पीडीएफ पृष्ठ रोटेशन",
-        description: "अपने पीडीएफ दस्तावेज़ों के पृष्ठों को आसानी से घुमाएँ और इष्टतम अभिविन्यास प्राप्त करें।",
-        keywords: "पीडीएफ घुमाएँ, पीडीएफ पृष्ठ घुमाएँ, ऑनलाइन पीडीएफ घुमाएँ, पीडीएफ अभिविन्यास समायोजित करें, पीडीएफ में पृष्ठ घुमाएँ",
-        color: "#10ac84",
+    Number_PDF: {
+        title: "PDF को संख्या दें",
+        seoTitle: "ऑनलाइन पृष्ठ संख्या जोड़ें - आसान PDF संख्या",
+        description: "अपने PDF दस्तावेज़ में विभिन्न शैलियों और विकल्पों के साथ पृष्ठ संख्या जोड़ें।",
+        keywords: "PDF में पृष्ठ संख्या जोड़ें, PDF संख्या उपकरण, ऑनलाइन PDF संख्या, PDF पृष्ठ संख्या दें, PDF पृष्ठ संख्याएँ अनुकूलित करें, PDF में क्रमांकित संख्या जोड़ें",
+        color: "#e55039",
         type: ".pdf",
-        to: "/rotate-pdf",
+        to: "/number-pdf",
         features: [
             {
-                title: "सरल पृष्ठ घुमाव",
-                description: "कुछ ही क्लिक में पीडीएफ पृष्ठों को वांछित अभिविन्यास में आसानी से घुमाएँ।"
+                title: "अनुकूलन योग्य संख्या शैलियाँ",
+                description: "अपने दस्तावेज़ की आवश्यकताओं के अनुरूप विभिन्न संख्या शैलियों और प्रारूपों में से चुनें।"
             },
             {
-                title: "बैच रोटेशन",
-                description: "कुशल दस्तावेज़ समायोजन के लिए एक बार में कई पृष्ठों को घुमाएँ।"
+                title: "मल्टी-लैंग्वेज समर्थन",
+                description: "उपयुक्त अंक स्क्रिप्ट का उपयोग करने के लिए दस्तावेज़ भाषा का चयन करें।"
             },
             {
-                title: "सुरक्षित और निजी",
-                description: "आपकी फाइलें सुरक्षित रूप से प्रोसेस की जाती हैं और प्रोसेसिंग के थोड़े समय बाद हटा दी जाती हैं।"
+                title: "आसानी से उपयोगी",
+                description: "हमारा उपकरण उपयोगकर्ता के अनुकूल है, जिससे आप केवल कुछ क्लिक में अपने PDF में पृष्ठ संख्या जोड़ सकते हैं।"
             }
         ]
     }
@@ -29,23 +28,77 @@ export const tool: _tool = {
 
 export const edit_page: _edit_page = {
     edit_page_titles: {
-        rotate_pdf: "पीडीएफ विकल्प घुमाएं"
+        number_pdf: "संख्या पीडीएफ विकल्प"
     },
     loader_text: "कृपया प्रतीक्षा करें...",
-    add_more_button: "और फ़ाइलें जोड़ें",
+    add_more_button: "अधिक फ़ाइलें जोड़ें",
     action_buttons: {
-        rotate_pdf: "पीडीएफ घुमाएं"
+        number_pdf: "PDF संख्या दें"
     },
-    pages: "पृष्ठ",
+    pages: "पृष्ठों",
     page: "पृष्ठ",
-    rotate_pdf_options: {
-        info1: "PDF फ़ाइल पर होवर करें ताकि प्रकट हो",
-        info2: "आइकन। अपनी PDFs को घुमाने के लिए किसी भी आइकन पर क्लिक करें।",
-        left: "बाएं",
-        right: "दाएं",
-        rotation: "घुमाना",
-        reset_all: "सभी को रीसेट करें"
+    number_pdf_options: {
+        page_mode: "वेब पृष्ठ मोड",
+        single_page: "एकल पृष्ठ",
+        facing_pages: "मुखामुखी पृष्ठ",
+        single_page_options: {
+            position: "स्थिति",
+            margin: "मार्जिन",
+            pages: "पृष्ठ",
+            page_to_number: "किस पृष्ठ को नंबर करना चाहते हैं?",
+            start_from: "पहला नंबर",
+            from: "से",
+            to: "तक",
+            text: "पाठ",
+            page_text_options: [
+                {
+                    value: "केवल पृष्ठ संख्या डालें (सिफारिश की जाती है)",
+                    label: "केवल पृष्ठ संख्या डालें (सिफारिश की जाती है)"
+                },
+                {
+                    value: "पृष्ठ n",
+                    label: "पृष्ठ n"
+                },
+                {
+                    value: "पृष्ठ n का x",
+                    label: "पृष्ठ n का x"
+                },
+                {
+                    value: "कस्टम",
+                    label: "कस्टम"
+                }
+            ],
+            custom_text: "कस्टम पाठ",
+            text_sample: "पाठ नमूना: {x} कुल पृष्ठों में से पृष्ठ {n}",
+            margin_options: [
+                {
+                    value: "सामान्य",
+                    label: "सामान्य"
+                },
+                {
+                    value: "सिफारिश की गई",
+                    label: "सिफारिश की गई"
+                },
+                {
+                    value: "बड़ा",
+                    label: "बड़ा"
+                }
+            ],
+            text_format: "पाठ स्वरूप",
+            font: "फोंट",
+            font_size: "फोंट आकार",
+            bold: "मोटा",
+            italic: "तिरछा",
+            underline: "नीला",
+            color: "रंग",
+            document_language: "दस्तावेज़ भाषा",
+            select_language_placeholder: "भाषा चुनें",
+            select_margin_placeholder: "मार्जिन का चयन करें",
+            select_font_placeholder: "फ़ॉन्ट का चयन करें"
+        },
+        first_page_is_cover: "पहला पृष्ठ कोर का पृष्ठ है"
     },
+    selected_files_placeholer: "फाइलें चुनें",
     filenameOptions: {
         label: "आउटपुट फ़ाइल का नाम (वैकल्पिक)",
         placeholder: "फ़ाइल का नाम दर्ज करें",
@@ -56,27 +109,23 @@ export const edit_page: _edit_page = {
             cta: "अभी अपग्रेड करें",
         },
     },
-    actionContent: {
-        current: "वर्तमान",
-        info: "सकारात्मक = दक्षिणावर्त, नकारात्मक = वामावर्त",
-    }
 };
 
 export const downloadFile: _downloadFile = {
     titles: {
-        "rotate-pdf": [
-            "PDF फ़ाइलें घुमा दी गई हैं!",
-            "PDF फ़ाइल को घुमा दिया गया है!"
+        "number-pdf": [
+            "PDF फ़ाइलों को नंबर किया गया है!",
+            "PDF फ़ाइल को नंबर किया गया है!"
         ]
     },
     btnText: {
-        "rotate-pdf": [
-            "घुमाए गए PDF फ़ाइलें डाउनलोड करें",
-            "घुमाए गए PDF फ़ाइल डाउनलोड करें"
+        "number-pdf": [
+            "नंबर किए गए PDF फ़ाइलें डाउनलोड करें",
+            "नंबर की गई PDF फ़ाइल डाउनलोड करें"
         ]
     },
     backto: {
-        "rotate-pdf": "पीडीएफ घुमाने पर वापस जाएं"
+        "number-pdf": "नंबर पीडीएफ पर वापस जाएं"
     }
 };
 
