@@ -38,66 +38,55 @@ export const edit_page: _edit_page = {
   },
   pages: "paginas",
   page: "página",
-  number_pdf_options: {
-    page_mode: "modo de página",
+  fileCard: {
+    page: "Página",
+    pages: "Páginas",
+    remove_file: "Eliminar archivo",
+    loading: "Cargando",
+    preview: "Vista previa",
+  },
+  options: {
+    page_mode: "Modo de página",
     single_page: "Página única",
     facing_pages: "Páginas enfrentadas",
+    first_page_is_cover: "La primera página es la portada",
     single_page_options: {
-      position: "posición",
-      margin: "margen",
-      pages: "páginas",
-      page_to_number: "¿Qué páginas quieres numerar?",
+      position: "Posición",
+      margin: "Margen",
+      pages: "Páginas",
+      page_to_number: "¿Qué páginas deseas numerar?",
       start_from: "Primer número",
       from: "Desde",
       to: "Hasta",
-      text: "texto",
+      text: "Texto",
       page_text_options: [
         {
           value: "insert only page number (recommended)",
-          label: "insert only page number (recommended)"
+          label: "Insertar solo número de página (recomendado)",
         },
-        {
-          value: "page n",
-          label: "page n"
-        },
-        {
-          value: "page n of x",
-          label: "page n of x"
-        },
-        {
-          value: "Personalizado",
-          label: "Personalizado"
-        }
+        { value: "page n", label: "Página n" },
+        { value: "page n of x", label: "Página n de x" },
+        { value: "Custom", label: "Personalizado" },
       ],
       custom_text: "Texto personalizado",
-      text_sample: "muestra de texto: página {n} de {x} páginas en total",
+      text_sample: "Muestra de texto: página {n} de {x} páginas totales",
       margin_options: [
-        {
-          value: "Pequeño",
-          label: "Pequeño"
-        },
-        {
-          value: "Recomendado",
-          label: "Recomendado"
-        },
-        {
-          value: "Grande",
-          label: "Grande"
-        }
+        { value: "Small", label: "Pequeño" },
+        { value: "Recommended", label: "Recomendado" },
+        { value: "Big", label: "Grande" },
       ],
-      text_format: "formato de texto",
-      font: "fuente",
-      font_size: "tamaño de fuente",
-      bold: "negrita",
-      italic: "cursiva",
-      underline: "subrayado",
-      color: "color",
-      document_language: "Idioma del Documento",
-      select_language_placeholder: "Seleccionar Idioma",
-      select_margin_placeholder: "Seleccionar Margen",
-      select_font_placeholder: "Seleccionar Fuente"
+      text_format: "Formato de texto",
+      font: "Fuente",
+      font_size: "Tamaño de fuente",
+      bold: "Negrita",
+      italic: "Cursiva",
+      underline: "Subrayado",
+      color: "Color",
+      document_language: "Idioma del documento",
+      select_language_placeholder: "Seleccionar idioma",
+      select_margin_placeholder: "Seleccionar margen",
+      select_font_placeholder: "Seleccionar fuente",
     },
-    first_page_is_cover: "La primera página es la página de portada"
   },
   selected_files_placeholer: "Seleccionar archivos",
   filenameOptions: {
@@ -235,22 +224,18 @@ export const errors: _errors = {
     invalidPdf: "Archivo PDF inválido o corrupto.",
     pdfNotEncrypted: "Este PDF no está protegido con contraseña y no necesita ser desbloqueado.",
 
-    // Lock-PDF errors
-    noLockPassword: "Por favor, proporciona una contraseña para bloquear el PDF.",
-    lockingFailed: "Fallo al bloquear PDF. Por favor, inténtalo de nuevo.",
-
-    // Unlock-PDF errors
-    noPasswordsProvided: "Por favor, proporciona contraseñas para los PDFs bloqueados.",
-    unlockingFailed: "Fallo al desbloquear PDF. Por favor, verifica tu contraseña e inténtalo de nuevo.",
-    incorrectPassword: "Contraseña incorrecta. Por favor, inténtalo de nuevo.",
-    passwordRequired: "Este PDF está protegido con contraseña. Por favor, ingresa la contraseña.",
-
     // Settings errors
     invalidSettings: "Configuraciones inválidas proporcionadas. Por favor, actualiza e inténtalo de nuevo.",
     conversionFailed: "Conversión fallida. Por favor, inténtalo de nuevo.",
-    noRotationsProvided: "Por favor, especifique la rotación para al menos un archivo",
-    rotationFailed: "Fallo al rotar el PDF. Por favor, inténtelo de nuevo.",
-    invalidRotationAngle: "Ángulo de rotación inválido. Use 90, 180 o 270 grados."
+    noNumberSettings: "Por favor configure las opciones de numeración",
+    invalidNumberSettings: "Formato de configuración de numeración no válido",
+    noCustomText: "Por favor ingrese texto personalizado",
+    numberingFailed: "Error al agregar números de página. Inténtalo de nuevo.",
+    invalidPageRange: "Rango de páginas no válido",
+    pageOutOfRange: "El número de página excede el conteo de páginas del PDF",
+    invalidPosition: "Posición de número no válida",
+    invalidMargin: "Valor de margen no válido",
+    invalidFontSize: "Tamaño de fuente no válido",
   },
 };
 

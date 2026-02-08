@@ -6,6 +6,25 @@ type WritableDraft<T> = {
 
 type k = keyof WritableDraft<ToolState>;
 
+export interface NumberPdfSettings {
+  pageMode: "single" | "facing";
+  firstPageIsCover: boolean;
+  position: number; // 0-8
+  margin: "small" | "recommended" | "big";
+  startNumber: number;
+  fromPage: number;
+  toPage: number;
+  textOption: "only-number" | "page-n" | "page-n-of-x" | "custom";
+  customText: string;
+  font: string;
+  fontSize: number;
+  bold: boolean;
+  italic: boolean;
+  underline: boolean;
+  color: string;
+  documentLanguage: string;
+}
+
 export interface ToolState {
   showTool: boolean;
   isSubmitted: boolean;
@@ -15,11 +34,11 @@ export interface ToolState {
   showOptions: boolean;
   fileName: string;
   limitationMsg: string;
-  rotations: { k: string; r: number }[];
-  passwords: { k: string; p: string }[];
+  numberPdfSettings: NumberPdfSettings;
   subscriptionStatus: boolean | null;
   isAdBlocked: boolean;
   ocr_warning: string;
+  pageCount: number;
 }
 
 const initialState: ToolState = {
@@ -31,11 +50,28 @@ const initialState: ToolState = {
   showOptions: false,
   fileName: "",
   limitationMsg: "",
-  rotations: [],
-  passwords: [],
+  numberPdfSettings: {
+    pageMode: "single",
+    firstPageIsCover: false,
+    position: 7, // Bottom-center
+    margin: "recommended",
+    startNumber: 1,
+    fromPage: 1,
+    toPage: 1,
+    textOption: "only-number",
+    customText: "page {n} of {x}",
+    font: "Arial",
+    fontSize: 12,
+    bold: false,
+    italic: false,
+    underline: false,
+    color: "#000000",
+    documentLanguage: "en",
+  },
   subscriptionStatus: null,
   isAdBlocked: false,
   ocr_warning: "",
+  pageCount: 0
 };
 
 const toolSlice = createSlice({
@@ -70,16 +106,6 @@ export const { resetErrorMessage, setField } = toolSlice.actions;
  * Select the entire tool state
  */
 export const selectToolState = (state: { tool: ToolState }) => state.tool;
-
-export const selectRotations = createSelector(
-  [selectToolState],
-  (state) => state.rotations
-);
-
-export const selectPasswords = createSelector(
-  [selectToolState],
-  (state) => state.passwords
-);
 
 
 export default toolSlice.reducer;

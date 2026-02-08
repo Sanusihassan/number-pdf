@@ -38,66 +38,55 @@ export const edit_page: _edit_page = {
     },
     pages: "pages",
     page: "page",
-    number_pdf_options: {
-        page_mode: "mode de page",
+    fileCard: {
+        page: "Page",
+        pages: "Pages",
+        remove_file: "Supprimer le fichier",
+        loading: "Chargement",
+        preview: "Aperçu",
+    },
+    options: {
+        page_mode: "Mode de page",
         single_page: "Page unique",
         facing_pages: "Pages en vis-à-vis",
+        first_page_is_cover: "La première page est la page de couverture",
         single_page_options: {
-            position: "position",
-            margin: "marge",
-            pages: "pages",
-            page_to_number: "quelles pages souhaitez-vous numéroter ?",
+            position: "Position",
+            margin: "Marge",
+            pages: "Pages",
+            page_to_number: "Quelles pages souhaitez-vous numéroter ?",
             start_from: "Premier numéro",
             from: "De",
             to: "À",
-            text: "texte",
+            text: "Texte",
             page_text_options: [
                 {
-                    value: "insérer uniquement le numéro de page (recommandé)",
-                    label: "insérer uniquement le numéro de page (recommandé)"
+                    value: "insert only page number (recommended)",
+                    label: "Insérer uniquement le numéro de page (recommandé)",
                 },
-                {
-                    value: "page n",
-                    label: "page n"
-                },
-                {
-                    value: "page n de x",
-                    label: "page n de x"
-                },
-                {
-                    value: "Personnalisé",
-                    label: "Personnalisé"
-                }
+                { value: "page n", label: "Page n" },
+                { value: "page n of x", label: "Page n de x" },
+                { value: "Custom", label: "Personnalisé" },
             ],
             custom_text: "Texte personnalisé",
-            text_sample: "échantillon de texte : page {n} sur {x} pages au total",
+            text_sample: "Exemple de texte : page {n} de {x} pages au total",
             margin_options: [
-                {
-                    value: "Petit",
-                    label: "Petit"
-                },
-                {
-                    value: "Recommandé",
-                    label: "Recommandé"
-                },
-                {
-                    value: "Grand",
-                    label: "Grand"
-                }
+                { value: "Small", label: "Petit" },
+                { value: "Recommended", label: "Recommandé" },
+                { value: "Big", label: "Grand" },
             ],
-            text_format: "format de texte",
-            font: "police de caractères",
-            font_size: "taille de police",
-            bold: "gras",
-            italic: "italique",
-            underline: "souligné",
-            color: "couleur",
-            document_language: "Langue du Document",
-            select_language_placeholder: "Sélectionner la Langue",
-            select_margin_placeholder: "Sélectionner la Marge",
-            select_font_placeholder: "Sélectionner la Police"
+            text_format: "Format du texte",
+            font: "Police",
+            font_size: "Taille de police",
+            bold: "Gras",
+            italic: "Italique",
+            underline: "Souligné",
+            color: "Couleur",
+            document_language: "Langue du document",
+            select_language_placeholder: "Sélectionner la langue",
+            select_margin_placeholder: "Sélectionner la marge",
+            select_font_placeholder: "Sélectionner la police",
         },
-        first_page_is_cover: "La première page est la page de couverture"
     },
     selected_files_placeholer: "Sélectionner des fichiers",
     filenameOptions: {
@@ -233,22 +222,18 @@ export const errors: _ = {
         invalidPdf: "Fichier PDF invalide ou corrompu.",
         pdfNotEncrypted: "Ce PDF n'est pas protégé par mot de passe et n'a pas besoin d'être déverrouillé.",
 
-        // Lock-PDF errors
-        noLockPassword: "Veuillez fournir un mot de passe pour verrouiller le PDF.",
-        lockingFailed: "Échec du verrouillage du PDF. Veuillez réessayer.",
-
-        // Unlock-PDF errors
-        noPasswordsProvided: "Veuillez fournir des mots de passe pour les PDFs verrouillés.",
-        unlockingFailed: "Échec du déverrouillage du PDF. Veuillez vérifier votre mot de passe et réessayer.",
-        incorrectPassword: "Mot de passe incorrect. Veuillez réessayer.",
-        passwordRequired: "Ce PDF est protégé par mot de passe. Veuillez entrer le mot de passe.",
-
         // Settings errors
         invalidSettings: "Paramètres invalides fournis. Veuillez actualiser et réessayer.",
         conversionFailed: "Échec de la conversion. Veuillez réessayer.",
-        noRotationsProvided: "Veuillez spécifier la rotation pour au moins un fichier",
-        rotationFailed: "Échec de la rotation du PDF. Veuillez réessayer.",
-        invalidRotationAngle: "Angle de rotation invalide. Utilisez 90, 180 ou 270 degrés."
+        noNumberSettings: "Veuillez configurer les paramètres de numérotation",
+        invalidNumberSettings: "Format des paramètres de numérotation non valide",
+        noCustomText: "Veuillez entrer un texte personnalisé",
+        numberingFailed: "Échec de l'ajout des numéros de page. Veuillez réessayer.",
+        invalidPageRange: "Plage de pages non valide",
+        pageOutOfRange: "Le numéro de page dépasse le nombre de pages du PDF",
+        invalidPosition: "Position du numéro non valide",
+        invalidMargin: "Valeur de marge non valide",
+        invalidFontSize: "Taille de police non valide",
     },
 };
 

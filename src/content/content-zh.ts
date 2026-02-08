@@ -38,66 +38,55 @@ export const edit_page: _edit_page = {
     },
     pages: "页",
     page: "页",
-    number_pdf_options: {
+    fileCard: {
+        page: "页",
+        pages: "页",
+        remove_file: "删除文件",
+        loading: "加载中",
+        preview: "预览",
+    },
+    options: {
         page_mode: "页面模式",
         single_page: "单页",
-        facing_pages: "对页",
+        facing_pages: "对开页",
+        first_page_is_cover: "第一页是封面",
         single_page_options: {
             position: "位置",
             margin: "边距",
-            pages: "页数",
-            page_to_number: "您想对哪些页面进行编号？",
-            start_from: "第一个数字",
+            pages: "页面",
+            page_to_number: "您想要给哪些页面编号？",
+            start_from: "起始编号",
             from: "从",
             to: "到",
             text: "文本",
             page_text_options: [
                 {
-                    value: "仅插入页码（推荐）",
-                    label: "仅插入页码（推荐）"
+                    value: "insert only page number (recommended)",
+                    label: "仅插入页码（推荐）",
                 },
-                {
-                    value: "第 n 页",
-                    label: "第 n 页"
-                },
-                {
-                    value: "第 n 页，共 x 页",
-                    label: "第 n 页，共 x 页"
-                },
-                {
-                    value: "自定义",
-                    label: "自定义"
-                }
+                { value: "page n", label: "第 n 页" },
+                { value: "page n of x", label: "第 n 页，共 x 页" },
+                { value: "Custom", label: "自定义" },
             ],
             custom_text: "自定义文本",
-            text_sample: "文本样本：第 {n} 页，共 {x} 页",
+            text_sample: "文本示例：第 {n} 页，共 {x} 页",
             margin_options: [
-                {
-                    value: "小",
-                    label: "小"
-                },
-                {
-                    value: "推荐",
-                    label: "推荐"
-                },
-                {
-                    value: "大",
-                    label: "大"
-                }
+                { value: "Small", label: "小" },
+                { value: "Recommended", label: "推荐" },
+                { value: "Big", label: "大" },
             ],
             text_format: "文本格式",
             font: "字体",
-            font_size: "字号",
+            font_size: "字体大小",
             bold: "粗体",
             italic: "斜体",
             underline: "下划线",
             color: "颜色",
-            document_language: "文件语言",
-            select_language_placeholder: "選擇語言",
-            select_margin_placeholder: "選擇邊距",
-            select_font_placeholder: "選擇字體"
+            document_language: "文档语言",
+            select_language_placeholder: "选择语言",
+            select_margin_placeholder: "选择边距",
+            select_font_placeholder: "选择字体",
         },
-        first_page_is_cover: "第一页是封面"
     },
     selected_files_placeholer: "选择文件",
     filenameOptions: {
@@ -236,22 +225,18 @@ export const errors: _ = {
         invalidPdf: "无效或损坏的 PDF 文件。",
         pdfNotEncrypted: "此 PDF 未受密码保护，不需要解锁。",
 
-        // Lock-PDF errors
-        noLockPassword: "请提供密码以锁定 PDF。",
-        lockingFailed: "锁定 PDF 失败。请重试。",
-
-        // Unlock-PDF errors
-        noPasswordsProvided: "请为锁定的 PDF 提供密码。",
-        unlockingFailed: "解锁 PDF 失败。请检查您的密码并重试。",
-        incorrectPassword: "密码不正确。请重试。",
-        passwordRequired: "此 PDF 受密码保护。请输入密码。",
-
         // Settings errors
         invalidSettings: "提供的设置无效。请刷新并重试。",
         conversionFailed: "转换失败。请重试。",
-        noRotationsProvided: "请为至少一个文件指定旋转",
-        rotationFailed: "旋转 PDF 失败。请重试。",
-        invalidRotationAngle: "无效的旋转角度。使用 90、180 或 270 度。"
+        noNumberSettings: "请配置编号设置",
+        invalidNumberSettings: "无效的编号设置格式",
+        noCustomText: "请输入自定义文本",
+        numberingFailed: "添加页码失败。请重试。",
+        invalidPageRange: "无效的页面范围",
+        pageOutOfRange: "页码超出PDF页数",
+        invalidPosition: "无效的数字位置",
+        invalidMargin: "无效的边距值",
+        invalidFontSize: "无效的字体大小",
     },
 };
 

@@ -35,66 +35,55 @@ export const edit_page = {
   },
   pages: "pages",
   page: "page",
-  number_pdf_options: {
-    page_mode: "page mode",
+  fileCard: {
+    page: "Page",
+    pages: "Pages",
+    remove_file: "Remove file",
+    loading: "Loading",
+    preview: "Preview",
+  },
+  options: {
+    page_mode: "Page Mode",
     single_page: "Single Page",
     facing_pages: "Facing Pages",
+    first_page_is_cover: "First Page is the cover page",
     single_page_options: {
-      position: "position",
-      margin: "margin",
-      pages: "pages",
-      page_to_number: "which pages do you want to number?",
+      position: "Position",
+      margin: "Margin",
+      pages: "Pages",
+      page_to_number: "Which pages do you want to number?",
       start_from: "First Number",
       from: "From",
       to: "To",
-      text: "text",
+      text: "Text",
       page_text_options: [
         {
           value: "insert only page number (recommended)",
-          label: "insert only page number (recommended)"
+          label: "Insert only page number (recommended)",
         },
-        {
-          value: "page n",
-          label: "page n"
-        },
-        {
-          value: "page n of x",
-          label: "page n of x"
-        },
-        {
-          value: "Custom",
-          label: "Custom"
-        }
+        { value: "page n", label: "Page n" },
+        { value: "page n of x", label: "Page n of x" },
+        { value: "Custom", label: "Custom" },
       ],
       custom_text: "Custom text",
-      text_sample: "text sample: page {n} of {x} total pages",
+      text_sample: "Text sample: page {n} of {x} total pages",
       margin_options: [
-        {
-          value: "Small",
-          label: "Small"
-        },
-        {
-          value: "Recommended",
-          label: "Recommended"
-        },
-        {
-          value: "Big",
-          label: "Big"
-        }
+        { value: "Small", label: "Small" },
+        { value: "Recommended", label: "Recommended" },
+        { value: "Big", label: "Big" },
       ],
-      text_format: "text format",
-      font: "font",
-      font_size: "font size",
-      bold: "bold",
-      italic: "italic",
-      underline: "underline",
-      color: "color",
+      text_format: "Text Format",
+      font: "Font",
+      font_size: "Font Size",
+      bold: "Bold",
+      italic: "Italic",
+      underline: "Underline",
+      color: "Color",
       document_language: "Document Language",
       select_language_placeholder: "Select Language",
       select_margin_placeholder: "Select Margin",
-      select_font_placeholder: "Select Font"
+      select_font_placeholder: "Select Font",
     },
-    first_page_is_cover: "First Page is the cover page"
   },
   selected_files_placeholer: "Select Files",
   filenameOptions: {
@@ -140,7 +129,7 @@ export type ToolType = {
     description: string;
   }[];
 }
-export type Paths = "rotate-pdf";
+export type Paths = "number-pdf";
 
 export const tools = {
   select: "Select",
@@ -243,25 +232,21 @@ export const errors = {
     // PDF-specific errors
     invalidPdf: "Invalid or corrupted PDF file.",
     pdfNotEncrypted: "This PDF is not password-protected and doesn't need to be unlocked.",
-
-    // Lock-PDF errors
-    noLockPassword: "Please provide a password to lock the PDF.",
-    lockingFailed: "Failed to lock PDF. Please try again.",
-
-    // Unlock-PDF errors
-    noPasswordsProvided: "Please provide passwords for the locked PDFs.",
-    unlockingFailed: "Failed to unlock PDF. Please check your password and try again.",
-    incorrectPassword: "Incorrect password. Please try again.",
-    passwordRequired: "This PDF is password-protected. Please enter the password.",
     tooManyFiles: "Too many files uploaded",
 
     // Settings errors
     invalidSettings: "Invalid settings provided. Please refresh and try again.",
     conversionFailed: "Conversion failed. Please try again.",
     // please do the same for these:
-    noRotationsProvided: "Please specify rotation for at least one file",
-    rotationFailed: "Failed to rotate PDF. Please try again.",
-    invalidRotationAngle: "Invalid rotation angle. Use 90, 180, or 270 degrees."
+    noNumberSettings: "Please configure numbering settings",
+    invalidNumberSettings: "Invalid numbering settings format",
+    noCustomText: "Please enter custom text",
+    numberingFailed: "Failed to add page numbers. Please try again.",
+    invalidPageRange: "Invalid page range",
+    pageOutOfRange: "Page number exceeds PDF page count",
+    invalidPosition: "Invalid number position",
+    invalidMargin: "Invalid margin value",
+    invalidFontSize: "Invalid font size",
   },
 };
 

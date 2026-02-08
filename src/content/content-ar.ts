@@ -39,66 +39,55 @@ export const edit_page: _edit_page = {
     },
     pages: "صفحة",
     page: "صفحة واحدة",
-    number_pdf_options: {
+    fileCard: {
+        page: "صفحة",
+        pages: "صفحات",
+        remove_file: "إزالة الملف",
+        loading: "جاري التحميل",
+        preview: "معاينة",
+    },
+    options: {
         page_mode: "وضع الصفحة",
         single_page: "صفحة واحدة",
-        facing_pages: "صفحات متجاورة",
+        facing_pages: "صفحات متقابلة",
+        first_page_is_cover: "الصفحة الأولى هي صفحة الغلاف",
         single_page_options: {
             position: "الموضع",
             margin: "الهامش",
             pages: "الصفحات",
-            page_to_number: "أي الصفحات ترغب في ترقيمها؟",
+            page_to_number: "أي الصفحات تريد ترقيمها؟",
             start_from: "الرقم الأول",
             from: "من",
             to: "إلى",
             text: "النص",
             page_text_options: [
                 {
-                    value: "أدخل رقم الصفحة فقط (مستحسن)",
-                    label: "أدخل رقم الصفحة فقط (مستحسن)"
+                    value: "insert only page number (recommended)",
+                    label: "إدراج رقم الصفحة فقط (موصى به)",
                 },
-                {
-                    value: "صفحة n",
-                    label: "صفحة n"
-                },
-                {
-                    value: "صفحة n من x",
-                    label: "صفحة n من x"
-                },
-                {
-                    value: "تخصيص",
-                    label: "تخصيص"
-                }
+                { value: "page n", label: "صفحة n" },
+                { value: "page n of x", label: "صفحة n من x" },
+                { value: "Custom", label: "مخصص" },
             ],
             custom_text: "نص مخصص",
-            text_sample: "نموذج نص: الصفحة {ن} من إجمالي {س} من الصفحات",
+            text_sample: "عينة النص: صفحة {n} من {x} صفحة إجمالاً",
             margin_options: [
-                {
-                    value: "صغير",
-                    label: "صغير"
-                },
-                {
-                    value: "مستحسن",
-                    label: "مستحسن"
-                },
-                {
-                    value: "كبير",
-                    label: "كبير"
-                }
+                { value: "Small", label: "صغير" },
+                { value: "Recommended", label: "موصى به" },
+                { value: "Big", label: "كبير" },
             ],
             text_format: "تنسيق النص",
             font: "الخط",
             font_size: "حجم الخط",
-            bold: "عريض",
+            bold: "غامق",
             italic: "مائل",
             underline: "تسطير",
             color: "اللون",
             document_language: "لغة المستند",
             select_language_placeholder: "اختر اللغة",
-            select_margin_placeholder: "حدد الهامش",
-            select_font_placeholder: "اختر الخط"
+            select_margin_placeholder: "اختر الهامش",
+            select_font_placeholder: "اختر الخط",
         },
-        first_page_is_cover: "الصفحة الأولى هي صفحة الغلاف"
     },
     selected_files_placeholer: "اختر الملفات",
     filenameOptions: {
@@ -233,23 +222,19 @@ export const errors: _errors = {
         invalidPdf: "ملف PDF غير صالح أو تالف.",
         pdfNotEncrypted: "هذا الملف PDF غير محمي بكلمة مرور ولا يحتاج إلى فك القفل.",
 
-        // Lock-PDF errors
-        noLockPassword: "يرجى تقديم كلمة مرور لقفل PDF.",
-        lockingFailed: "فشل قفل PDF. يرجى المحاولة مرة أخرى.",
-
-        // Unlock-PDF errors
-        noPasswordsProvided: "يرجى تقديم كلمات مرور لملفات PDF المقفلة.",
-        unlockingFailed: "فشل فك قفل PDF. يرجى التحقق من كلمة المرور والمحاولة مرة أخرى.",
-        incorrectPassword: "كلمة مرور غير صحيحة. يرجى المحاولة مرة أخرى.",
-        passwordRequired: "هذا الملف PDF محمي بكلمة مرور. يرجى إدخال كلمة المرور.",
-
         // Settings errors
         invalidSettings: "إعدادات غير صالحة مقدمة. يرجى التحديث والمحاولة مرة أخرى.",
         conversionFailed: "فشل التحويل. يرجى المحاولة مرة أخرى.",
         tooManyFiles: "تم تحميل ملفات كثيرة جدًا",
-        noRotationsProvided: "يرجى تحديد الدوران لملف واحد على الأقل",
-        rotationFailed: "فشل تدوير PDF. يرجى المحاولة مرة أخرى.",
-        invalidRotationAngle: "زاوية دوران غير صالحة. استخدم 90 أو 180 أو 270 درجة."
+        noNumberSettings: "يرجى تكوين إعدادات الترقيم",
+        invalidNumberSettings: "تنسيق إعدادات الترقيم غير صالح",
+        noCustomText: "الرجاء إدخال نص مخصص",
+        numberingFailed: "فشل إضافة أرقام الصفحات. يرجى المحاولة مرة أخرى.",
+        invalidPageRange: "نطاق صفحات غير صالح",
+        pageOutOfRange: "رقم الصفحة يتجاوز عدد صفحات PDF",
+        invalidPosition: "موضع الرقم غير صالح",
+        invalidMargin: "قيمة الهامش غير صالحة",
+        invalidFontSize: "حجم الخط غير صالح",
     },
 };
 

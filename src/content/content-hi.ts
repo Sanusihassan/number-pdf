@@ -37,66 +37,55 @@ export const edit_page: _edit_page = {
     },
     pages: "पृष्ठों",
     page: "पृष्ठ",
-    number_pdf_options: {
-        page_mode: "वेब पृष्ठ मोड",
+    fileCard: {
+        page: "पृष्ठ",
+        pages: "पृष्ठ",
+        remove_file: "फ़ाइल हटाएं",
+        loading: "लोड हो रहा है",
+        preview: "पूर्वावलोकन",
+    },
+    options: {
+        page_mode: "पृष्ठ मोड",
         single_page: "एकल पृष्ठ",
-        facing_pages: "मुखामुखी पृष्ठ",
+        facing_pages: "सामने वाले पृष्ठ",
+        first_page_is_cover: "पहला पृष्ठ कवर पृष्ठ है",
         single_page_options: {
             position: "स्थिति",
-            margin: "मार्जिन",
+            margin: "हाशिया",
             pages: "पृष्ठ",
-            page_to_number: "किस पृष्ठ को नंबर करना चाहते हैं?",
+            page_to_number: "आप कौन से पृष्ठों को नंबर देना चाहते हैं?",
             start_from: "पहला नंबर",
             from: "से",
             to: "तक",
-            text: "पाठ",
+            text: "टेक्स्ट",
             page_text_options: [
                 {
-                    value: "केवल पृष्ठ संख्या डालें (सिफारिश की जाती है)",
-                    label: "केवल पृष्ठ संख्या डालें (सिफारिश की जाती है)"
+                    value: "insert only page number (recommended)",
+                    label: "केवल पृष्ठ संख्या डालें (अनुशंसित)",
                 },
-                {
-                    value: "पृष्ठ n",
-                    label: "पृष्ठ n"
-                },
-                {
-                    value: "पृष्ठ n का x",
-                    label: "पृष्ठ n का x"
-                },
-                {
-                    value: "कस्टम",
-                    label: "कस्टम"
-                }
+                { value: "page n", label: "पृष्ठ n" },
+                { value: "page n of x", label: "पृष्ठ n का x" },
+                { value: "Custom", label: "कस्टम" },
             ],
-            custom_text: "कस्टम पाठ",
-            text_sample: "पाठ नमूना: {x} कुल पृष्ठों में से पृष्ठ {n}",
+            custom_text: "कस्टम टेक्स्ट",
+            text_sample: "टेक्स्ट नमूना: पृष्ठ {n} कुल {x} पृष्ठों में से",
             margin_options: [
-                {
-                    value: "सामान्य",
-                    label: "सामान्य"
-                },
-                {
-                    value: "सिफारिश की गई",
-                    label: "सिफारिश की गई"
-                },
-                {
-                    value: "बड़ा",
-                    label: "बड़ा"
-                }
+                { value: "Small", label: "छोटा" },
+                { value: "Recommended", label: "अनुशंसित" },
+                { value: "Big", label: "बड़ा" },
             ],
-            text_format: "पाठ स्वरूप",
-            font: "फोंट",
-            font_size: "फोंट आकार",
-            bold: "मोटा",
-            italic: "तिरछा",
-            underline: "नीला",
+            text_format: "टेक्स्ट प्रारूप",
+            font: "फ़ॉन्ट",
+            font_size: "फ़ॉन्ट आकार",
+            bold: "बोल्ड",
+            italic: "इटैलिक",
+            underline: "अंडरलाइन",
             color: "रंग",
             document_language: "दस्तावेज़ भाषा",
             select_language_placeholder: "भाषा चुनें",
-            select_margin_placeholder: "मार्जिन का चयन करें",
-            select_font_placeholder: "फ़ॉन्ट का चयन करें"
+            select_margin_placeholder: "हाशिया चुनें",
+            select_font_placeholder: "फ़ॉन्ट चुनें",
         },
-        first_page_is_cover: "पहला पृष्ठ कोर का पृष्ठ है"
     },
     selected_files_placeholer: "फाइलें चुनें",
     filenameOptions: {
@@ -234,22 +223,18 @@ export const errors: _ = {
         invalidPdf: "अमान्य या दूषित PDF फाइल।",
         pdfNotEncrypted: "यह PDF पासवर्ड से सुरक्षित नहीं है और अनलॉक करने की आवश्यकता नहीं है।",
 
-        // Lock-PDF errors
-        noLockPassword: "PDF को लॉक करने के लिए कृपया पासवर्ड प्रदान करें।",
-        lockingFailed: "PDF लॉक करने में विफल। कृपया पुनः प्रयास करें।",
-
-        // Unlock-PDF errors
-        noPasswordsProvided: "लॉक किए गए PDFs के लिए कृपया पासवर्ड प्रदान करें।",
-        unlockingFailed: "PDF अनलॉक करने में विफल। कृपया अपना पासवर्ड जांचें और पुनः प्रयास करें।",
-        incorrectPassword: "गलत पासवर्ड। कृपया पुनः प्रयास करें।",
-        passwordRequired: "यह PDF पासवर्ड से सुरक्षित है। कृपया पासवर्ड दर्ज करें।",
-
         // Settings errors
         invalidSettings: "अमान्य सेटिंग्स प्रदान की गईं। कृपया रिफ्रेश करें और पुनः प्रयास करें।",
         conversionFailed: "परिवर्तन विफल। कृपया पुनः प्रयास करें।",
-        noRotationsProvided: "कृपया कम से कम एक फ़ाइल के लिए रोटेशन निर्दिष्ट करें",
-        rotationFailed: "PDF को घुमाने में विफल। कृपया पुनः प्रयास करें。",
-        invalidRotationAngle: "अमान्य रोटेशन कोण। 90, 180, या 270 डिग्री का उपयोग करें।"
+        noNumberSettings: "कृपया क्रमांकन सेटिंग्स कॉन्फ़िगर करें",
+        invalidNumberSettings: "अमान्य क्रमांकन सेटिंग्स प्रारूप",
+        noCustomText: "कृपया कस्टम टेक्स्ट दर्ज करें",
+        numberingFailed: "पृष्ठ संख्या जोड़ने में विफल। कृपया पुनः प्रयास करें।",
+        invalidPageRange: "अमान्य पृष्ठ सीमा",
+        pageOutOfRange: "पृष्ठ संख्या PDF पृष्ठ गणना से अधिक है",
+        invalidPosition: "अमान्य संख्या स्थिति",
+        invalidMargin: "अमान्य हाशिया मूल्य",
+        invalidFontSize: "अमान्य फ़ॉन्ट आकार",
     },
 };
 

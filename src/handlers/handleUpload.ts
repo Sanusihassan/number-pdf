@@ -1,31 +1,41 @@
-// now i want to fix the rotate-pdf api, this is the front-end i.e what i'm sending from the client:
+// apps/number-pdf/handleUpload.ts
 import axios from "axios";
-import { downloadConvertedFile } from "../downloadFile";
-import type { errors as _ } from "../content";
+import { downloadConvertedFile } from "../../src/downloadFile";
+import type { errors as _ } from "../../src/content";
 import { type RefObject } from "react";
-import { resetErrorMessage, setField } from "../store";
+import { resetErrorMessage, setField } from "../../src/store";
 import type { Action, Dispatch } from "@reduxjs/toolkit/react";
-import { parseErrorResponse } from "../utils";
+import { parseErrorResponse } from "../../src/utils";
 
-let filesOnSubmit = [];
-let prevState = null;
+let filesOnSubmit: string[] = [];
+let prevState: string | null = null;
 
 export const handleUpload = async (
   e: React.SubmitEvent<HTMLFormElement>,
-  downloadBtn: RefObject<HTMLAnchorElement>,
+  downloadBtn: React.RefObject<HTMLAnchorElement | null>,
   dispatch: Dispatch<Action>,
   state: {
     path: string;
     errorMessage: string;
     fileName: string;
-    rotations: {
-      k: string;
-      r: number;
-    }[];
-    passwords: {
-      k: string;
-      p: string;
-    }[];
+    numberPdfSettings: {
+      pageMode: "single" | "facing";
+      firstPageIsCover: boolean;
+      position: number;
+      margin: "small" | "recommended" | "big";
+      startNumber: number;
+      fromPage: number;
+      toPage: number;
+      textOption: "only-number" | "page-n" | "page-n-of-x" | "custom";
+      customText: string;
+      font: string;
+      fontSize: number;
+      bold: boolean;
+      italic: boolean;
+      underline: boolean;
+      color: string;
+      documentLanguage: string;
+    };
   },
   files: File[],
   errors: _
@@ -33,16 +43,18 @@ export const handleUpload = async (
   e.preventDefault();
   dispatch(setField({ isSubmitted: true }));
 
-  if (!files) return;
+  if (!files || files.length === 0) return;
 
-  // Extract file names from the File[] array
+  // ✅ number-pdf only accepts a single file
+  const file = files[0];
+
+  // Check if we can reuse previous result
   const fileNames = files.map((file) => file.name);
-
-  // Check if every file name in files is present in filesOnSubmit
   const allFilesPresent = fileNames.every((fileName) =>
     filesOnSubmit.includes(fileName)
   );
   const strState = JSON.stringify(state);
+
   if (
     allFilesPresent &&
     files.length === filesOnSubmit.length &&
@@ -54,13 +66,60 @@ export const handleUpload = async (
   }
   prevState = strState;
 
-  // Prepare form data
-  const formData = new FormData();
-  for (let i = 0; i < files.length; i++) {
-    formData.append("files", files[i]);
+  // ✅ Validate number PDF settings
+  if (!state.numberPdfSettings) {
+    dispatch(
+      setField({
+        errorMessage:
+          errors.alerts?.noNumberSettings ||
+          "Please configure numbering settings",
+      })
+    );
+    dispatch(setField({ isSubmitted: false }));
+    return;
   }
-  formData.append("rotations", JSON.stringify(state.rotations));
-  formData.append("passwords", JSON.stringify(state.passwords));
+
+  // ✅ Validate page range
+  if (
+    state.numberPdfSettings.fromPage > state.numberPdfSettings.toPage ||
+    state.numberPdfSettings.fromPage < 1
+  ) {
+    dispatch(
+      setField({
+        errorMessage:
+          errors.alerts?.invalidPageRange,
+      })
+    );
+    dispatch(setField({ isSubmitted: false }));
+    return;
+  }
+
+  // ✅ Validate custom text if selected
+  if (
+    state.numberPdfSettings.textOption === "custom" &&
+    !state.numberPdfSettings.customText.trim()
+  ) {
+    dispatch(
+      setField({
+        errorMessage:
+          errors.alerts?.noCustomText || "Please enter custom text",
+      })
+    );
+    dispatch(setField({ isSubmitted: false }));
+    return;
+  }
+
+  // ✅ Prepare form data
+  const formData = new FormData();
+
+  // Add the PDF file
+  formData.append("file", file);
+
+  // Add numbering settings (as JSON string)
+  formData.append(
+    "numberPdfSettings",
+    JSON.stringify(state.numberPdfSettings)
+  );
 
   let url: string = "";
   let endpoint = "/api/";
@@ -77,47 +136,25 @@ export const handleUpload = async (
   }
 
   const originalFileName =
-    state.fileName || files[0]?.name?.split(".").slice(0, -1).join(".");
-
-  const mimeTypeLookupTable: {
-    [key: string]: { outputFileMimeType: string; outputFileName: string };
-  } = {
-    "application/zip": {
-      outputFileMimeType: "application/zip",
-      outputFileName: `${originalFileName || "PDFEquips"}-compressed.zip`,
-    },
-    "application/pdf": {
-      outputFileMimeType: "application/pdf",
-      outputFileName: `${originalFileName}.pdf`,
-    },
-  };
+    state.fileName || file.name.split(".").slice(0, -1).join(".");
 
   try {
     const response = await axios.post(url, formData, {
       responseType: "arraybuffer",
-      withCredentials: true
+      withCredentials: true,
     });
 
     const mimeType = response.data.type || response.headers["content-type"];
-    const mimeTypeData = mimeTypeLookupTable[mimeType] || {
-      outputFileMimeType: mimeType,
-      outputFileName: "",
-    };
-    const { outputFileMimeType, outputFileName } = mimeTypeData;
-    const compressedFileSize = response.data.byteLength;
 
-    // Dispatch the compressed file size to Redux store
-    dispatch(
-      setField({
-        compressedFileSize: compressedFileSize,
-      })
-    );
+    // ✅ number-pdf always returns a PDF
+    const outputFileMimeType = "application/pdf";
+    const outputFileName = `${originalFileName || "PDFEquips"}-numbered.pdf`;
 
     dispatch(setField({ showDownloadBtn: true }));
     downloadConvertedFile(
       response,
       outputFileMimeType,
-      outputFileName || state.fileName,
+      outputFileName,
       downloadBtn
     );
     filesOnSubmit = files.map((f) => f.name);
@@ -139,53 +176,70 @@ export const handleUpload = async (
       try {
         const errorCodeMap: Record<string, string> = {
           // General file validation errors
-          'NO_FILES_PROVIDED': errors.alerts.fileNotUploaded || 'No files provided',
-          'FILE_NOT_UPLOADED': errors.alerts.fileNotUploaded || 'File not uploaded',
-          'FILE_EMPTY': errors.alerts.fileEmpty || 'File is empty',
-          'FILE_TOO_LARGE': errors.alerts.fileTooLarge || 'File is too large',
-          'TOO_MANY_FILES': errors.alerts.tooManyFiles || 'Too many files uploaded',
-          'INVALID_FILE_TYPE': errors.alerts.invalidFileType || 'Invalid file type',
-          'FILE_CORRUPT': errors.alerts.fileCorrupt || 'File is corrupted',
+          NO_FILES_PROVIDED:
+            errors.alerts.fileNotUploaded || "No files provided",
+          FILE_NOT_UPLOADED:
+            errors.alerts.fileNotUploaded || "File not uploaded",
+          FILE_EMPTY: errors.alerts.fileEmpty || "File is empty",
+          FILE_TOO_LARGE: errors.alerts.fileTooLarge || "File is too large",
+          INVALID_FILE_TYPE:
+            errors.alerts.invalidFileType || "Invalid file type",
+          FILE_CORRUPT: errors.alerts.fileCorrupt || "File is corrupted",
 
           // PDF-specific errors
-          'INVALID_PDF': errors.alerts.invalidPdf || 'Invalid PDF file',
-          'PDF_NOT_ENCRYPTED': errors.alerts.pdfNotEncrypted || 'PDF is not password-protected',
+          INVALID_PDF: errors.alerts.invalidPdf || "Invalid PDF file",
 
-          // Lock-PDF specific errors
-          'NO_LOCK_PASSWORD_PROVIDED': errors.alerts.noLockPassword || 'Please provide a password to lock the PDF',
-          'LOCKING_FAILED': errors.alerts.lockingFailed || 'Failed to lock PDF. Please try again.',
-
-          // Unlock-PDF specific errors
-          'NO_PASSWORDS_PROVIDED': errors.alerts.noPasswordsProvided || 'Please provide passwords for locked PDFs',
-          'UNLOCKING_FAILED': errors.alerts.unlockingFailed || 'Failed to unlock PDF. Please check the password and try again.',
-          'INCORRECT_PASSWORD': errors.alerts.incorrectPassword || 'Incorrect password provided',
-          'PASSWORD_REQUIRED': errors.alerts.passwordRequired || 'Password required to unlock PDF',
-
-          // Settings errors
-          'INVALID_SETTINGS_FORMAT': errors.alerts.invalidSettings || 'Invalid settings format',
-
+          // ✅ number-pdf specific errors
+          NO_NUMBER_SETTINGS:
+            errors.alerts.noNumberSettings ||
+            "No numbering settings provided",
+          INVALID_NUMBER_SETTINGS:
+            errors.alerts.invalidNumberSettings ||
+            "Invalid numbering settings format",
+          INVALID_PAGE_RANGE:
+            errors.alerts.invalidPageRange || "Invalid page range",
+          PAGE_OUT_OF_RANGE:
+            errors.alerts.pageOutOfRange ||
+            "Page number exceeds PDF page count",
+          INVALID_POSITION:
+            errors.alerts.invalidPosition || "Invalid number position",
+          INVALID_MARGIN:
+            errors.alerts.invalidMargin || "Invalid margin value",
+          INVALID_FONT_SIZE:
+            errors.alerts.invalidFontSize || "Invalid font size",
+          NO_CUSTOM_TEXT:
+            errors.alerts.noCustomText ||
+            "Custom text is required when custom option is selected",
+          NUMBERING_FAILED:
+            errors.alerts.numberingFailed ||
+            "Failed to add page numbers. Please try again.",
           // Auth errors
-          'UNAUTHORIZED': errors.alerts.authRequired || 'Authentication required',
-          'INVALID_TOKEN': errors.alerts.invalidToken || 'Invalid authentication token',
-          'AUTH_TOKEN_MISSING': errors.alerts.authRequired || 'Authentication required',
-          'AUTH_TOKEN_EXPIRED': errors.alerts.sessionExpired || 'Session expired. Please sign in again.',
-          'AUTH_INVALID_TOKEN': errors.alerts.invalidToken || 'Invalid authentication token',
-          'AUTH_USER_NOT_FOUND': errors.alerts.userNotFound || 'User not found',
-          'AUTH_SERVER_ERROR': errors.alerts.authError || 'Authentication error',
+          UNAUTHORIZED:
+            errors.alerts.authRequired || "Authentication required",
+          INVALID_TOKEN:
+            errors.alerts.invalidToken || "Invalid authentication token",
+          AUTH_TOKEN_MISSING:
+            errors.alerts.authRequired || "Authentication required",
+          AUTH_TOKEN_EXPIRED:
+            errors.alerts.sessionExpired ||
+            "Session expired. Please sign in again.",
+          AUTH_INVALID_TOKEN:
+            errors.alerts.invalidToken || "Invalid authentication token",
+          AUTH_USER_NOT_FOUND:
+            errors.alerts.userNotFound || "User not found",
+          AUTH_SERVER_ERROR:
+            errors.alerts.authError || "Authentication error",
 
           // Server errors
-          'SERVER_CONFIG_ERROR': errors.alerts.serverError || 'Server configuration error',
+          SERVER_CONFIG_ERROR:
+            errors.alerts.serverError || "Server configuration error",
 
           // Other errors
-          'MAX_PAGES_EXCEEDED': errors.MAX_PAGES_EXCEEDED?.message,
-          'NO_ROTATIONS_PROVIDED': errors.alerts.noRotationsProvided,
-          'ROTATION_FAILED': errors.alerts.rotationFailed,
-          'INVALID_ROTATION_ANGLE': errors.alerts.invalidRotationAngle,
+          MAX_PAGES_EXCEEDED: errors.MAX_PAGES_EXCEEDED?.message,
         };
 
         const { errorCode } = parseErrorResponse(error);
-
-        const message = errorCodeMap[errorCode];
+        const message = errorCodeMap[errorCode as keyof typeof errorCodeMap];
 
         if (message) {
           dispatch(setField({ limitationMsg: message }));
