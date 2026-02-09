@@ -1,8 +1,7 @@
-// apps/number-pdf/handleUpload.ts
+//handleUpload.ts
 import axios from "axios";
 import { downloadConvertedFile } from "../../src/downloadFile";
 import type { errors as _ } from "../../src/content";
-import { type RefObject } from "react";
 import { resetErrorMessage, setField } from "../../src/store";
 import type { Action, Dispatch } from "@reduxjs/toolkit/react";
 import { parseErrorResponse } from "../../src/utils";

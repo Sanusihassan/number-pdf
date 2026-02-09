@@ -1,5 +1,5 @@
-// Options.tsx (number-pdf) - FIXED
-import { useState } from "react";
+// Options.tsx (number-pdf)
+import { useState, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import type { StylesConfig } from "react-select";
@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { setField, type ToolState } from "../../src/store";
 import type { edit_page } from "../../src/content";
+import { languages } from "../../src/content/languages"; // ✅ Import languages
 
 const THEME_COLOR = "#b71540";
 
@@ -117,16 +118,6 @@ const fontSizeOptions = [
   { value: 32, label: "32" },
 ];
 
-// ============ LANGUAGE OPTIONS ============
-const languageOptions = [
-  { value: "en", label: "English" },
-  { value: "ar", label: "العربية" },
-  { value: "es", label: "Español" },
-  { value: "fr", label: "Français" },
-  { value: "hi", label: "हिन्दी" },
-  { value: "zh", label: "中文" },
-];
-
 // ============ POSITION GRID COMPONENT ============
 const PositionGrid = ({
   selectedPosition,
@@ -146,7 +137,6 @@ const PositionGrid = ({
           className={`aspect-square flex items-center justify-center transition-all hover:bg-gray-50 ${
             selectedPosition === index ? "bg-opacity-20" : ""
           } ${
-            // ✅ Add borders only where needed (no double borders)
             index % 3 !== 2 ? "border-r border-dashed border-gray-300" : ""
           } ${index < 6 ? "border-b border-dashed border-gray-300" : ""}`}
           style={{
@@ -223,7 +213,7 @@ const CustomCheckbox = ({
 }: CustomCheckboxProps) => {
   return (
     <label
-      className="d-flex items-center gap-3 cursor-pointer group"
+      className="flex items-center gap-3 cursor-pointer group"
       onClick={(e) => e.stopPropagation()}
     >
       <div className="relative">
@@ -278,7 +268,7 @@ const CustomRadio = ({
 }: CustomRadioProps) => {
   return (
     <label
-      className="flex items-center gap-3 cursor-pointer group"
+      className="d-flex items-center gap-3 cursor-pointer group"
       onClick={(e) => e.stopPropagation()}
     >
       <div className="relative">
@@ -335,6 +325,27 @@ const Options = ({ content }: OptionsProps) => {
     );
   };
 
+  // ✅ Generate language options from the languages object
+  const languageOptions = useMemo(
+    () =>
+      Object.entries(languages).map(
+        ([value, language]: [
+          string,
+          { name: string; nativeName: string },
+        ]) => ({
+          value,
+          label: `${language.name} (${language.nativeName})`,
+        }),
+      ),
+    [],
+  );
+
+  useEffect(() => {
+    if (pageCount && pageCount > 0) {
+      updateSettings({ toPage: pageCount });
+    }
+  }, [pageCount]);
+
   return (
     <div className="options-container p-6 space-y-6">
       {/* Page Mode */}
@@ -342,7 +353,6 @@ const Options = ({ content }: OptionsProps) => {
         <h3 className="text-lg font-semibold text-gray-800 mb-4">
           {content.page_mode}
         </h3>
-        {/* ✅ Flex between layout */}
         <div className="flex justify-between">
           <CustomRadio
             checked={numberPdfSettings.pageMode === "single"}
@@ -391,7 +401,8 @@ const Options = ({ content }: OptionsProps) => {
           </label>
           <Select
             value={content.single_page_options.margin_options.find(
-              (m) => m.value.toLowerCase() === numberPdfSettings.margin,
+              (m: { value: string }) =>
+                m.value.toLowerCase() === numberPdfSettings.margin,
             )}
             onChange={(option) =>
               option &&
@@ -477,15 +488,17 @@ const Options = ({ content }: OptionsProps) => {
           {content.single_page_options.text}
         </label>
         <Select
-          value={content.single_page_options.page_text_options.find((opt) => {
-            const valueMap: Record<string, string> = {
-              "insert only page number (recommended)": "only-number",
-              "page n": "page-n",
-              "page n of x": "page-n-of-x",
-              Custom: "custom",
-            };
-            return valueMap[opt.value] === numberPdfSettings.textOption;
-          })}
+          value={content.single_page_options.page_text_options.find(
+            (opt: { value: string | number }) => {
+              const valueMap: Record<string, string> = {
+                "insert only page number (recommended)": "only-number",
+                "page n": "page-n",
+                "page n of x": "page-n-of-x",
+                Custom: "custom",
+              };
+              return valueMap[opt.value] === numberPdfSettings.textOption;
+            },
+          )}
           onChange={(option) => {
             if (option) {
               const valueMap: Record<string, string> = {
@@ -633,7 +646,7 @@ const Options = ({ content }: OptionsProps) => {
           label={content.single_page_options.color}
         />
 
-        {/* Document Language */}
+        {/* Document Language - ✅ ALL LANGUAGES */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             {content.single_page_options.document_language}
@@ -647,7 +660,7 @@ const Options = ({ content }: OptionsProps) => {
             }
             options={languageOptions}
             styles={customSelectStyles}
-            isSearchable={false}
+            isSearchable={true} // ✅ Enable search for many languages
             placeholder={
               content.single_page_options.select_language_placeholder
             }
