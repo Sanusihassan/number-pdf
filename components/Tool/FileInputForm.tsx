@@ -42,7 +42,7 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
 
   const dispatch = useDispatch();
   // file store
-  const { files, setFiles, setFileInput, setDownloadBtn, setSubmitBtn } =
+  const { files, setFiles, setFileInput, setDownloadBlob, setSubmitBtn } =
     useFileStore();
 
   // refs
@@ -51,14 +51,28 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
   const downloadBtn = useRef<HTMLAnchorElement>(null);
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
+    const setupRefs = () => {
+      setLoaded(true);
+      setFileInput(fileInput);
+      setSubmitBtn(submitBtn);
+    };
+
+    if ("requestIdleCallback" in window) {
+      const id = requestIdleCallback(setupRefs, { timeout: 3000 });
+      return () => cancelIdleCallback(id);
+    } else {
+      // Fallback for older browsers
+      if (document.readyState === "complete") {
+        setupRefs();
+      } else {
+        document.addEventListener("DOMContentLoaded", setupRefs, {
+          once: true,
+        });
+        return () =>
+          document.removeEventListener("DOMContentLoaded", setupRefs);
+      }
     }
-    setLoaded(true);
-    setFileInput(fileInput);
-    setSubmitBtn(submitBtn);
-    setDownloadBtn(downloadBtn);
-  }, []);
+  }, [setFileInput, setSubmitBtn]);
   return (
     <form
       onClick={(e) => {
@@ -67,7 +81,6 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
       onSubmit={(e) =>
         handleUpload(
           e,
-          downloadBtn,
           dispatch,
           {
             path,
@@ -77,6 +90,7 @@ export const FileInputForm: React.FC<FileInputFormProps> = ({
           },
           files,
           errors,
+          setDownloadBlob,
         )
       }
       method="POST"
