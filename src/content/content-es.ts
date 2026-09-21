@@ -116,6 +116,32 @@ export const downloadFile: _downloadFile = {
   },
   backto: {
     "number-pdf": "Volver a numerar PDF"
+  },
+  shareOverlayExtra: {
+    copiedText: "Copiado",
+    copy_link: "Copiar enlace",
+  },
+  premiumToast: {
+    variants: [
+      {
+        message: "¡¿Quieres mejores resultados?! Prueba Premium para obtener mayor formato y precisión.",
+        actionButton: "Probar Premium",
+      },
+      {
+        message: "¿Prefieres una experiencia sin anuncios? Premium elimina los anuncios por completo.",
+        actionButton: "Obtener Premium",
+      },
+    ],
+  },
+  shareOverlay: {
+    "number-pdf": {
+      modalTitles: ["¡Tu voz cuenta!", "¡Ayúdanos a hacer el cambio!", "¡Sé parte de nuestra comunidad!"],
+      modalDescription:
+        "Añade números de página a un documento que nadie quiere numerar a mano: un pequeño cambio que marca la diferencia.",
+      shareText:
+        "Añade números de página a cada página de un PDF, en la posición y con el número de inicio seleccionados.",
+      url: "https://www.pdfequips.com/number-pdf",
+    },
   }
 };
 export const tools: _tools = {

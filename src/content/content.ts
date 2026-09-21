@@ -113,6 +113,32 @@ export const downloadFile = {
   },
   backto: {
     "number-pdf": "Back To Number PDF"
+  },
+  shareOverlayExtra: {
+    copiedText: "Copied",
+    copy_link: "Copy Link",
+  },
+  premiumToast: {
+    variants: [
+      {
+        message: "Want better results? Try Premium for superior formatting & accuracy!",
+        actionButton: "Try Premium",
+      },
+      {
+        message: "Prefer an ad-free experience? Premium removes ads entirely.",
+        actionButton: "Go Premium",
+      },
+    ],
+  },
+  shareOverlay: {
+    "number-pdf": {
+      modalTitles: ["Your voice counts!", "Help us make a change!", "Be part of our community!"],
+      modalDescription:
+        "Adding page numbers to a document nobody wants to number by hand — small fix, real difference.",
+      shareText:
+        "Adds page numbers to every page of a PDF, in a chosen position and starting number.",
+      url: "https://www.pdfequips.com/number-pdf",
+    },
   }
 };
 

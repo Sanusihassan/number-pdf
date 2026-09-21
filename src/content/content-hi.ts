@@ -115,6 +115,32 @@ export const downloadFile: _downloadFile = {
     },
     backto: {
         "number-pdf": "नंबर पीडीएफ पर वापस जाएं"
+    },
+    shareOverlayExtra: {
+        copiedText: "कॉपी किया गया",
+        copy_link: "लिंक कॉपी करें",
+    },
+    premiumToast: {
+        variants: [
+            {
+                message: "बेहतर परिणाम चाहते हैं? बेहतर फॉर्मेटिंग और सटीकता के लिए Premium आज़माएं!",
+                actionButton: "Premium आज़माएं",
+            },
+            {
+                message: "विज्ञापन-मुक्त अनुभव पसंद करते हैं? Premium विज्ञापनों को पूरी तरह से हटा देता है।",
+                actionButton: "Premium प्राप्त करें",
+            },
+        ],
+    },
+    shareOverlay: {
+        "number-pdf": {
+            modalTitles: ["आपकी आवाज मायने रखती है!", "बदलाव लाने में हमारी मदद करें!", "हमारे समुदाय का हिस्सा बनें!"],
+            modalDescription:
+                "ऐसे दस्तावेज़ में पृष्ठ संख्या जोड़ना जिसे कोई भी हाथ से नंबर नहीं देना चाहता — एक छोटा सा सुधार, बड़ा बदलाव।",
+            shareText:
+                "PDF के प्रत्येक पृष्ठ पर, चुने गए स्थान और शुरुआती संख्या के अनुसार पृष्ठ संख्या जोड़ता है।",
+            url: "https://www.pdfequips.com/number-pdf",
+        },
     }
 };
 

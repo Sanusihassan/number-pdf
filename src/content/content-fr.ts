@@ -116,6 +116,32 @@ export const downloadFile: _downloadFile = {
     },
     backto: {
         "number-pdf": "Retourner à la numérotation PDF"
+    },
+    shareOverlayExtra: {
+        copiedText: "Copié",
+        copy_link: "Copier le lien",
+    },
+    premiumToast: {
+        variants: [
+            {
+                message: "Vous voulez de meilleurs résultats ? Essayez Premium pour un formatage et une précision supérieurs !",
+                actionButton: "Essayer Premium",
+            },
+            {
+                message: "Vous préférez une expérience sans publicité ? Premium supprime entièrement les publicités.",
+                actionButton: "Passer à Premium",
+            },
+        ],
+    },
+    shareOverlay: {
+        "number-pdf": {
+            modalTitles: ["Votre voix compte !", "Aidez-nous à faire bouger les choses !", "Faites partie de notre communauté !"],
+            modalDescription:
+                "Ajouter des numéros de page à un document que personne ne veut numéroter à la main — une petite correction, une vraie différence.",
+            shareText:
+                "Ajoute des numéros de page sur chaque page d'un PDF, selon la position et le numéro de départ choisis.",
+            url: "https://www.pdfequips.com/number-pdf",
+        },
     }
 };
 

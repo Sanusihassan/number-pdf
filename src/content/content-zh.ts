@@ -116,6 +116,32 @@ export const downloadFile: _downloadFile = {
     },
     backto: {
         "number-pdf": "返回到编号PDF"
+    },
+    shareOverlayExtra: {
+        copiedText: "已复制",
+        copy_link: "复制链接",
+    },
+    premiumToast: {
+        variants: [
+            {
+                message: "想要更好的效果？试试 Premium 以获得更出色的排版和准确度！",
+                actionButton: "体验 Premium",
+            },
+            {
+                message: "想要无广告体验？Premium 可完全移除所有广告。",
+                actionButton: "升级 Premium",
+            },
+        ],
+    },
+    shareOverlay: {
+        "number-pdf": {
+            modalTitles: ["您的声音很重要！", "帮助我们做出改变！", "成为我们社区的一员！"],
+            modalDescription:
+                "为没人想手动标注页码的文档添加页码 — 改动虽小，改变巨大。",
+            shareText:
+                "在 PDF 的每个页面上按所选位置和起始页码添加页码。",
+            url: "https://www.pdfequips.com/number-pdf",
+        },
     }
 };
 

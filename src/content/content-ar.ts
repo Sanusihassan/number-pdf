@@ -117,6 +117,32 @@ export const downloadFile: _downloadFile = {
     },
     backto: {
         "number-pdf": "العودة إلى ترقيم PDF"
+    },
+    premiumToast: {
+        variants: [
+            {
+                message: "هل تريد نتائج أفضل؟ جرب Premium للحصول على دقة وتنسيق ممتازين!",
+                actionButton: "جرب Premium",
+            },
+            {
+                message: "هل تفضل تجربة خالية من الإعلانات؟ Premium يزيل الإعلانات تمامًا.",
+                actionButton: "احصل على Premium",
+            },
+        ],
+    },
+    shareOverlayExtra: {
+        copiedText: "تم النسخ",
+        copy_link: "نسخ الرابط",
+    },
+    shareOverlay: {
+        "number-pdf": {
+            modalTitles: ["صوتك يحدث فرقًا!", "ساعدنا في إحداث تغيير!", "كن جزءًا من مجتمعنا!"],
+            modalDescription:
+                "إضافة أرقام الصفحات إلى مستند لا يريد أحد ترقيمه يدويًا — حل بسيط، وتأثير كبير.",
+            shareText:
+                "يضيف أرقام الصفحات إلى كل صفحة من صفحات ملف PDF، في الموضع والرقم المحددين للبدء.",
+            url: "https://www.pdfequips.com/number-pdf",
+        },
     }
 };
 
