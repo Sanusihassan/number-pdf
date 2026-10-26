@@ -4,8 +4,8 @@ import type { adBlockerContentType } from "./content";
 export const tool: _tool = {
   Number_PDF: {
     title: "Numerar PDF",
-    seoTitle: "Agregar Números de Página en Línea - Numeración de PDF Fácil",
-    description: "Agrega números de página a tu documento PDF con diferentes estilos y opciones.",
+    seoTitle: "Numerar Páginas PDF en Línea Gratis - Agregar Números de Página",
+    description: "Numera las páginas de un PDF gratis y en línea. Agrega números de página con el estilo y las opciones que prefieras, sin registro.",
     keywords: "agregar números de página a PDF, herramienta de numeración de PDF, numeración de PDF en línea, numerar páginas de PDF, personalizar números de página de PDF, agregar números secuenciales a PDF",
     color: "#e55039",
     type: ".pdf",
