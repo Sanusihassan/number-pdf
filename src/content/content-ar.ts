@@ -5,8 +5,8 @@ import type { adBlockerContentType } from "./content";
 export const tool: _tool = {
     Number_PDF: {
         title: "ترقيم PDF",
-        seoTitle: "إضافة أرقام الصفحات عبر الإنترنت - ترقيم PDF بسهولة",
-        description: "أضف أرقام الصفحات إلى مستند PDF الخاص بك مع أنماط وخيارات مختلفة.",
+        seoTitle: "ترقيم صفحات PDF مجانًا - إضافة أرقام الصفحات عبر الإنترنت",
+        description: "رقّم صفحات ملف PDF مجانًا عبر الإنترنت. أضف أرقام الصفحات بالنمط والخيارات التي تفضلها، بدون تسجيل.",
         keywords: "إضافة أرقام الصفحات إلى PDF, أداة ترقيم PDF, ترقيم PDF عبر الإنترنت, ترقيم صفحات PDF, تخصيص أرقام صفحات PDF, إضافة أرقام تسلسلية إلى PDF",
         color: "#e55039",
         type: ".pdf",
